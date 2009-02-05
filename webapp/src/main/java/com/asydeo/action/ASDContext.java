@@ -10,4 +10,9 @@ public class ASDContext extends ActionBeanContext {
 	public OntModel getModel() {
 		return (OntModel)getServletContext().getAttribute("model");
 	}
+
+	public void login(String string) {
+		this.getRequest().getSession().setAttribute("login", string);
+	}	
+
 }

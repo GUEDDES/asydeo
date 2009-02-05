@@ -11,7 +11,7 @@
 		<filter-class>net.sourceforge.stripes.controller.StripesFilter</filter-class>
 		<init-param>
 			<param-name>ActionResolver.Packages</param-name>
-			<param-value>action</param-value>
+			<param-value>com.asydeo.action</param-value>
 		</init-param>
 
 		<init-param>
@@ -40,9 +40,30 @@
 	
 	<servlet-mapping>
 		<servlet-name>StripesDispatcher</servlet-name>
-		<url-pattern>/thing/*</url-pattern>
+		<url-pattern>/admin/*</url-pattern>
 	</servlet-mapping>
-  <listener>
+    <listener>
 	<listener-class>com.asydeo.servlet.ContextListener</listener-class>
-  </listener>
+    </listener>
+
+
+<security-constraint>
+    <web-resource-collection>
+      <web-resource-name>A Protected Page</web-resource-name>
+      <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+      <role-name>user</role-name>
+      <role-name>moderator</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>asydeo</realm-name>
+  </login-config>
+
+
+
+
 </web-app>

@@ -1,5 +1,7 @@
 package com.asydeo.servlet;
 
+import java.io.InputStream;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -20,6 +22,8 @@ public class ContextListener implements ServletContextListener {
 		 String directory = "databases/DB1" ;
 		 Model model = TDBFactory.createModel(directory) ;
 		 OntModel om = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MICRO_RULE_INF, model);
+		 InputStream is = getClass().getClassLoader().getResourceAsStream("/ontology/asydeo.owl");
+		 om.read(is, "RDF/XML");
 		 ev.getServletContext().setAttribute("model", om);
 		 om.write(System.out, "N3");
 	}
