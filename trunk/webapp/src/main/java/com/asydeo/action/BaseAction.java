@@ -15,4 +15,5 @@ public class BaseAction implements ActionBean {
 	public void setContext(ActionBeanContext c) {
 		context = (ASDContext)c;
 	}
+	
 }
