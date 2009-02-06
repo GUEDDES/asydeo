@@ -13,10 +13,6 @@ public class LoginAction extends BaseAction {
 	
 	@DefaultHandler
 	public Resolution login() throws IOException {
-		
-		if ("admin".equals(login.getUsername())) {
-			context.login("admin");
-		}
 		return null;
 	}
 }
