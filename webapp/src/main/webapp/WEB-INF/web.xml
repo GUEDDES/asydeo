@@ -42,6 +42,12 @@
 		<servlet-name>StripesDispatcher</servlet-name>
 		<url-pattern>/admin/*</url-pattern>
 	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>StripesDispatcher</servlet-name>
+		<url-pattern>/asset/*</url-pattern>
+	</servlet-mapping>
+
     <listener>
 	<listener-class>com.asydeo.servlet.ContextListener</listener-class>
     </listener>
