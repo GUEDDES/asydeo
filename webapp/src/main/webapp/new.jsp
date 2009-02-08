@@ -8,9 +8,17 @@
 </stripes:layout-component>
 
 <stripes:layout-component name="content">
-<c:forEach items="${actionBean.classes}" var="cls" varStatus="loop">
-<li>${cls.label} ( ${cls.URI} ) </li>
-</c:forEach>
+
+
+<stripes:form action="/asset/new">
+Create a new 
+<stripes:select name="type">
+<stripes:options-collection collection="${actionBean.classes}"
+  label="label" value="URI"/>
+</stripes:select>
+</stripes:form>
+
+
 </stripes:layout-component>
 
 
