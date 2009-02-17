@@ -1,5 +1,6 @@
 package com.asydeo.action;
 
+import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.vocabulary.OWL;
@@ -26,6 +27,16 @@ public class BaseAction implements ActionBean {
 
 	public OntClass owlThing() {
 		return m().getOntClass(OWL.Thing.getURI());
+	}
+	
+	public OntClass ontClass(String uri) {
+		String longuri = m().expandPrefix(uri);
+		return m().getOntClass(longuri);
+	}
+	
+	public Individual individual(String uri) {
+		String longuri = m().expandPrefix(uri);
+		return m().getIndividual(longuri);		
 	}
 	
 	public OntClass rootClass() {

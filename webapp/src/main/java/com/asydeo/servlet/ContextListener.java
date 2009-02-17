@@ -16,16 +16,19 @@ public class ContextListener implements ServletContextListener {
 
 	
 	public void contextDestroyed(ServletContextEvent ev) {
+		OntModel m = (OntModel)ev.getServletContext().getAttribute("model");
+		m.close();
 	}
 
 	public void contextInitialized(ServletContextEvent ev) {
 		 String directory = "databases/DB1" ;
-		 Model model = TDBFactory.createModel(directory) ;
+		 Model model = TDBFactory.createModel(directory);
+		// TDBFactory.createModel(dir)
 		 OntModel om = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MICRO_RULE_INF, model);
 		 InputStream is = getClass().getClassLoader().getResourceAsStream("/ontology/asydeo.owl");
 		 om.read(is, "RDF/XML");
 		 ev.getServletContext().setAttribute("model", om);
-		 om.write(System.out, "N3");
+
 	}
 
 }
