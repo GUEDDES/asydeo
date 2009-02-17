@@ -1,14 +1,16 @@
 <%@ include file="../taglibs.jsp" %>
-
 <stripes:layout-definition>
-  <html>
-  <head> 
-    <stripes:layout-component name="html-head"/>     
-  </head>
+<html>
+<head> 
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/basic.css" type="text/css"> 
+  <stripes:layout-component name="html-head"/>     
+</head>
 
-  <body>
+<body>
+  <c:import url="/menu.jsp" />
   <stripes:layout-component name="header"/> 
   <stripes:layout-component name="content"/>
-  </body>
-  </html>
+
+</body>
+</html>
 </stripes:layout-definition>
