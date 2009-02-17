@@ -2,8 +2,8 @@
 
 
 <!DOCTYPE rdf:RDF [
+    <!ENTITY asydeo "http://asydeo.com/schema#" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
-    <!ENTITY ontology "http://asydeo.com/schema#" >
     <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
@@ -13,14 +13,14 @@
 
 
 <rdf:RDF xmlns="http://asydeo.com/schema#"
-     xml:base="http://asydeo.com/schema#"
+     xml:base="http://asydeo.com/schema"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:ontology="http://asydeo.com/schema#">
+     xmlns:asydeo="http://asydeo.com/schema#">
     <owl:Ontology rdf:about=""/>
     
 
@@ -34,6 +34,7 @@
      -->
 
     <owl:AnnotationProperty rdf:about="&dc;description"/>
+    <owl:AnnotationProperty rdf:about="#editor"/>
     
 
 
@@ -70,6 +71,94 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://asydeo.com/schema#alias -->
+
+    <owl:DatatypeProperty rdf:about="#alias">
+        <rdfs:label rdf:datatype="&xsd;string">Aliases</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Alternate names or aliases, comma seperated</rdfs:comment>
+        <editor rdf:resource="#BasicCommaSeperatedList"/>
+        <rdfs:subPropertyOf rdf:resource="#property"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#description -->
+
+    <owl:DatatypeProperty rdf:about="#description">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label rdf:datatype="&xsd;string">Description</rdfs:label>
+        <rdfs:domain rdf:resource="#ConfigurableItem"/>
+        <editor rdf:resource="#TextAreaBasic"/>
+        <rdfs:subPropertyOf rdf:resource="#property"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#height -->
+
+    <owl:DatatypeProperty rdf:about="#height">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#TextArea"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#name -->
+
+    <owl:DatatypeProperty rdf:about="#name">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label rdf:datatype="&xsd;string">Name</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Supply a name that will easily remind you of the resource.</rdfs:comment>
+        <rdfs:domain rdf:resource="#ConfigurableItem"/>
+        <editor rdf:resource="#TextField30"/>
+        <rdfs:subPropertyOf rdf:resource="#property"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#property -->
+
+    <owl:DatatypeProperty rdf:about="#property"/>
+    
+
+
+    <!-- http://asydeo.com/schema#size -->
+
+    <owl:DatatypeProperty rdf:about="#size">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#TextField"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#width -->
+
+    <owl:DatatypeProperty rdf:about="#width">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#TextArea"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -87,6 +176,14 @@
         <owl:disjointWith rdf:resource="#ComputerSystem"/>
         <dc:description rdf:datatype="&xsd;string"
             >Application software that may be installed onto a computer system</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#CommaSeperatedList -->
+
+    <owl:Class rdf:about="#CommaSeperatedList">
+        <rdfs:subClassOf rdf:resource="#List"/>
     </owl:Class>
     
 
@@ -110,9 +207,104 @@
     
 
 
+    <!-- http://asydeo.com/schema#DropDown -->
+
+    <owl:Class rdf:about="#DropDown">
+        <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#List -->
+
+    <owl:Class rdf:about="#List">
+        <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#RadioGroup -->
+
+    <owl:Class rdf:about="#RadioGroup">
+        <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#SelectBox -->
+
+    <owl:Class rdf:about="#SelectBox">
+        <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#SelectBoxGroup -->
+
+    <owl:Class rdf:about="#SelectBoxGroup">
+        <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#TextArea -->
+
+    <owl:Class rdf:about="#TextArea">
+        <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#TextField -->
+
+    <owl:Class rdf:about="#TextField">
+        <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Widget -->
+
+    <owl:Class rdf:about="#Widget">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.w3.org/2002/07/owl#Thing -->
 
     <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://asydeo.com/schema#BasicCommaSeperatedList -->
+
+    <CommaSeperatedList rdf:about="#BasicCommaSeperatedList"/>
+    
+
+
+    <!-- http://asydeo.com/schema#TextAreaBasic -->
+
+    <TextArea rdf:about="#TextAreaBasic"/>
+    
+
+
+    <!-- http://asydeo.com/schema#TextField30 -->
+
+    <TextField rdf:about="#TextField30">
+        <size rdf:datatype="&xsd;int">30</size>
+    </TextField>
 </rdf:RDF>
 
 

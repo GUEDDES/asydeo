@@ -18,12 +18,12 @@
 			<artifactId>stripes</artifactId>
 			<version>1.5</version>
 		</dependency>
-     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-      <scope>runtime</scope>
-    </dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>tomcat</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -64,8 +64,6 @@
 			<artifactId>arq-extra</artifactId>
 			<version>2.6.0</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
@@ -87,12 +85,11 @@
 					<stopPort>9966</stopPort>
 					<stopKey>foo</stopKey>
 					<userRealms>
-						<userRealm implementation="org.mortbay.jetty.security.HashUserRealm">
+						<userRealm implementation="org.mortbay.jetty.security.HashUserRealm">						
 							<name>asydeo</name>
 							<config>security.properties</config>
 						</userRealm>
 					</userRealms>
-
 				</configuration>
 			</plugin>
 		</plugins>

@@ -1,9 +1,9 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+	<display-name>Archetype Created Web Application</display-name>
 
 	<filter>
 		<display-name>Stripes Filter</display-name>
@@ -18,26 +18,26 @@
 			<param-name>ActionBeanContext.Class</param-name>
 			<param-value>com.asydeo.action.ASDContext</param-value>
 		</init-param>
- 	</filter>
-	
+	</filter>
+
 	<filter-mapping>
 		<filter-name>StripesFilter</filter-name>
 		<url-pattern>*.jsp</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
-	
+
 	<filter-mapping>
 		<filter-name>StripesFilter</filter-name>
 		<servlet-name>StripesDispatcher</servlet-name>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
-	
+
 	<servlet>
 		<servlet-name>StripesDispatcher</servlet-name>
 		<servlet-class>net.sourceforge.stripes.controller.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>StripesDispatcher</servlet-name>
 		<url-pattern>/admin/*</url-pattern>
@@ -48,26 +48,26 @@
 		<url-pattern>/asset/*</url-pattern>
 	</servlet-mapping>
 
-    <listener>
-	<listener-class>com.asydeo.servlet.ContextListener</listener-class>
-    </listener>
+	<listener>
+		<listener-class>com.asydeo.servlet.ContextListener</listener-class>
+	</listener>
 
 
-<security-constraint>
-    <web-resource-collection>
-      <web-resource-name>A Protected Page</web-resource-name>
-      <url-pattern>/*</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>admin</role-name>
-      <role-name>user</role-name>
-      <role-name>moderator</role-name>
-    </auth-constraint>
-  </security-constraint>
-  <login-config>
-    <auth-method>BASIC</auth-method>
-    <realm-name>asydeo</realm-name>
-  </login-config>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>A Protected Page</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+			<role-name>user</role-name>
+			<role-name>moderator</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>asydeo</realm-name>
+	</login-config>
 
 
 
