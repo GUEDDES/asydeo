@@ -52,6 +52,10 @@
     <!-- http://asydeo.com/schema#isHosting -->
 
     <owl:ObjectProperty rdf:about="#isHosting">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Installed software</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Software applications installed on this host.</rdfs:comment>
         <rdfs:range rdf:resource="#ApplicationSoftware"/>
         <rdfs:domain rdf:resource="#ComputerSystem"/>
         <owl:inverseOf rdf:resource="#isInstalledOn"/>
@@ -62,6 +66,9 @@
     <!-- http://asydeo.com/schema#isInstalledOn -->
 
     <owl:ObjectProperty rdf:about="#isInstalledOn">
+        <rdfs:label rdf:datatype="&xsd;string">Installations</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The set of hardware systems that host this software.</rdfs:comment>
         <rdfs:domain rdf:resource="#ApplicationSoftware"/>
         <rdfs:range rdf:resource="#ComputerSystem"/>
     </owl:ObjectProperty>
@@ -202,6 +209,8 @@
     <!-- http://asydeo.com/schema#ConfigurableItem -->
 
     <owl:Class rdf:about="#ConfigurableItem">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Configurable Item</rdfs:label>
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
     
