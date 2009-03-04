@@ -47,9 +47,8 @@ public class Util {
 			return null;
 		Individual iview = (Individual)node.as(Individual.class);
 		OntClass c = iview.getOntClass();
-		String lname = c.getLocalName();
 		try {
-			Class cls = Class.forName("com.asydeo.view." + lname);
+			Class cls = Class.forName("com.asydeo.view." + c.getLocalName());
 			View view = (View)cls.newInstance();
 			view.setOntProperty(p);
 			return view;

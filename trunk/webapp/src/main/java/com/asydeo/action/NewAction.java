@@ -4,6 +4,7 @@ import static com.asydeo.ontology.Asydeo.NS;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
+import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
@@ -43,7 +44,9 @@ public class NewAction extends BaseAction {
 		} finally {
 			m().leaveCriticalSection();
 		}
-		return new ForwardResolution("/new.jsp");
+		return new RedirectResolution(ListAction.class).
+			addParameter("uri", classUri);
+
 	}
 
 	private int getNextId(OntClass cls) {

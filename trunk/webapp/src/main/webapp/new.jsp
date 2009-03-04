@@ -13,11 +13,13 @@ ${v.content}<br/>
 </c:forEach>
 
 <stripes:hidden name="classUri" />
-
 <stripes:hidden name="create" value=""/>
-<a href="javascript:document.form1.submit()">Save</a>
-<stripes:link href="/asset/list">
-  <stripes:param name="uri" value="${actionBean.classUri}"/>Cancel</stripes:link>
+
+<br style="clear:both"/>
+<a  class="button" href="javascript:document.form1.submit()">SAVE</a>
+|
+<stripes:link  class="button" href="/asset/list">
+  <stripes:param name="uri" value="${actionBean.classUri}"/>CANCEL</stripes:link>
 </stripes:form>
 
 
