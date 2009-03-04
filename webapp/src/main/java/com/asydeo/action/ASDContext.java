@@ -11,4 +11,7 @@ public class ASDContext extends ActionBeanContext {
 		return (OntModel)getServletContext().getAttribute("model");
 	}
 
+	public OntModel getRawModel() {
+		return (OntModel)getServletContext().getAttribute("rawmodel");
+	}
 }

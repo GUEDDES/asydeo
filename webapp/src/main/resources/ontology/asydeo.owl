@@ -93,6 +93,7 @@
         <rdfs:comment rdf:datatype="&xsd;string"
             >Alternate names or aliases, comma seperated</rdfs:comment>
         <editor rdf:resource="#BasicCommaSeperatedList"/>
+        <rdfs:domain rdf:resource="#ConfigurableItem"/>
         <rdfs:subPropertyOf rdf:resource="#property"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>

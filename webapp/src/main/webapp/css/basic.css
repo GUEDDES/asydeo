@@ -1,4 +1,4 @@
-input,textarea {
+input.normal,textarea.normal {
 	display: block;
 	width: 350px;
 	float: left;
@@ -17,4 +17,17 @@ label {
 
 br {
 	clear: left;
+}
+
+a.button {
+  color: rgb(121, 145, 179);
+  text-decoration: none;
+  vertical-align: baseline;
+  width: 37px;
+}
+
+a.button:hover {
+  background-color:#3274D0;
+  color:#FFFFFF;
+  text-decoration:none;
 }

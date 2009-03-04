@@ -3,6 +3,7 @@ package com.asydeo.action;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.vocabulary.OWL;
 
 import net.sourceforge.stripes.action.ActionBean;
@@ -25,6 +26,10 @@ public class BaseAction implements ActionBean {
 		return context.getModel();
 	}
 
+	public OntModel raw() {
+		return context.getRawModel();
+	}
+
 	public OntClass owlThing() {
 		return m().getOntClass(OWL.Thing.getURI());
 	}
@@ -38,7 +43,17 @@ public class BaseAction implements ActionBean {
 		String longuri = m().expandPrefix(uri);
 		return m().getIndividual(longuri);		
 	}
-	
+
+	public OntProperty ontProperty(String uri) {
+		String longuri = m().expandPrefix(uri);
+		return m().getOntProperty(longuri);
+	}
+
+	public OntProperty rawOntProperty(String uri) {
+		String longuri = raw().expandPrefix(uri);
+		return raw().getOntProperty(longuri);
+	}
+
 	public OntClass rootClass() {
 		return m().getOntClass("http://asydeo.com/schema#ConfigurableItem");
 	}

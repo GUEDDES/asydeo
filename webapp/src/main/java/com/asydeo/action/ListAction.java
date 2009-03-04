@@ -1,6 +1,5 @@
 package com.asydeo.action;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -32,11 +31,9 @@ public class ListAction extends BaseAction {
 		return new RedirectResolution("/asset/list?uri=" + uri);
 	}
 	
-	public Collection<OntView> getList() {		
-		final ArrayList<OntView> result = new ArrayList<OntView>();
-		new each(ontClass(uri)){ 
-			void $() {result.add(OntView.$(item));}};
-		return result;		
+	public Collection<OntView> getList() {	
+		return new each(ontClass(uri)) { 
+			void $() {result.add(OntView.$(item));}}.result;	
 	}
 
 	public String getUri() {
