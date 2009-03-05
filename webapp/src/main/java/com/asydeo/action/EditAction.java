@@ -45,18 +45,18 @@ public class EditAction extends BaseAction {
 	
 	@HandlesEvent("unrelate")
 	public Resolution unrelate() {
-		try {
-			
+		try {			
 			m().enterCriticalSection(Lock.WRITE);
 			Resource r = individual(bean.getS());
 			Property p = ontProperty(bean.getV());
 			Resource n = individual(bean.getO());
-			System.out.println(r + " " + p + " " + n);
 			m().remove(r,p,n);	
 		} finally {
 			m().leaveCriticalSection();
 		}		
-		return new ForwardResolution("/edit.jsp");
+		return  new RedirectResolution(EditAction.class)
+			.addParameter("uri", uri)
+			.addParameter("classUri", classUri);
 	}
 	
 	public View[] getViews() {
