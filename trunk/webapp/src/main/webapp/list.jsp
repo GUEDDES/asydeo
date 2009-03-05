@@ -22,7 +22,7 @@ Create a new ${actionBean.uri}</stripes:link>
   <stripes:param name="uri" value="${v.URI}"/>
   <stripes:param name="classUri" value="${actionBean.uri}"/>EDIT</stripes:link>
 | 
-<stripes:link class="button" event="delete" beanclass="com.asydeo.action.ListAction">
+<stripes:link class="button delete" event="delete" beanclass="com.asydeo.action.ListAction">
   <stripes:param name="deleteUri" value="${v.URI}"/>
   <stripes:param name="uri" value="${actionBean.uri}"/>DELETE</stripes:link>
 </li>

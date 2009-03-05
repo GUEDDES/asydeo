@@ -39,7 +39,7 @@ ADD</stripes:link>
   <ul>
   <c:forEach var="item" items="${v.items}">
     <li>${item.label}
-    <stripes:link class="button" event="unrelate" beanclass="com.asydeo.action.EditAction" >
+    <stripes:link class="button confirm" event="unrelate" beanclass="com.asydeo.action.EditAction" >
     <stripes:param name="uri" value="${actionBean.uri}"/>
     <stripes:param name="classUri" value="${actionBean.classUri}"/>
     <stripes:param name="bean.s" value="${actionBean.uri}"/>
