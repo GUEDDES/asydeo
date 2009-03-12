@@ -9,7 +9,10 @@ public interface View {
 
 	public String getContent();
 	public String getContent(Individual i);
+	public int getOrder();
+	public void setOrder(int i);
 	public void apply(HttpServletRequest r);
 	public void setOntProperty(OntProperty p);
 	public void setIndividual(Individual i);
+	
 }
