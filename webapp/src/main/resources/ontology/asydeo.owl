@@ -34,6 +34,7 @@
      -->
 
     <owl:AnnotationProperty rdf:about="&dc;description"/>
+    <owl:AnnotationProperty rdf:about="#order"/>
     <owl:AnnotationProperty rdf:about="#editor"/>
     
 
@@ -90,6 +91,7 @@
 
     <owl:DatatypeProperty rdf:about="#alias">
         <rdfs:label rdf:datatype="&xsd;string">Aliases</rdfs:label>
+        <order rdf:datatype="&xsd;integer">99</order>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Alternate names or aliases, comma seperated</rdfs:comment>
         <editor rdf:resource="#BasicCommaSeperatedList"/>
@@ -105,6 +107,7 @@
     <owl:DatatypeProperty rdf:about="#description">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Description</rdfs:label>
+        <order rdf:datatype="&xsd;integer">98</order>
         <rdfs:domain rdf:resource="#ConfigurableItem"/>
         <editor rdf:resource="#TextAreaBasic"/>
         <rdfs:subPropertyOf rdf:resource="#property"/>
@@ -128,6 +131,7 @@
     <owl:DatatypeProperty rdf:about="#name">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Name</rdfs:label>
+        <order rdf:datatype="&xsd;integer">100</order>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Supply a name that will easily remind you of the resource.</rdfs:comment>
         <rdfs:domain rdf:resource="#ConfigurableItem"/>

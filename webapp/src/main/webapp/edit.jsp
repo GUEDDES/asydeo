@@ -9,7 +9,8 @@
 
 <stripes:layout-component name="content">
 
-
+<fieldset>
+    <LEGEND ACCESSKEY=I>General Information</LEGEND>
 <stripes:form name="form1" action="/asset/edit">
 
 <c:forEach var="v" items="${actionBean.views}">
@@ -22,10 +23,12 @@ ${v.content}<br/>
 <stripes:hidden name="update" value=""/>
 
 <br style="clear:both"/>
-<a class="button" href="javascript:document.form1.submit()">SAVE</a>
-<stripes:link  class="button" beanclass="com.asydeo.action.ListAction">
+<!-- <a class="button" href="javascript:document.form1.submit()">SAVE</a> -->
+<stripes:submit name="save" class="button2">SAVE</stripes:submit>
+<stripes:link  class="button2" beanclass="com.asydeo.action.ListAction">
   <stripes:param name="uri" value="${actionBean.classUri}"/>CANCEL</stripes:link>
 </stripes:form>
+</fieldset>
 
 
 <c:forEach var="v" items="${actionBean.objectProperties}">

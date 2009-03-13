@@ -1,8 +1,14 @@
 input.normal,textarea.normal {
 	display: block;
 	width: 350px;
+	font-size:13px;
+	padding: 5px;
 	float: left;
 	margin-bottom: 10px;
+	border-style:solid;
+    border-width:1px;
+    border-color:#DFDFDF;
+    
 }
 
 
@@ -30,4 +36,29 @@ a.button:hover {
   background-color:#3274D0;
   color:#FFFFFF;
   text-decoration:none;
+}
+
+.button2 {
+-moz-border-radius-bottomleft:11px;
+-moz-border-radius-bottomright:11px;
+-moz-border-radius-topleft:11px;
+-moz-border-radius-topright:11px;
+-moz-box-sizing:content-box;
+border-style:solid;
+border-width:1px;
+cursor:pointer;
+font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+font-size:11px !important;
+line-height:16px;
+padding:2px 8px;
+text-decoration:none;
+background:#F2F2F2 url(../images/white-grad.png) repeat-x scroll left top;
+text-shadow:0 1px 0 #FFFFFF;
+border-color:#BBBBBB;
+color:#464646;
+}
+
+.button2:hover {
+border-color:#666666;
+color:#000000;
 }

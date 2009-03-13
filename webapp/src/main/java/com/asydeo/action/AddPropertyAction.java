@@ -14,8 +14,6 @@ import com.asydeo.view.OntView;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.Resource;
 
 @UrlBinding("/asset/addproperty")
 public class AddPropertyAction extends BaseAction {
@@ -39,11 +37,22 @@ public class AddPropertyAction extends BaseAction {
 			Individual object = individual(uri);
 			subject.addProperty(verb, object);
 		}
+		return resolve();
+	}
+
+	@HandlesEvent("cancel")
+	public Resolution cancel() {
+		return resolve();
+	}
+	
+	private Resolution resolve() {
 		RedirectResolution r = new RedirectResolution(EditAction.class);
 		r.addParameter("uri", bean.getS());
 		r.addParameter("classUri", bean.getClassUri());
 		return r;
 	}
+	
+
 
 	public Collection<OntView> getCandidates() {
 		OntResource r = verb.getRange();
