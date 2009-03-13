@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.asydeo.ontology.Asydeo;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -25,14 +26,16 @@ public class ContextListener implements ServletContextListener {
 		 ServletContext ctx = ev.getServletContext();
 		 String directory = "databases/DB1" ;
 		 Model model = TDBFactory.createModel(directory);
-		 
+		 model.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
 		 OntModel om = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MINI_RULE_INF, model);
-		 readOWL(om);
+		 om.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
 		 ctx.setAttribute("model", om);
 		 
+
 		 OntModel raw = ModelFactory.createOntologyModel(OntModelSpec.OWL_LITE_MEM);
 		 readOWL(raw);
 		 ctx.setAttribute("rawmodel", raw);
+		 om.addSubModel(raw);
 	}
 
 	private void readOWL(OntModel om) {

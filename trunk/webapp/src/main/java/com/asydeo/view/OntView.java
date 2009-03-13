@@ -3,7 +3,6 @@ package com.asydeo.view;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.asydeo.action.each;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
