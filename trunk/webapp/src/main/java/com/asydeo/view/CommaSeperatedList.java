@@ -32,9 +32,13 @@ public class CommaSeperatedList extends List {
 		return MessageFormat.format(format, p.getLocalName(), show, p.getLabel(null));	
 	}
 	
-	public void apply(HttpServletRequest r) {
-		i.removeAll(p);
+	public void apply(HttpServletRequest r) {		
 		String value = r.getParameter(p.getLocalName());
+		apply(value);
+	}
+
+	public void apply(String value) {
+		i.removeAll(p);
 		Literal l  = p.getModel().createTypedLiteral(value);
 		String[] values = l.getString().split(",");
 		for (String s : values) {

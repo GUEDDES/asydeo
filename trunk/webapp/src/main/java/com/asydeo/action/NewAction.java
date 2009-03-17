@@ -36,7 +36,7 @@ public class NewAction extends BaseAction {
 			int id = getNextId(ontClass);			
 			Individual newi = ontClass.createIndividual(NS + id);
 			newi.setLabel(name, null);
-			for (View v : Util.getView(newi))
+			for (View v : context.getViews(newi))
 				v.apply(context.getRequest());			
 			
 		} catch (Exception e) {
