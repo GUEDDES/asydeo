@@ -14,6 +14,7 @@ import net.sourceforge.stripes.mock.MockRoundtrip;
 import net.sourceforge.stripes.mock.MockServletContext;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.asydeo.action.EditAction;
@@ -21,10 +22,10 @@ import com.asydeo.model.StatementBean;
 
 public class TestEditAction {
 	
-	MockServletContext ctx;
+	static MockServletContext ctx;
 	
-	@Before
-	public void before() {
+	@BeforeClass
+	public static void before() {
 		MockServletContext context = new MockServletContext("test");
 
 		// Add the Stripes Filter
