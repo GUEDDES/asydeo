@@ -11,7 +11,6 @@ import net.sourceforge.stripes.action.UrlBinding;
 
 import com.asydeo.model.StatementBean;
 import com.asydeo.view.OntView;
-import com.asydeo.view.Util;
 import com.asydeo.view.View;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -24,6 +23,10 @@ public class EditAction extends BaseAction {
 	String uri;
 	String classUri;
 	StatementBean bean;
+	
+	public EditAction() {
+		super();
+	}
 	
 	@DefaultHandler
 	public Resolution start() {			
@@ -60,7 +63,7 @@ public class EditAction extends BaseAction {
 	}
 	
 	public View[] getViews() {
-		return Util.getView(individual(uri));
+		return context.getViews(individual(uri));
 	}
 	
 	public Collection<OntView> getObjectProperties() {

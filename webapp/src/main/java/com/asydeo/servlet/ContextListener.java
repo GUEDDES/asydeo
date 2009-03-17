@@ -32,15 +32,16 @@ public class ContextListener implements ServletContextListener {
 		 ctx.setAttribute("model", om);
 		 
 
-		 OntModel raw = ModelFactory.createOntologyModel(OntModelSpec.OWL_LITE_MEM);
-		 readOWL(raw);
+		 OntModel raw = readOWL();
 		 ctx.setAttribute("rawmodel", raw);
 		 om.addSubModel(raw);
 	}
 
-	private void readOWL(OntModel om) {
-		InputStream is = getClass().getClassLoader().getResourceAsStream("/ontology/asydeo.owl");
-		om.read(is, "RDF/XML");
+	public OntModel readOWL() {
+		OntModel raw = ModelFactory.createOntologyModel(OntModelSpec.OWL_LITE_MEM);
+		InputStream is = getClass().getResourceAsStream("/ontology/asydeo.owl");
+		raw.read(is, "RDF/XML");
+		return raw;
 	}
 
 }
