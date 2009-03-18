@@ -15,9 +15,7 @@ public class TextField extends Text {
 		if (i!=null) {
 			RDFNode node  = i.getPropertyValue(p);
 			if (node != null)
-				return ((Literal)node.as(Literal.class)).getString();
-			else
-				return "";
+				value = ((Literal)node.as(Literal.class)).getString();
 		}
 		ResourceBundle b = ResourceBundle.getBundle("StripesResources");
 		String format = b.getString("textfield");
