@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.rdf.model.Literal;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 
 public class TextArea extends Text {
 
@@ -12,8 +13,9 @@ public class TextArea extends Text {
 	public String getContent(Individual i) { 
 		String value = "";
 		if (i!=null) {
-			Literal l = (Literal) i.getPropertyValue(p).as(Literal.class);
-			value = l.getString();
+			RDFNode node  = i.getPropertyValue(p);
+			if (node != null)
+				value = ((Literal)node.as(Literal.class)).getString();
 		}
 		ResourceBundle b = ResourceBundle.getBundle("StripesResources");
 		String format = b.getString("textarea");
