@@ -9,6 +9,6 @@
 |
 <stripes:link href="/admin/delete">Delete Model</stripes:link>
 |
-<stripes:link href="/login/logout">Sign out</stripes:link>
+<stripes:link href="/auth/logout">Sign out</stripes:link>
 
 </div>
