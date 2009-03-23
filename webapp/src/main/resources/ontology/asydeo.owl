@@ -34,7 +34,6 @@
      -->
 
     <owl:AnnotationProperty rdf:about="&dc;description"/>
-    <owl:AnnotationProperty rdf:about="#order"/>
     <owl:AnnotationProperty rdf:about="#editor"/>
     
 
@@ -50,6 +49,93 @@
     
 
 
+    <!-- http://asydeo.com/schema#contains -->
+
+    <owl:ObjectProperty rdf:about="#contains"/>
+    
+
+
+    <!-- http://asydeo.com/schema#hasEnvironment -->
+
+    <owl:ObjectProperty rdf:about="#hasEnvironment">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="#Environment"/>
+        <rdfs:domain rdf:resource="#System"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#hasLocation -->
+
+    <owl:ObjectProperty rdf:about="#hasLocation">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="#Location"/>
+        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:subPropertyOf rdf:resource="#contains"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#hasMember -->
+
+    <owl:ObjectProperty rdf:about="#hasMember">
+        <rdfs:range rdf:resource="#ComputerSystem"/>
+        <rdfs:domain rdf:resource="#SystemCluster"/>
+        <rdfs:subPropertyOf rdf:resource="#contains"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#hasModel -->
+
+    <owl:ObjectProperty rdf:about="#hasModel">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="#Model"/>
+        <rdfs:domain rdf:resource="#System"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#hasNetworkItem -->
+
+    <owl:ObjectProperty rdf:about="#hasNetworkItem">
+        <rdfs:domain rdf:resource="#NetworkItem"/>
+        <rdfs:range rdf:resource="#ServiceAccessPoint"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#hasRole -->
+
+    <owl:ObjectProperty rdf:about="#hasRole">
+        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:range rdf:resource="#SystemRole"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#hasStatus -->
+
+    <owl:ObjectProperty rdf:about="#hasStatus">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:range rdf:resource="#SystemStatus"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#isAccessedBy -->
+
+    <owl:ObjectProperty rdf:about="#isAccessedBy">
+        <rdfs:label>Access points</rdfs:label>
+        <rdfs:comment
+            >The access points to this service.</rdfs:comment>
+        <rdfs:range rdf:resource="#ServiceAccessPoint"/>
+        <rdfs:domain rdf:resource="#SystemService"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://asydeo.com/schema#isHosting -->
 
     <owl:ObjectProperty rdf:about="#isHosting">
@@ -57,8 +143,8 @@
             >Installed software</rdfs:label>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Software applications installed on this host.</rdfs:comment>
-        <rdfs:range rdf:resource="#ApplicationSoftware"/>
         <rdfs:domain rdf:resource="#ComputerSystem"/>
+        <rdfs:range rdf:resource="#Software"/>
         <owl:inverseOf rdf:resource="#isInstalledOn"/>
     </owl:ObjectProperty>
     
@@ -70,8 +156,29 @@
         <rdfs:label rdf:datatype="&xsd;string">Installations</rdfs:label>
         <rdfs:comment rdf:datatype="&xsd;string"
             >The set of hardware systems that host this software.</rdfs:comment>
-        <rdfs:domain rdf:resource="#ApplicationSoftware"/>
         <rdfs:range rdf:resource="#ComputerSystem"/>
+        <rdfs:domain rdf:resource="#Software"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#isManufacturer -->
+
+    <owl:ObjectProperty rdf:about="#isManufacturer">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#Manufacturer"/>
+        <rdfs:range rdf:resource="#Model"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#isUsedBy -->
+
+    <owl:ObjectProperty rdf:about="#isUsedBy">
+        <rdfs:domain rdf:resource="#DNSRecord"/>
+        <rdfs:domain rdf:resource="#IPAddress"/>
+        <rdfs:domain rdf:resource="#Port"/>
+        <rdfs:range rdf:resource="#ServiceAccessPoint"/>
     </owl:ObjectProperty>
     
 
@@ -91,7 +198,6 @@
 
     <owl:DatatypeProperty rdf:about="#alias">
         <rdfs:label rdf:datatype="&xsd;string">Aliases</rdfs:label>
-        <order rdf:datatype="&xsd;integer">99</order>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Alternate names or aliases, comma seperated</rdfs:comment>
         <editor rdf:resource="#BasicCommaSeperatedList"/>
@@ -107,24 +213,10 @@
     <owl:DatatypeProperty rdf:about="#description">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Description</rdfs:label>
-        <order rdf:datatype="&xsd;integer">98</order>
         <rdfs:domain rdf:resource="#ConfigurableItem"/>
         <editor rdf:resource="#TextAreaBasic"/>
         <rdfs:subPropertyOf rdf:resource="#property"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://asydeo.com/schema#good -->
-
-    <owl:DatatypeProperty rdf:about="#good">
-        <rdfs:label rdf:datatype="&xsd;string">Is it good?</rdfs:label>
-        <order rdf:datatype="&xsd;integer">1</order>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >just a test of the boolean editor</rdfs:comment>
-        <editor rdf:resource="#Boolean"/>
-        <rdfs:subPropertyOf rdf:resource="#property"/>
     </owl:DatatypeProperty>
     
 
@@ -139,12 +231,21 @@
     
 
 
+    <!-- http://asydeo.com/schema#installedPath -->
+
+    <owl:DatatypeProperty rdf:about="#installedPath">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#Software"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://asydeo.com/schema#name -->
 
     <owl:DatatypeProperty rdf:about="#name">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Name</rdfs:label>
-        <order rdf:datatype="&xsd;integer">100</order>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Supply a name that will easily remind you of the resource.</rdfs:comment>
         <rdfs:domain rdf:resource="#ConfigurableItem"/>
@@ -161,12 +262,42 @@
     
 
 
+    <!-- http://asydeo.com/schema#rack -->
+
+    <owl:DatatypeProperty rdf:about="#rack">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#serialNumber -->
+
+    <owl:DatatypeProperty rdf:about="#serialNumber">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://asydeo.com/schema#size -->
 
     <owl:DatatypeProperty rdf:about="#size">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:domain rdf:resource="#TextField"/>
         <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#version -->
+
+    <owl:DatatypeProperty rdf:about="#version">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#Software"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -197,18 +328,10 @@
     <owl:Class rdf:about="#ApplicationSoftware">
         <rdfs:label rdf:datatype="&xsd;string"
             >Application Software</rdfs:label>
-        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+        <rdfs:subClassOf rdf:resource="#Software"/>
         <owl:disjointWith rdf:resource="#ComputerSystem"/>
         <dc:description rdf:datatype="&xsd;string"
             >Application software that may be installed onto a computer system</dc:description>
-    </owl:Class>
-    
-
-
-    <!-- http://asydeo.com/schema#Checkbox -->
-
-    <owl:Class rdf:about="#Checkbox">
-        <rdfs:subClassOf rdf:resource="#Widget"/>
     </owl:Class>
     
 
@@ -225,7 +348,7 @@
 
     <owl:Class rdf:about="#ComputerSystem">
         <rdfs:label rdf:datatype="&xsd;string">Computer System</rdfs:label>
-        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+        <rdfs:subClassOf rdf:resource="#System"/>
         <dc:description rdf:datatype="&xsd;string"
             >Any computer hardware resource that accepts software installation.</dc:description>
     </owl:Class>
@@ -242,6 +365,14 @@
     
 
 
+    <!-- http://asydeo.com/schema#DNSRecord -->
+
+    <owl:Class rdf:about="#DNSRecord">
+        <rdfs:subClassOf rdf:resource="#NetworkItem"/>
+    </owl:Class>
+    
+
+
     <!-- http://asydeo.com/schema#DropDown -->
 
     <owl:Class rdf:about="#DropDown">
@@ -250,10 +381,90 @@
     
 
 
+    <!-- http://asydeo.com/schema#Environment -->
+
+    <owl:Class rdf:about="#Environment">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#IPAddress -->
+
+    <owl:Class rdf:about="#IPAddress">
+        <rdfs:subClassOf rdf:resource="#NetworkItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Layer4Protocol -->
+
+    <owl:Class rdf:about="#Layer4Protocol">
+        <rdfs:subClassOf rdf:resource="#NetworkItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Layer7Protocol -->
+
+    <owl:Class rdf:about="#Layer7Protocol">
+        <rdfs:subClassOf rdf:resource="#NetworkItem"/>
+    </owl:Class>
+    
+
+
     <!-- http://asydeo.com/schema#List -->
 
     <owl:Class rdf:about="#List">
         <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Location -->
+
+    <owl:Class rdf:about="#Location">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Manufacturer -->
+
+    <owl:Class rdf:about="#Manufacturer">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Model -->
+
+    <owl:Class rdf:about="#Model">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#NetworkItem -->
+
+    <owl:Class rdf:about="#NetworkItem">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Organization -->
+
+    <owl:Class rdf:about="#Organization">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Port -->
+
+    <owl:Class rdf:about="#Port">
+        <rdfs:subClassOf rdf:resource="#NetworkItem"/>
     </owl:Class>
     
 
@@ -282,6 +493,63 @@
     
 
 
+    <!-- http://asydeo.com/schema#ServiceAccessPoint -->
+
+    <owl:Class rdf:about="#ServiceAccessPoint">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Software -->
+
+    <owl:Class rdf:about="#Software">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#System -->
+
+    <owl:Class rdf:about="#System">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#SystemCluster -->
+
+    <owl:Class rdf:about="#SystemCluster">
+        <rdfs:subClassOf rdf:resource="#System"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#SystemRole -->
+
+    <owl:Class rdf:about="#SystemRole">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#SystemService -->
+
+    <owl:Class rdf:about="#SystemService">
+        <rdfs:label rdf:datatype="&xsd;string">System Service</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#SystemStatus -->
+
+    <owl:Class rdf:about="#SystemStatus">
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
     <!-- http://asydeo.com/schema#TextArea -->
 
     <owl:Class rdf:about="#TextArea">
@@ -294,6 +562,22 @@
 
     <owl:Class rdf:about="#TextField">
         <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#URIPath -->
+
+    <owl:Class rdf:about="#URIPath">
+        <rdfs:subClassOf rdf:resource="#NetworkItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#URIScheme -->
+
+    <owl:Class rdf:about="#URIScheme">
+        <rdfs:subClassOf rdf:resource="#NetworkItem"/>
     </owl:Class>
     
 
@@ -326,12 +610,6 @@
     <!-- http://asydeo.com/schema#BasicCommaSeperatedList -->
 
     <CommaSeperatedList rdf:about="#BasicCommaSeperatedList"/>
-    
-
-
-    <!-- http://asydeo.com/schema#Boolean -->
-
-    <Checkbox rdf:about="#Boolean"/>
     
 
 
