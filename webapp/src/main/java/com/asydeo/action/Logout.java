@@ -7,8 +7,8 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
-@UrlBinding("/auth/error")
-public class LoginErrorAction extends BaseAction {
+@UrlBinding("/auth/login")
+public class Logout extends BaseAction {
 
 	@DefaultHandler
 	public Resolution start() throws IOException {
