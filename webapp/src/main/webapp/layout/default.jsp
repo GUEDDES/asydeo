@@ -24,7 +24,10 @@
 </head>
 
 <body>
+  <div style="float:right">
   <c:import url="/menu.jsp" />
+  </div>
+  <div style="clear:both"></div>
   <stripes:layout-component name="header"/> 
   <stripes:layout-component name="content"/>
 
