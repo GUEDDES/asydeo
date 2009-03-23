@@ -9,11 +9,8 @@ import net.sourceforge.stripes.action.UrlBinding;
 
 @UrlBinding("/auth/login")
 public class LoginAction extends BaseAction {
-
 	@DefaultHandler
 	public Resolution start() throws IOException {
 		return new ForwardResolution("/login.jsp");
-	}
-	
-
+	}	
 }
