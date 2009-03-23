@@ -7,12 +7,11 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
-@UrlBinding("/auth/logout")
+@UrlBinding("/auth/login")
 public class LoginAction extends BaseAction {
 
 	@DefaultHandler
 	public Resolution start() throws IOException {
-		context.getRequest().getSession().invalidate();
 		return new ForwardResolution("/login.jsp");
 	}
 	
