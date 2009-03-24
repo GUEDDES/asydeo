@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.asydeo.view.OntView;
+import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
@@ -33,6 +35,18 @@ public abstract class each {
 		return result;
 	}
 	
+	public boolean functional() {
+		if ( item.isObjectProperty() ) {
+			OntProperty p = (OntProperty)item;
+			return p.isFunctionalProperty();
+		}
+		return false;
+	}
+	
 	abstract void $();
+	
+	void add(Individual i) {
+		result.add(OntView.$(item, i));
+	}
 
 }
