@@ -23,6 +23,7 @@ public class MockContext extends ASDContext  {
 		m.setNsPrefix("foo", "http://foo#");
 		OntClass c = m.createClass("http://foo#dodad");
 		OntClass root = m.createClass("http://asydeo.com/schema#ConfigurableItem");
+		OntClass visible = m.createClass("http://asydeo.com/schema#VisibleClass");
 		root.addSubClass(c);
 		c.createIndividual("http://foo#1");
 		c.createIndividual("http://foo#2");
