@@ -4,13 +4,17 @@ import java.security.Principal;
 
 import thewebsemantic.Id;
 
-public class Role implements Principal{
+public class Role implements Principal {
 	@Id
 	String name;
 
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
