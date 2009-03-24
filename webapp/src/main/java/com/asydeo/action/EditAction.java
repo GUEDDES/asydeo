@@ -13,9 +13,11 @@ import com.asydeo.model.StatementBean;
 import com.asydeo.view.OntView;
 import com.asydeo.view.View;
 import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.shared.Lock;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 @UrlBinding("/asset/edit")
 public class EditAction extends BaseAction {
@@ -68,9 +70,12 @@ public class EditAction extends BaseAction {
 	
 	public Collection<OntView> getObjectProperties() {
 		final Individual i = individual(uri);
-		return new each(ontClass(classUri).listDeclaredProperties() ) {
-			void $() { if (item.isObjectProperty())
-					result.add(OntView.$(item, i));}}.result;
+		return new each(filter() ) {
+			void $() {add(i);}}.result;
+	}
+
+	private ExtendedIterator filter() {
+		return ontClass(classUri).listDeclaredProperties().filterKeep(Filters.nonfunctional);
 	}
 	
 	public String getUri() {

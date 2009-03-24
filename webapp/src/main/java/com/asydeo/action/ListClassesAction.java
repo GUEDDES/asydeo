@@ -18,7 +18,9 @@ public class ListClassesAction extends BaseAction {
 	}
 	
 	public Collection<OntView> getList() {
-		return new each(rootClass().listSubClasses(true)) {
+		return new each(visibleClass().listSubClasses(true)) {
 			void $() {result.add(OntView.$(item));}}.result();
 	}
+
+
 }

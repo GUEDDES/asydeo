@@ -23,7 +23,7 @@ ${v.content}<br/>
 <stripes:hidden name="update" value=""/>
 
 <br style="clear:both"/>
-<!-- <a class="button" href="javascript:document.form1.submit()">SAVE</a> -->
+
 <stripes:submit name="save" class="button">SAVE</stripes:submit>
 <stripes:link  class="button" beanclass="com.asydeo.action.ListAction">
   <stripes:param name="uri" value="${actionBean.classUri}"/>CANCEL</stripes:link>

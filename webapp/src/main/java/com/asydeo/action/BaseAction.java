@@ -58,4 +58,8 @@ public class BaseAction implements ActionBean {
 		return m().getOntClass("http://asydeo.com/schema#ConfigurableItem");
 	}
 	
+	public OntClass visibleClass() {
+		return m().getOntClass("http://asydeo.com/schema#VisibleClass");
+	}
+	
 }
