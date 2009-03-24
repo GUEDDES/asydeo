@@ -582,6 +582,14 @@
     
 
 
+    <!-- http://asydeo.com/schema#User -->
+
+    <owl:Class rdf:about="#User">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
     <!-- http://asydeo.com/schema#VisibleClass -->
 
     <owl:Class rdf:about="#VisibleClass">
@@ -635,13 +643,13 @@
 
     <!-- http://users/admin -->
 
-    <rdf:Description rdf:about="&users;admin"/>
+    <User rdf:about="&users;admin"/>
     
 
 
     <!-- http://users/guest -->
 
-    <rdf:Description rdf:about="&users;guest"/>
+    <User rdf:about="&users;guest"/>
 </rdf:RDF>
 
 
