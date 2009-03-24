@@ -44,6 +44,11 @@ public class EditAction extends BaseAction {
 		} finally {
 			m().leaveCriticalSection();
 		}
+		return home();
+	}
+
+	@HandlesEvent("cancel")
+	public Resolution home() {
 		return new RedirectResolution(ListAction.class).
 			addParameter("uri", classUri);
 	}
@@ -75,7 +80,7 @@ public class EditAction extends BaseAction {
 	}
 
 	private ExtendedIterator filter() {
-		return ontClass(classUri).listDeclaredProperties().filterKeep(Filters.nonfunctional);
+		return ontClass(classUri).listDeclaredProperties(true).filterKeep(Filters.nonfunctional);
 	}
 	
 	public String getUri() {
