@@ -68,6 +68,12 @@
 			<version>2.6.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.thewebsemantic</groupId>
+			<artifactId>jenabean</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -122,5 +128,16 @@
 			<id>jboss</id>
 			<url>http://repository.jboss.org/maven2</url>
 		</repository>
+		<repository>
+            <id>Jenabean</id>
+            <url>http://jenabean.googlecode.com/svn/trunk/repo</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+
 	</repositories>
 </project>
