@@ -6,7 +6,7 @@ import com.hp.hpl.jena.util.iterator.Filter;
 public class Filters {
 	public static Filter nonfunctional = new Filter() {
 		public boolean accept(Object o) {
-			if ( o instanceof OntProperty) {
+			if (o instanceof OntProperty) {
 				OntProperty op = (OntProperty)o;
 				return !op.isFunctionalProperty() && op.isObjectProperty();
 			}

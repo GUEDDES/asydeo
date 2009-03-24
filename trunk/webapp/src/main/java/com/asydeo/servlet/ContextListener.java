@@ -2,6 +2,8 @@ package com.asydeo.servlet;
 
 import java.io.InputStream;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -35,6 +37,15 @@ public class ContextListener implements ServletContextListener {
 		 OntModel raw = readOWL();
 		 ctx.setAttribute("rawmodel", raw);
 		 om.addSubModel(raw);
+		 
+		 InitialContext ic;
+		try {
+			ic = new InitialContext();
+			ic.bind("java:model", om);
+
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public OntModel readOWL() {

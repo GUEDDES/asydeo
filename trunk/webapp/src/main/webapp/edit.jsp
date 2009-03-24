@@ -20,13 +20,11 @@ ${v.content}<br/>
 
 <stripes:hidden name="uri" value="${actionBean.uri}"/>
 <stripes:hidden name="classUri" value="${actionBean.classUri}"/>
-<stripes:hidden name="update" value=""/>
 
 <br style="clear:both"/>
 
-<stripes:submit name="save" class="button">SAVE</stripes:submit>
-<stripes:link  class="button" beanclass="com.asydeo.action.ListAction">
-  <stripes:param name="uri" value="${actionBean.classUri}"/>CANCEL</stripes:link>
+<stripes:submit name="update" class="button">SAVE</stripes:submit>
+<stripes:submit name="cancel" class="button">CANCEL</stripes:submit>
 </stripes:form>
 </fieldset>
 
