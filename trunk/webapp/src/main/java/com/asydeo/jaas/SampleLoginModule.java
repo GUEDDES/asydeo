@@ -248,10 +248,6 @@ public class SampleLoginModule implements LoginModule {
 	    if (!subject.getPrincipals().contains(userPrincipal))
 		subject.getPrincipals().add(userPrincipal);
 	    subject.getPrincipals().add(new Role());
-	    if (debug) {
-		System.out.println("\t\t[SampleLoginModule] " +
-				"added SamplePrincipal to Subject");
-	    }
 
 	    // in any case, clean out state
 	    username = null;
