@@ -18,7 +18,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 
 
 
-public class LoginModule extends AbstractLoginModule {
+public class MyLoginModule extends AbstractLoginModule {
 
 	OntModel om;
 	
