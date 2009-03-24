@@ -11,8 +11,6 @@ public class Filters {
 				return !op.isFunctionalProperty() && op.isObjectProperty();
 			}
 			return false;
-		}
-		
+		}		
 	};
-
 }
