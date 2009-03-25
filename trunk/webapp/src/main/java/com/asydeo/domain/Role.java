@@ -3,12 +3,18 @@ package com.asydeo.domain;
 import java.security.Principal;
 
 import thewebsemantic.Id;
+import thewebsemantic.binding.RdfBean;
 
-public class Role implements Principal {
+public class Role extends RdfBean<Role> implements Principal {
 	@Id
 	String name;
 
-	@Override
+	public Role() {}
+	
+	public Role(String name) {
+		this.name = name;
+	}
+	
 	public String getName() {
 		return name;
 	}
