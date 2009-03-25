@@ -63,8 +63,13 @@ public class User extends RdfBean<User> implements Principal {
 		return passwordCheck.equals(password);
 	}
 	
-	public void hashPassword() throws NoSuchAlgorithmException {
-		passwordHash = hash(password);
+	public void hashPassword() {
+		try {
+			passwordHash = hash(password);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	protected String hash(String s) throws NoSuchAlgorithmException {

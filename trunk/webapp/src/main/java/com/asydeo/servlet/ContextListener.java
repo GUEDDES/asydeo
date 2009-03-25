@@ -1,6 +1,7 @@
 package com.asydeo.servlet;
 
 import java.io.InputStream;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -8,6 +9,8 @@ import javax.servlet.ServletContextListener;
 
 import thewebsemantic.binding.Jenabean;
 
+import com.asydeo.domain.Role;
+import com.asydeo.domain.User;
 import com.asydeo.ontology.Asydeo;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
@@ -36,15 +39,22 @@ public class ContextListener implements ServletContextListener {
 
 		OntModel raw = readOWL();
 		ctx.setAttribute("rawmodel", raw);
-		om.addSubModel(raw);
-
-		Model securityModel = createUserRoleDB();
-		Jenabean.instance().bind(securityModel);
+		om.addSubModel(raw);	
+		
+		createUserRoleDB();
 
 	}
 
-	public Model createUserRoleDB() {
-		return TDBFactory.createModel("databases/userroles");
+	public void createUserRoleDB() {
+		Model m = TDBFactory.createModel("databases/userroles");
+		Jenabean.instance().bind(m);
+		User u = new User();
+		u.setEmail("taylor.cowan@sabre.com");
+		u.setPassword("admin");
+		u.hashPassword();
+		u.setUsername("admin");
+		u.getRoles().add(new Role("admin"));
+		u.save();
 	}
 
 	public OntModel readOWL() {

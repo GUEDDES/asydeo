@@ -50,6 +50,10 @@ import javax.security.auth.callback.*;
 import javax.security.auth.login.*;
 import javax.security.auth.spi.*;
 
+import com.asydeo.domain.User;
+
+import thewebsemantic.binding.Jenabean;
+
 
 /**
  * <p> This sample LoginModule authenticates users with a password.
@@ -167,16 +171,13 @@ public class SampleLoginModule implements LoginModule {
 	// verify the username/password
 	boolean usernameCorrect = false;
 	boolean passwordCorrect = false;
-	if (username.equals("admin"))
-	    usernameCorrect = true;
-	if (usernameCorrect &&
-	    password.length == 5 &&
-	    password[0] == 'a' &&
-	    password[1] == 'd' &&
-	    password[2] == 'm' &&
-	    password[3] == 'i' &&
-	    password[4] == 'n') {
 
+	User u = Jenabean.load(User.class, username);
+	String sPass = new String(password);
+	User check = new User();
+	check.setPassword(sPass);
+	check.hashPassword();
+	if (u.getPasswordHash().equals(check.getPasswordHash())) {
 	    // authentication succeeded!!!
 	    passwordCorrect = true;
 	    succeeded = true;
