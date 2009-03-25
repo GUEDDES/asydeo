@@ -2,11 +2,11 @@ package com.asydeo.servlet;
 
 import java.io.InputStream;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
+import thewebsemantic.binding.Jenabean;
 
 import com.asydeo.ontology.Asydeo;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -15,41 +15,41 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.tdb.TDBFactory;
 
-
 public class ContextListener implements ServletContextListener {
 
-	
 	public void contextDestroyed(ServletContextEvent ev) {
-		OntModel m = (OntModel)ev.getServletContext().getAttribute("model");
+		OntModel m = (OntModel) ev.getServletContext().getAttribute("model");
 		m.close();
+		Jenabean.instance().model().close();
 	}
 
 	public void contextInitialized(ServletContextEvent ev) {
-		 ServletContext ctx = ev.getServletContext();
-		 String directory = "databases/DB1" ;
-		 Model model = TDBFactory.createModel(directory);
-		 model.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
-		 OntModel om = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MINI_RULE_INF, model);
-		 om.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
-		 ctx.setAttribute("model", om);
-		 
+		ServletContext ctx = ev.getServletContext();
+		String directory = "databases/DB1";
 
-		 OntModel raw = readOWL();
-		 ctx.setAttribute("rawmodel", raw);
-		 om.addSubModel(raw);
-		 
-		 InitialContext ic;
-		try {
-			ic = new InitialContext();
-			ic.bind("java:model", om);
+		Model model = TDBFactory.createModel(directory);
+		model.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
+		OntModel om = ModelFactory.createOntologyModel(
+				OntModelSpec.OWL_MEM_MINI_RULE_INF, model);
+		om.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
+		ctx.setAttribute("model", om);
 
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
+		OntModel raw = readOWL();
+		ctx.setAttribute("rawmodel", raw);
+		om.addSubModel(raw);
+
+		Model securityModel = createUserRoleDB();
+		Jenabean.instance().bind(securityModel);
+
+	}
+
+	public Model createUserRoleDB() {
+		return TDBFactory.createModel("databases/userroles");
 	}
 
 	public OntModel readOWL() {
-		OntModel raw = ModelFactory.createOntologyModel(OntModelSpec.OWL_LITE_MEM);
+		OntModel raw = ModelFactory
+				.createOntologyModel(OntModelSpec.OWL_LITE_MEM);
 		InputStream is = getClass().getResourceAsStream("/ontology/asydeo.owl");
 		raw.read(is, "RDF/XML");
 		return raw;

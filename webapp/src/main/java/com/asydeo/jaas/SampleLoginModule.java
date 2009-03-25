@@ -163,17 +163,6 @@ public class SampleLoginModule implements LoginModule {
 		"from the user");
 	}
 
-	// print debugging information
-	if (debug) {
-	    System.out.println("\t\t[SampleLoginModule] " +
-				"user entered user name: " +
-				username);
-	    System.out.print("\t\t[SampleLoginModule] " +
-				"user entered password: ");
-	    for (int i = 0; i < password.length; i++)
-		System.out.print(password[i]);
-	    System.out.println();
-	}
 
 	// verify the username/password
 	boolean usernameCorrect = false;
@@ -190,9 +179,6 @@ public class SampleLoginModule implements LoginModule {
 
 	    // authentication succeeded!!!
 	    passwordCorrect = true;
-	    if (debug)
-		System.out.println("\t\t[SampleLoginModule] " +
-				"authentication succeeded");
 	    succeeded = true;
 	    return true;
 	} else {
