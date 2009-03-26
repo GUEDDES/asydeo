@@ -13,4 +13,14 @@ public class Filters {
 			return false;
 		}		
 	};
+	
+	public static Filter functional = new Filter() {
+		public boolean accept(Object o) {
+			if (o instanceof OntProperty) {
+				OntProperty op = (OntProperty)o;
+				return op.isFunctionalProperty() && op.isObjectProperty();
+			}
+			return false;
+		}		
+	};
 }

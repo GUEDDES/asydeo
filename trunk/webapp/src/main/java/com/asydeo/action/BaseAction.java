@@ -1,5 +1,6 @@
 package com.asydeo.action;
 
+import com.asydeo.domain.User;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -13,6 +14,7 @@ import net.sourceforge.stripes.action.ActionBeanContext;
 
 public class BaseAction implements ActionBean {
 	protected ASDContext context;
+	
 	
 	public ASDContext getContext() {
 		return context;

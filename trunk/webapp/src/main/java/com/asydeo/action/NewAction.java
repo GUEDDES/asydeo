@@ -34,7 +34,7 @@ public class NewAction extends BaseAction {
 			m().enterCriticalSection(Lock.WRITE);
 			OntClass ontClass = ontClass(classUri);
 			int id = getNextId(ontClass);			
-			Individual newi = ontClass.createIndividual(NS + id);
+			Individual newi = ontClass.createIndividual(NS + ontClass.getLocalName() + ':' + id);
 			newi.setLabel(name, null);
 			for (View v : context.getViews(newi))
 				v.apply(context.getRequest());			

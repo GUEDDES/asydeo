@@ -75,12 +75,22 @@ public class EditAction extends BaseAction {
 	
 	public Collection<OntView> getObjectProperties() {
 		final Individual i = individual(uri);
-		return new each(filter() ) {
+		return new each(filter1() ) {
 			void $() {add(i);}}.result;
 	}
 
-	private ExtendedIterator filter() {
-		return ontClass(classUri).listDeclaredProperties(true).filterKeep(Filters.nonfunctional);
+	public Collection<OntView> getFunctionalProperties() {
+		final Individual i = individual(uri);
+		return new each(filter2() ) {
+			void $() {add(i);}}.result;
+	}
+	
+	private ExtendedIterator filter1() {
+		return ontClass(classUri).listDeclaredProperties(false).filterKeep(Filters.nonfunctional);
+	}
+
+	private ExtendedIterator filter2() {
+		return ontClass(classUri).listDeclaredProperties(false).filterKeep(Filters.functional);
 	}
 	
 	public String getUri() {
