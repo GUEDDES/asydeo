@@ -39,7 +39,7 @@ public class ContextListener implements ServletContextListener {
 		OntModel raw = readOWL();
 		ctx.setAttribute("rawmodel", raw);
 		om.addSubModel(raw);	
-		
+	
 		createUserRoleDB();
 
 	}
