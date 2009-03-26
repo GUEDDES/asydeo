@@ -1,4 +1,4 @@
-<%@ include file="../taglibs.jsp" %>
+u<%@ include file="../taglibs.jsp" %>
 <stripes:layout-definition>
 <html>
 <head> 
@@ -17,18 +17,15 @@
     });
     
   });
-  
-  
-  </script>    
-
+  </script>
 </head>
 
 <body>
-  <div style="float:right">
-  <c:import url="/menu.jsp" />
+  <div>
+  <stripes:layout-component name="header"/> 
   </div>
   <div style="clear:both"></div>
-  <stripes:layout-component name="header"/> 
+  
   <stripes:layout-component name="content"/>
 
 </body>
