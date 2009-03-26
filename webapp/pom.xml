@@ -99,7 +99,7 @@
 							<name>asydeo</name>
 							<loginModuleName>myModule</loginModuleName>
 							<roleClassNames>
-								<roleClassName>com.asydeo.jaas.Role</roleClassName>
+								<roleClassName>com.asydeo.domain.Role</roleClassName>
 							</roleClassNames>
 						</userRealm>
 					</userRealms>
