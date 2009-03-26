@@ -1,4 +1,4 @@
 <%
-	String redirectURL = "/asset/classes";
+	String redirectURL = "/guest/home";
 	pageContext.forward(redirectURL); 
 %>

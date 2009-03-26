@@ -4,7 +4,7 @@
 <stripes:layout-render name="/layout/default.jsp">
 
 <stripes:layout-component name="html-head">
-<div></div>
+ <c:import url="/menu.jsp" />
 </stripes:layout-component>
 
 <stripes:layout-component name="content">

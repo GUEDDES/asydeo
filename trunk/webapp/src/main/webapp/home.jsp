@@ -8,14 +8,8 @@
 </stripes:layout-component>
 
 <stripes:layout-component name="content">
-
-<c:forEach var="v" items="${actionBean.list}">
-<stripes:link beanclass="com.asydeo.action.ListAction">
-<stripes:param name="uri" value="${v.URI}"/>
-${v.label}</stripes:link><br/>
-</c:forEach>
+<stripes:link href="/auth/login">Sign in</stripes:link>
+home
 
 </stripes:layout-component>
 </stripes:layout-render>
-
-
