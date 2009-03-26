@@ -8,9 +8,9 @@
 <stripes:layout-component name="content">
 <stripes:form name="form1" action="/auth/user">
 
-<label>Username</label><stripes:text name="username"/><br/>
-<label>Password</label><stripes:text name="password"/><br/>
-<label>Verify Password</label><stripes:text name="passwordCheck"/><br/>
+<label>Username</label><stripes:text class="normal" name="username"/><br/>
+<label>Password</label><stripes:text class="normal" name="password"/><br/>
+<label>Verify Password</label><stripes:text class="normal" name="passwordCheck"/><br/>
 
 
 

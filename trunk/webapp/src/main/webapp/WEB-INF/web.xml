@@ -28,6 +28,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 		<filter-name>StripesFilter</filter-name>
 		<servlet-name>StripesDispatcher</servlet-name>
 		<dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
 	<servlet>
@@ -60,14 +61,24 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 		<web-resource-collection>
 			<web-resource-name>A Protected Page</web-resource-name>
 			<url-pattern>/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>A Protected Page</web-resource-name>
 			<url-pattern>/asset/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>admin</role-name>
 			<role-name>user</role-name>
-			<role-name>moderator</role-name>
+			<role-name>guest</role-name>
 		</auth-constraint>
 	</security-constraint>
+
 
 	<login-config>
 		<auth-method>FORM</auth-method>

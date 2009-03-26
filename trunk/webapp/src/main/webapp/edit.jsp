@@ -28,6 +28,19 @@ ${v.content}<br/>
 </stripes:form>
 </fieldset>
 
+<c:forEach var="v" items="${actionBean.functionalProperties}">
+${v.label} 
+<c:forEach var="item" items="${v.items}">
+    <span>${item.label}</span>
+</c:forEach>
+
+<stripes:link class="button" beanclass="com.asydeo.action.SetPropertyAction">
+<stripes:param name="bean.s" value="${actionBean.uri}"/>
+<stripes:param name="bean.v" value="${v.URI}"/>
+<stripes:param name="bean.classUri" value="${actionBean.classUri}"/>
+CHOOSE</stripes:link>
+<br/>
+</c:forEach>
 
 <c:forEach var="v" items="${actionBean.objectProperties}">
 ${v.label}

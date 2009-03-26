@@ -391,6 +391,7 @@
 
     <owl:Class rdf:about="#IPAddress">
         <rdfs:subClassOf rdf:resource="#NetworkItem"/>
+        <rdfs:subClassOf rdf:resource="#VisibleClass"/>
     </owl:Class>
     
 
@@ -439,6 +440,7 @@
 
     <owl:Class rdf:about="#Model">
         <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+        <rdfs:subClassOf rdf:resource="#VisibleClass"/>
     </owl:Class>
     
 
