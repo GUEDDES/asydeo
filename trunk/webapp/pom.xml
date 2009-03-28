@@ -38,31 +38,14 @@
 		<dependency>
 			<groupId>com.hp.hpl.jena</groupId>
 			<artifactId>tdb</artifactId>
-			<version>0.7.2</version>
+			<version>0.7.3</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.5.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.5.6</version>
-		</dependency>
-
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.9</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.hp.hpl.jena</groupId>
-			<artifactId>arq-extra</artifactId>
-			<version>2.6.0</version>
-		</dependency>
+<dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.5.6</version>
+    </dependency>
 
 		<dependency>
 			<groupId>com.thewebsemantic</groupId>
@@ -115,6 +98,10 @@
 		<repository>
 			<id>jena</id>
 			<url>http://jena.hpl.hp.com/repo</url>
+		</repository>
+		<repository>
+			<id>jenadev</id>
+			<url>http://jena.hpl.hp.com/repo-dev/</url>
 		</repository>
 		<repository>
 			<id>maven</id>
