@@ -3,7 +3,8 @@
 <stripes:layout-render name="/layout/default.jsp">
 
 <stripes:layout-component name="html-head">
-
+  <c:import url="/menu.jsp" />
+  
 </stripes:layout-component>
 
 <stripes:layout-component name="content">
@@ -24,5 +25,6 @@
 </li>
 </c:forEach>
 
+</stripes:form>
 </stripes:layout-component>
 </stripes:layout-render>
