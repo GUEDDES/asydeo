@@ -52,7 +52,7 @@ public class SearchAction extends BaseAction {
             if ( query != null && query.isSelectType() ) {
                 try {
                     qexec = QueryExecutionFactory.create(
-                              query, getContext().getModel());
+                              query, m());
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.toString());
@@ -64,7 +64,7 @@ public class SearchAction extends BaseAction {
                     while ( rs.hasNext() ) {
                         QuerySolution rb = rs.nextSolution();
                         Resource resource = rb.getResource("x");
-                        Individual i = getContext().getModel().
+                        Individual i = m().
                                          getIndividual(resource.getURI());
 
                         OntView view = new OntView(i);
