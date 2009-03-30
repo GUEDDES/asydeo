@@ -32,6 +32,11 @@ public class ASDContext extends ActionBeanContext {
 		Principal p = getRequest().getUserPrincipal();
 		if ( p == null)
 			return null;
-		return Jenabean.load(User.class, p.getName());
+		User u = (User)getRequest().getSession().getAttribute(USER);
+		if (u == null) {
+			u = Jenabean.load(User.class, p.getName());
+			getRequest().getSession().setAttribute(USER, u);
+		}
+		return u;
 	}
 }
