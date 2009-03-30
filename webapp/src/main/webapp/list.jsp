@@ -12,7 +12,7 @@
 <div>
 <stripes:link beanclass="com.asydeo.action.NewAction">
 <stripes:param name="classUri" value="${actionBean.uri}"/>
-Create a new ${actionBean.uri}</stripes:link>
+Create a new ${actionBean.ontView.label}</stripes:link>
 </div>
 
 
