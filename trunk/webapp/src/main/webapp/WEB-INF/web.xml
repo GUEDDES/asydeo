@@ -16,12 +16,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 			<param-name>ActionBeanContext.Class</param-name>
 			<param-value>com.asydeo.action.ASDContext</param-value>
 		</init-param>
-<!--
-		<init-param>
-			<param-name>PopulationStrategy.Class</param-name>
-			<param-value>net.sourceforge.stripes.tag.BeanFirstPopulationStrategy</param-value>
-		</init-param>
--->
+
 	</filter>
 
 	<filter-mapping>
@@ -83,7 +78,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>A Protected Page</web-resource-name>
-			<url-pattern>/asset/*</url-pattern>
+			<url-pattern>/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>admin</role-name>
