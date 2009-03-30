@@ -5,11 +5,14 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
-@UrlBinding("/guest/home")
-public class HomeAction extends BaseAction {
-
+@UrlBinding("/asset/model")
+public class ModelAction extends BaseAction {
+	
+	String modelName;
 	@DefaultHandler
 	public Resolution start() {
 		return new ForwardResolution("/home.jsp").addParameter("modelName", getModelName());
 	}
+
+
 }

@@ -15,7 +15,7 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 
-@UrlBinding("/asset/addproperty")
+@UrlBinding("/asset/setproperty")
 public class SetPropertyAction extends BaseAction {
 
 	Individual subject;

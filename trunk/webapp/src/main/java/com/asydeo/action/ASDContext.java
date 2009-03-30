@@ -7,7 +7,9 @@ import thewebsemantic.binding.Jenabean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import static com.asydeo.servlet.RequestConstants.*;
 
+import com.asydeo.domain.AsydeoSession;
 import com.asydeo.domain.User;
+import com.asydeo.servlet.RequestConstants;
 import com.asydeo.view.Util;
 import com.asydeo.view.View;
 import com.hp.hpl.jena.ontology.Individual;
@@ -17,7 +19,8 @@ import com.hp.hpl.jena.ontology.OntModel;
 public class ASDContext extends ActionBeanContext {
 
 	public OntModel getModel() {
-		return (OntModel)getServletContext().getAttribute(CURRENT_MODEL);
+		String modelName = getSession().getModelName();
+		return (OntModel)getServletContext().getAttribute(modelName);
 	}
 
 	public OntModel getRawModel() {
@@ -38,5 +41,9 @@ public class ASDContext extends ActionBeanContext {
 			getRequest().getSession().setAttribute(USER, u);
 		}
 		return u;
+	}
+
+	public AsydeoSession getSession() {
+		return (AsydeoSession)getRequest().getSession().getAttribute(RequestConstants.SESSION);
 	}
 }
