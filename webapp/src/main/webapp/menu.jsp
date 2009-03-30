@@ -4,8 +4,9 @@
 
 
 <c:choose>
-<c:when test="${!empty actionBean.context.user}"> 
-
+<c:when test="${!empty actionBean.context.user}">
+<stripes:link beanclass="com.asydeo.action.HomeAction">Home</stripes:link>
+|
 <stripes:link href="/asset/classes">Classes</stripes:link>
 |
 <stripes:link href="/asset/list?uri=asydeo:ConfigurableItem">List Items</stripes:link>

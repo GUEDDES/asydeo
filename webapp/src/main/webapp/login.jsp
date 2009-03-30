@@ -2,7 +2,7 @@
 
 <stripes:layout-render name="/layout/default.jsp">
 
-<stripes:layout-component name="html-head">
+<stripes:layout-component name="htmlHead">
 </stripes:layout-component>
 
 <stripes:layout-component name="content">

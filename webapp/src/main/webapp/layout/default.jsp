@@ -3,7 +3,7 @@ u<%@ include file="../taglibs.jsp" %>
 <html>
 <head> 
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/basic.css" type="text/css"> 
-  <stripes:layout-component name="html-head"/> 
+  <stripes:layout-component name="htmlHead"/> 
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.3.2.min.js"></script>  
   <script> 
   
