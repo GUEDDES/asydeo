@@ -13,7 +13,6 @@ import com.asydeo.model.StatementBean;
 import com.asydeo.view.OntView;
 import com.asydeo.view.View;
 import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.shared.Lock;
@@ -21,20 +20,20 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 @UrlBinding("/asset/edit")
 public class EditAction extends BaseAction {
-	
+
 	String uri;
 	String classUri;
 	StatementBean bean;
-	
+
 	public EditAction() {
 		super();
 	}
-	
+
 	@DefaultHandler
-	public Resolution start() {			
+	public Resolution start() {
 		return new ForwardResolution("/edit.jsp");
 	}
-	
+
 	@HandlesEvent("update")
 	public Resolution update() {
 		try {
@@ -49,50 +48,62 @@ public class EditAction extends BaseAction {
 
 	@HandlesEvent("cancel")
 	public Resolution home() {
-		return new RedirectResolution(ListAction.class).
-			addParameter("uri", classUri);
+		return new RedirectResolution(ListAction.class).addParameter("uri",
+				classUri);
 	}
-	
+
 	@HandlesEvent("unrelate")
 	public Resolution unrelate() {
-		try {			
+		try {
 			m().enterCriticalSection(Lock.WRITE);
 			Resource r = individual(bean.getS());
 			Property p = ontProperty(bean.getV());
 			Resource n = individual(bean.getO());
-			m().remove(r,p,n);	
+			m().remove(r, p, n);
 		} finally {
 			m().leaveCriticalSection();
-		}		
-		return  new RedirectResolution(EditAction.class)
-			.addParameter("uri", uri)
-			.addParameter("classUri", classUri);
+		}
+		return new RedirectResolution(EditAction.class)
+				.addParameter("uri", uri).addParameter("classUri", classUri);
 	}
-	
+
 	public View[] getViews() {
 		return context.getViews(individual(uri));
 	}
-	
+
 	public Collection<OntView> getObjectProperties() {
-		final Individual i = individual(uri);
-		return new each(filter1() ) {
-			void $() {add(i);}}.result;
+		try {
+			m().enterCriticalSection(Lock.READ);
+			final Individual i = individual(uri);
+			return new each(filter1()) {
+				void $() {add(i);}}.result;
+		} finally {
+			m().leaveCriticalSection();
+		}
 	}
 
 	public Collection<OntView> getFunctionalProperties() {
-		final Individual i = individual(uri);
-		return new each(filter2() ) {
-			void $() {add(i);}}.result;
+		try {
+			m().enterCriticalSection(Lock.READ);
+
+			final Individual i = individual(uri);
+			return new each(filter2()) {
+				void $() {add(i);}}.result;
+		} finally {
+			m().leaveCriticalSection();
+		}
 	}
-	
+
 	private ExtendedIterator filter1() {
-		return ontClass(classUri).listDeclaredProperties(false).filterKeep(Filters.nonfunctional);
+		return ontClass(classUri).listDeclaredProperties(false).filterKeep(
+				Filters.nonfunctional);
 	}
 
 	private ExtendedIterator filter2() {
-		return ontClass(classUri).listDeclaredProperties(false).filterKeep(Filters.functional);
+		return ontClass(classUri).listDeclaredProperties(false).filterKeep(
+				Filters.functional);
 	}
-	
+
 	public String getUri() {
 		return uri;
 	}

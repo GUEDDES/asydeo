@@ -14,6 +14,7 @@ import com.asydeo.view.OntView;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
+import com.hp.hpl.jena.shared.Lock;
 
 @UrlBinding("/asset/addproperty")
 public class AddPropertyAction extends BaseAction {
@@ -21,7 +22,7 @@ public class AddPropertyAction extends BaseAction {
 	Individual subject;
 	OntProperty verb;
 	AddRelation bean;
-	
+
 	@DefaultHandler
 	public Resolution start() {
 		subject = individual(bean.getS());
@@ -31,11 +32,16 @@ public class AddPropertyAction extends BaseAction {
 
 	@HandlesEvent("add")
 	public Resolution add() {
-		subject = individual(bean.getS());
-		verb = rawOntProperty(bean.getV());
-		for (String uri : bean.getO()) {
-			Individual object = individual(uri);
-			subject.addProperty(verb, object);
+		m().enterCriticalSection(Lock.WRITE);
+		try {
+			subject = individual(bean.getS());
+			verb = rawOntProperty(bean.getV());
+			for (String uri : bean.getO()) {
+				Individual object = individual(uri);
+				subject.addProperty(verb, object);
+			}
+		} finally {
+			m().leaveCriticalSection();
 		}
 		return resolve();
 	}
@@ -44,22 +50,28 @@ public class AddPropertyAction extends BaseAction {
 	public Resolution cancel() {
 		return resolve();
 	}
-	
+
 	private Resolution resolve() {
 		RedirectResolution r = new RedirectResolution(EditAction.class);
 		r.addParameter("uri", bean.getS());
 		r.addParameter("classUri", bean.getClassUri());
 		return r;
 	}
-	
-
 
 	public Collection<OntView> getCandidates() {
-		OntResource r = verb.getRange();
-		r = m().getOntClass(r.getURI());
-		return new each(r.asClass().listInstances()) {
-			void $() {if (!m().contains(subject,verb,item))
-					add(OntView.$(item));}}.result;
+		m().enterCriticalSection(Lock.READ);
+		try {
+			OntResource r = verb.getRange();
+			r = m().getOntClass(r.getURI());
+			return new each(r.asClass().listInstances()) {
+				void $() {
+					if (!m().contains(subject, verb, item))
+						add(OntView.$(item));
+				}
+			}.result;
+		} finally {
+			m().leaveCriticalSection();
+		}
 	}
 
 	public OntView getVerb() {
