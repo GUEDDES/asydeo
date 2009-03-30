@@ -36,6 +36,10 @@ public class ListAction extends BaseAction {
 			void $() {result.add(OntView.$(item));}}.result;	
 	}
 
+	public OntView getOntView() {
+		return OntView.$(ontClass(uri));
+	}
+	
 	public String getUri() {
 		return uri;
 	}
