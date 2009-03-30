@@ -5,6 +5,7 @@ import java.security.Principal;
 import thewebsemantic.binding.Jenabean;
 
 import net.sourceforge.stripes.action.ActionBeanContext;
+import static com.asydeo.servlet.RequestConstants.*;
 
 import com.asydeo.domain.User;
 import com.asydeo.view.Util;
@@ -16,11 +17,11 @@ import com.hp.hpl.jena.ontology.OntModel;
 public class ASDContext extends ActionBeanContext {
 
 	public OntModel getModel() {
-		return (OntModel)getServletContext().getAttribute("model");
+		return (OntModel)getServletContext().getAttribute(CURRENT_MODEL);
 	}
 
 	public OntModel getRawModel() {
-		return (OntModel)getServletContext().getAttribute("rawmodel");
+		return (OntModel)getServletContext().getAttribute(RAWMODEL);
 	}
 	
 	public View[] getViews(Individual i) {

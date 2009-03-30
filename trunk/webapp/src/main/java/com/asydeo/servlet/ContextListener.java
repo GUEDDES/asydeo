@@ -11,6 +11,7 @@ import thewebsemantic.binding.Jenabean;
 import com.asydeo.domain.Role;
 import com.asydeo.domain.User;
 import com.asydeo.ontology.Asydeo;
+import static com.asydeo.servlet.RequestConstants.*;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -20,28 +21,39 @@ import com.hp.hpl.jena.tdb.TDBFactory;
 public class ContextListener implements ServletContextListener {
 
 	public void contextDestroyed(ServletContextEvent ev) {
-		OntModel m = (OntModel) ev.getServletContext().getAttribute("model");
+		OntModel m = (OntModel) ev.getServletContext().getAttribute(CURRENT_MODEL);
 		m.close();
 		Jenabean.instance().model().close();
 	}
 
 	public void contextInitialized(ServletContextEvent ev) {
 		ServletContext ctx = ev.getServletContext();
-		String directory = "databases/DB1";
 
+		OntModel raw = readOWL();
+		ctx.setAttribute(RAWMODEL, raw);
+		
+		OntModel om = currentModel("databases/current", raw);
+		ctx.setAttribute(CURRENT_MODEL, om);
+
+		OntModel discovered = currentModel("databases/discovered", raw);
+		ctx.setAttribute(DISCOVERED_MODEL, discovered);
+		
+		OntModel planned = currentModel("databases/planned", raw);
+		ctx.setAttribute(PLANNED_MODEL, planned);
+			
+	
+		createUserRoleDB();
+
+	}
+
+	private OntModel currentModel(String directory, Model m) {
 		Model model = TDBFactory.createModel(directory);
 		model.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
 		OntModel om = ModelFactory.createOntologyModel(
 				OntModelSpec.OWL_MEM_MINI_RULE_INF, model);
 		om.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
-		ctx.setAttribute("model", om);
-
-		OntModel raw = readOWL();
-		ctx.setAttribute("rawmodel", raw);
-		om.addSubModel(raw);	
-	
-		createUserRoleDB();
-
+		om.addSubModel(m);
+		return om;
 	}
 
 	public void createUserRoleDB() {
