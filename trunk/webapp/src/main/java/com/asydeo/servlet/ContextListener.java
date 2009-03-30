@@ -32,13 +32,13 @@ public class ContextListener implements ServletContextListener {
 		OntModel raw = readOWL();
 		ctx.setAttribute(RAWMODEL, raw);
 		
-		OntModel om = currentModel("databases/current", raw);
+		OntModel om = createModel("databases/current", raw);
 		ctx.setAttribute(CURRENT_MODEL, om);
 
-		OntModel discovered = currentModel("databases/discovered", raw);
+		OntModel discovered = createModel("databases/discovered", raw);
 		ctx.setAttribute(DISCOVERED_MODEL, discovered);
 		
-		OntModel planned = currentModel("databases/planned", raw);
+		OntModel planned = createModel("databases/planned", raw);
 		ctx.setAttribute(PLANNED_MODEL, planned);
 			
 	
@@ -46,7 +46,7 @@ public class ContextListener implements ServletContextListener {
 
 	}
 
-	private OntModel currentModel(String directory, Model m) {
+	private OntModel createModel(String directory, Model m) {
 		Model model = TDBFactory.createModel(directory);
 		model.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
 		OntModel om = ModelFactory.createOntologyModel(
