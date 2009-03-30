@@ -3,6 +3,8 @@ package com.asydeo.action;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 
+import com.asydeo.domain.AsydeoSession;
+import com.asydeo.servlet.RequestConstants;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -63,4 +65,16 @@ public class BaseAction implements ActionBean {
 		return m().getOntClass("http://asydeo.com/schema#VisibleClass");
 	}
 	
+	public AsydeoSession getUserSession() {
+		return context.getSession();
+	}
+	
+	public String getModelName() {
+		return context.getSession().getModelName();
+	}
+
+	public void setModelName(String s) {
+		context.getSession().setModelName(s);
+	}
+
 }
