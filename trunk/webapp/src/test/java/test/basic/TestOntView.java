@@ -15,16 +15,15 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 public class TestOntView {
 
 
+
+	
 	@Test
-	public void start() {
-		
-	}
 	public void basic() {
 		OntModel m = ModelFactory.createOntologyModel();
 		URL url = getClass().getResource("/ontology/asydeo.owl");
 		m.read(url.toString());
 		Individual subject = m.createIndividual(m.createClass("http://asydeo.com/schema#ComputerSystem"));
-		OntProperty p = m.getOntProperty("http://asydeo.com/schema#isHosting");
+		OntProperty p = m.getOntProperty("http://asydeo.com/schema#hostsCluster");
 		OntView v = OntView.$(p, subject);
 		Collection<OntView> items = v.getItems();
 		for (OntView ontView : items) {
