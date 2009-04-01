@@ -2,22 +2,31 @@ package com.asydeo.action;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
+import net.sourceforge.stripes.action.HandlesEvent;
+import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
 import com.asydeo.ontology.Asydeo;
 import com.asydeo.view.OntView;
+
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
+import com.hp.hpl.jena.query.QueryExecException;
 import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QueryParseException;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.shared.Lock;
 import com.hp.hpl.jena.rdf.model.Resource;
+
+import thewebsemantic.binding.Jenabean;
 
 
 @UrlBinding("/asset/search")
@@ -35,48 +44,79 @@ public class SearchAction extends BaseAction {
         }
         else {
             Query query = null;
-            QueryExecution qexec = null;
 
             try {
-                query = QueryFactory.create(sparqlQuery);
-            }
-            catch (Exception e) {
-                System.out.println("Error: " + e.toString());
-            }
-            
-            if ( query != null && query.isSelectType() ) {
+                m().enterCriticalSection(Lock.READ);
+                
                 try {
-                    qexec = QueryExecutionFactory.create(
-                              query, m());
+                    query = QueryFactory.create(sparqlQuery);
+                    
+                    if ( query.isSelectType() ) {
+                        executeSelectQuery(query);
+                    }
+                }
+                catch (QueryParseException e) {
+                    System.out.println("Error: " + e.toString());
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.toString());
                 }
-                
-                try {
-                    ResultSet rs = qexec.execSelect();
-                    
-                    while ( rs.hasNext() ) {
-                        QuerySolution rb = rs.nextSolution();
-                        Resource resource = rb.getResource("x");
-                        Individual i = m().
-                                         getIndividual(resource.getURI());
-
-                        OntView view = new OntView(i);
-                        queryResult.add(view);
-                    }
-                }
-                catch (Exception e) {
-                }
-                finally {
-                    qexec.close();
-                }
+            }
+            finally {
+                m().leaveCriticalSection();
             }
         }
 
         return new ForwardResolution("/search.jsp");
     }
+    
+    private void executeSelectQuery(Query query) {
+        QueryExecution qexec = null;
+        
+        if ( query != null ) {
+            try {
+                qexec = QueryExecutionFactory.create(
+                          query, m());
+            
+                addSolutionsToResult( qexec.execSelect() );
+            }
+            catch (QueryExecException e) {
+                System.out.println("Error: " + e.toString());
+            }
+            catch (Exception e) {
+                System.out.println("Error: " + e.toString());
+            }
+            finally {
+                qexec.close();
+            }
+        }
+    }
 
+    private void addSolutionsToResult(ResultSet results) {
+        if ( results != null ) {
+            while ( results.hasNext() ) {
+                QuerySolution soln = results.nextSolution();
+                
+                // Iterate over the bind variables used in the query
+                Iterator<String> it = soln.varNames();
+                while ( it.hasNext() ) {
+                    String varName = it.next();
+                    
+                    if ( soln.get(varName) != null ) {
+                        if ( soln.get(varName).isResource() ) {
+                            Resource resource = soln.getResource(varName);
+                            Individual i =
+                              m().getIndividual(resource.getURI());
+
+                            OntView view = new OntView(i);
+                            queryResult.add(view);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     public String getUri() {
         return uri;
     }
