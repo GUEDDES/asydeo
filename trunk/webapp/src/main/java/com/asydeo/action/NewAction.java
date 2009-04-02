@@ -63,7 +63,7 @@ public class NewAction extends BaseAction {
 	}
 
 	public View[] getViews() {
-		return Util.getView(m(), classUri);
+		return context.getViews(classUri);
 	}
 
 	public String getClassUri() {

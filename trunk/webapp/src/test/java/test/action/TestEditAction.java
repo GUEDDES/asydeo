@@ -3,6 +3,8 @@ package test.action;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.InputStream;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,8 +19,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.asydeo.action.ASDContext;
 import com.asydeo.action.EditAction;
+import com.asydeo.action.Filters;
 import com.asydeo.model.StatementBean;
+import com.asydeo.ontology.Asydeo;
+import com.asydeo.view.OntView;
+import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.ontology.OntProperty;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.vocabulary.OWL;
+import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class TestEditAction {
 	
@@ -59,6 +74,33 @@ public class TestEditAction {
 		assertTrue(r instanceof ForwardResolution);
 		ForwardResolution f = (ForwardResolution)r;
 		assertEquals(f.getPath(), "/edit.jsp");
+	}
+	
+	@Test
+	public void testFilters() {
+		final OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
+		m.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
+		InputStream is = getClass().getResourceAsStream("/ontology/asydeo.owl");
+		m.read(is, "RDF/XML");
+		OntClass c = m.getOntClass(Asydeo.NS + "ComputerSystem");
+		
+		EditAction e = new EditAction();
+		e.setContext( new ASDContext(){
+			public OntModel getModel() {
+				return m;
+			}
+		});
+		
+		e.setUri("foo");
+		e.setClassUri(c.getURI());
+		for (OntView v : e.getFunctionalProperties()) {
+			System.out.println("\t" + v.getURI());
+		}
+		
+		ExtendedIterator it = c.listDeclaredProperties(false);
+		while(it.hasNext()) {
+			System.out.println(it.next());
+		}
 	}
 	
 	@Test

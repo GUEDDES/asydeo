@@ -7,7 +7,7 @@ public class Filters {
 	public static Filter nonfunctional = new Filter() {
 		public boolean accept(Object o) {
 			if (o instanceof OntProperty) {
-				OntProperty op = (OntProperty)o;
+				OntProperty op = (OntProperty)o;				
 				return !op.isFunctionalProperty() && op.isObjectProperty();
 			}
 			return false;
@@ -19,6 +19,17 @@ public class Filters {
 			if (o instanceof OntProperty) {
 				OntProperty op = (OntProperty)o;
 				return op.isFunctionalProperty() && op.isObjectProperty();
+			}
+			return false;
+		}		
+	};
+	
+	public static Filter allow = new Filter() {
+		public boolean accept(Object o) {
+			if (o instanceof OntProperty) {
+				OntProperty op = (OntProperty)o;				
+				return op.isObjectProperty();
+				
 			}
 			return false;
 		}		
