@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
-import com.asydeo.view.Util;
 import com.asydeo.view.View;
 import com.asydeo.view.ViewManager;
 import com.hp.hpl.jena.ontology.Individual;

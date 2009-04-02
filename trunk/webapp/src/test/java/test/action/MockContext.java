@@ -3,7 +3,6 @@ package test.action;
 import javax.servlet.http.HttpServletRequest;
 
 import com.asydeo.action.ASDContext;
-import com.asydeo.view.Util;
 import com.asydeo.view.View;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;

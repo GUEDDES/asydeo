@@ -2,7 +2,7 @@
 
 <stripes:layout-render name="/layout/default.jsp">
 
-<stripes:layout-component name="htmlHead">
+<stripes:layout-component name="header">
   <c:import url="/menu.jsp" />
 
 </stripes:layout-component>
