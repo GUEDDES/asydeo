@@ -8,6 +8,7 @@ import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
 import com.asydeo.view.Util;
 import com.asydeo.view.View;
+import com.asydeo.view.ViewManager;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -22,7 +23,8 @@ public class TestUtil {
 		URL url = getClass().getResource("/ontology/asydeo.owl");
 		m.read(url.toString());
 		Individual i = m.createIndividual(m.createClass("http://asydeo.com/schema#ComputerSystem"));
-		View[] views = Util.getView(i);
+		ViewManager vm = new ViewManager();
+		View[] views = vm.getView(m,i);
 		assertNotNull(views);
 	}
 	
@@ -32,7 +34,8 @@ public class TestUtil {
 		URL url = getClass().getResource("/ontology/asydeo.owl");
 		m.read(url.toString());
 		Individual i = m.createIndividual(m.createClass("http://asydeo.com/schema#ComputerSystem"));
-		View[] views = Util.getView(m, "http://asydeo.com/schema#ComputerSystem");
+		ViewManager vm = new ViewManager();
+		View[] views = vm.getView(m, "http://asydeo.com/schema#ComputerSystem");
 		assertNotNull(views);
 	}
 }

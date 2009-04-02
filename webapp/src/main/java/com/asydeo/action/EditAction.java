@@ -75,7 +75,7 @@ public class EditAction extends BaseAction {
 		try {
 			m().enterCriticalSection(Lock.READ);
 			final Individual i = individual(uri);
-			return new each(filter1()) {
+			return new each(chooseNonFunctional()) {
 				void $() {add(i);}}.result;
 		} finally {
 			m().leaveCriticalSection();
@@ -87,20 +87,20 @@ public class EditAction extends BaseAction {
 			m().enterCriticalSection(Lock.READ);
 
 			final Individual i = individual(uri);
-			return new each(filter2()) {
+			return new each(chooseFunctional()) {
 				void $() {add(i);}}.result;
 		} finally {
 			m().leaveCriticalSection();
 		}
 	}
 
-	private ExtendedIterator filter1() {
-		return ontClass(classUri).listDeclaredProperties(false).filterKeep(
+	private ExtendedIterator chooseNonFunctional() {
+		return ontClass(classUri).listDeclaredProperties().filterKeep(
 				Filters.nonfunctional);
 	}
 
-	private ExtendedIterator filter2() {
-		return ontClass(classUri).listDeclaredProperties(false).filterKeep(
+	private ExtendedIterator chooseFunctional() {
+		return ontClass(classUri).listDeclaredProperties().filterKeep(
 				Filters.functional);
 	}
 
