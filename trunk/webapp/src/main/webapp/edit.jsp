@@ -11,7 +11,7 @@
 
 <fieldset>
     <LEGEND ACCESSKEY=I>General Information</LEGEND>
-<stripes:form name="form1" action="/asset/edit">
+<stripes:form class="niceform" name="form1" action="/asset/edit">
 
 <c:forEach var="v" items="${actionBean.views}">
 ${v.content}<br/>

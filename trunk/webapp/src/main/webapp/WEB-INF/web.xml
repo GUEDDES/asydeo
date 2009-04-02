@@ -78,7 +78,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>A Protected Page</web-resource-name>
-			<url-pattern>/*</url-pattern>
+			<url-pattern>/asset/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>admin</role-name>
