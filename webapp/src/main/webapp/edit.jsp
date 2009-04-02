@@ -4,30 +4,36 @@
 <stripes:layout-render name="/layout/default.jsp">
 
 <stripes:layout-component name="htmlHead">
+
+</stripes:layout-component>
+
+
+<stripes:layout-component name="header">
  <c:import url="/menu.jsp" />
 </stripes:layout-component>
 
 <stripes:layout-component name="content">
 
-<fieldset>
-    <LEGEND ACCESSKEY=I>General Information</LEGEND>
 <stripes:form class="niceform" name="form1" action="/asset/edit">
-
+<stripes:hidden name="uri" value="${actionBean.uri}"/>
+<stripes:hidden name="classUri" value="${actionBean.classUri}"/>
+<fieldset>
+    <legend>General Information</legend>
+    
+    
 <c:forEach var="v" items="${actionBean.views}">
 ${v.content}<br/>
 </c:forEach>
 
-
-<stripes:hidden name="uri" value="${actionBean.uri}"/>
-<stripes:hidden name="classUri" value="${actionBean.classUri}"/>
-
-<br style="clear:both"/>
-
-<stripes:submit name="update" class="button">SAVE</stripes:submit>
-<stripes:submit name="cancel" class="button">CANCEL</stripes:submit>
-</stripes:form>
 </fieldset>
 
+
+<fieldset class="action"> 
+<stripes:submit name="update" class="button">SAVE</stripes:submit>
+<stripes:submit name="cancel" class="button">CANCEL</stripes:submit>
+</fieldset>
+
+</stripes:form>
 <c:forEach var="v" items="${actionBean.functionalProperties}">
 ${v.label} 
 <c:forEach var="item" items="${v.items}">
