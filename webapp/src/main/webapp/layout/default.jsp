@@ -2,6 +2,10 @@ u<%@ include file="../taglibs.jsp" %>
 <stripes:layout-definition>
 <html>
 <head> 
+<!--
+<script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/js/niceforms.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="${pageContext.request.contextPath}/css/niceforms-default.css" />
+-->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/basic.css" type="text/css"> 
   <stripes:layout-component name="htmlHead"/> 
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.3.2.min.js"></script>  
