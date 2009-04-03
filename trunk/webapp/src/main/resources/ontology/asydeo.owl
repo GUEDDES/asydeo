@@ -34,7 +34,6 @@
      -->
 
     <owl:AnnotationProperty rdf:about="&dc;description"/>
-    <owl:AnnotationProperty rdf:about="#order"/>
     <owl:AnnotationProperty rdf:about="#editor"/>
     
 
@@ -50,6 +49,12 @@
     
 
 
+    <!-- http://asydeo.com/schema#contains -->
+
+    <owl:ObjectProperty rdf:about="#contains"/>
+    
+
+
     <!-- http://asydeo.com/schema#containsSoftware -->
 
     <owl:ObjectProperty rdf:about="#containsSoftware">
@@ -57,6 +62,7 @@
             >Contains Software</rdfs:comment>
         <rdfs:range rdf:resource="#Software"/>
         <rdfs:domain rdf:resource="#Software"/>
+        <rdfs:subPropertyOf rdf:resource="#contains"/>
     </owl:ObjectProperty>
     
 
@@ -76,8 +82,7 @@
     <owl:ObjectProperty rdf:about="#hasDNSRecord">
         <rdfs:label>Has DNS Record</rdfs:label>
         <rdfs:range rdf:resource="#DNSRecord"/>
-        <rdfs:domain rdf:resource="#ServiceAccessPoint"/>
-        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:domain rdf:resource="#IPAddressable"/>
     </owl:ObjectProperty>
     
 
@@ -87,21 +92,7 @@
     <owl:ObjectProperty rdf:about="#hasDocument">
         <rdfs:comment>Has Document</rdfs:comment>
         <rdfs:range rdf:resource="#Document"/>
-        <rdfs:domain rdf:resource="#Service"/>
-        <rdfs:domain rdf:resource="#Software"/>
-        <rdfs:domain rdf:resource="#System"/>
-        <rdfs:domain rdf:resource="#SystemCluster"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://asydeo.com/schema#hasDomain -->
-
-    <owl:ObjectProperty rdf:about="#hasDomain">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label>Has Domain</rdfs:label>
-        <rdfs:range rdf:resource="#Domain"/>
-        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:domain rdf:resource="#Documentable"/>
     </owl:ObjectProperty>
     
 
@@ -122,8 +113,7 @@
     <owl:ObjectProperty rdf:about="#hasIPAddress">
         <rdfs:label>Has IP Address</rdfs:label>
         <rdfs:range rdf:resource="#IPAddress"/>
-        <rdfs:domain rdf:resource="#ServiceAccessPoint"/>
-        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:domain rdf:resource="#IPAddressable"/>
     </owl:ObjectProperty>
     
 
@@ -132,9 +122,8 @@
 
     <owl:ObjectProperty rdf:about="#hasInstalled">
         <rdfs:label>Has Installed</rdfs:label>
-        <rdfs:domain rdf:resource="#ComputerSystem"/>
+        <rdfs:domain rdf:resource="#Installable"/>
         <rdfs:range rdf:resource="#Software"/>
-        <rdfs:domain rdf:resource="#SystemCluster"/>
     </owl:ObjectProperty>
     
 
@@ -168,6 +157,7 @@
         <rdfs:label rdf:datatype="&xsd;string">Contains</rdfs:label>
         <rdfs:range rdf:resource="#ComputerSystem"/>
         <rdfs:domain rdf:resource="#SystemCluster"/>
+        <rdfs:subPropertyOf rdf:resource="#contains"/>
     </owl:ObjectProperty>
     
 
@@ -177,7 +167,6 @@
     <owl:ObjectProperty rdf:about="#hasModel">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Has Model</rdfs:label>
-        <editor rdf:resource="#BasicDropDown"/>
         <rdfs:range rdf:resource="#Model"/>
         <rdfs:domain rdf:resource="#System"/>
     </owl:ObjectProperty>
@@ -202,8 +191,7 @@
         <rdfs:label
             >Has Organization</rdfs:label>
         <rdfs:range rdf:resource="#Organization"/>
-        <rdfs:domain rdf:resource="#Service"/>
-        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:domain rdf:resource="#OrganizationEntity"/>
     </owl:ObjectProperty>
     
 
@@ -256,9 +244,7 @@
         <rdfs:label
             >Has Support Contact</rdfs:label>
         <rdfs:range rdf:resource="#Person"/>
-        <rdfs:domain rdf:resource="#Service"/>
-        <rdfs:domain rdf:resource="#Software"/>
-        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:domain rdf:resource="#Supportable"/>
     </owl:ObjectProperty>
     
 
@@ -298,8 +284,7 @@
 
     <owl:ObjectProperty rdf:about="#hostsCluster">
         <rdfs:label>Hosts Cluster</rdfs:label>
-        <rdfs:domain rdf:resource="#ComputerSystem"/>
-        <rdfs:domain rdf:resource="#LoadBalancer"/>
+        <rdfs:domain rdf:resource="#System"/>
         <rdfs:range rdf:resource="#SystemCluster"/>
     </owl:ObjectProperty>
     
@@ -364,7 +349,6 @@
 
     <owl:DatatypeProperty rdf:about="#alias">
         <rdfs:label rdf:datatype="&xsd;string">Aliases</rdfs:label>
-        <order rdf:datatype="&xsd;int">98</order>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Alternate names or aliases, comma seperated</rdfs:comment>
         <editor rdf:resource="#BasicCommaSeperatedList"/>
@@ -380,9 +364,19 @@
     <owl:DatatypeProperty rdf:about="#description">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Description</rdfs:label>
-        <order rdf:datatype="&xsd;int">99</order>
         <rdfs:domain rdf:resource="#ConfigurableItem"/>
         <editor rdf:resource="#TextAreaBasic"/>
+        <rdfs:subPropertyOf rdf:resource="#property"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#domain -->
+
+    <owl:DatatypeProperty rdf:about="#domain">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#IPAddressable"/>
         <rdfs:subPropertyOf rdf:resource="#property"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
@@ -406,7 +400,6 @@
     <owl:DatatypeProperty rdf:about="#name">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Name</rdfs:label>
-        <order rdf:datatype="&xsd;int">100</order>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Supply a name that will easily remind you of the resource.</rdfs:comment>
         <rdfs:domain rdf:resource="#ConfigurableItem"/>
@@ -525,6 +518,7 @@
     <owl:Class rdf:about="#ConfigurableItem">
         <rdfs:label rdf:datatype="&xsd;string"
             >Configurable Item</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Installable"/>
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
     
@@ -553,6 +547,14 @@
     <owl:Class rdf:about="#Document">
         <rdfs:label>Document</rdfs:label>
         <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Documentable -->
+
+    <owl:Class rdf:about="#Documentable">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
     
 
@@ -588,6 +590,22 @@
     <owl:Class rdf:about="#IPAddress">
         <rdfs:label>IP Address</rdfs:label>
         <rdfs:subClassOf rdf:resource="#NetworkItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#IPAddressable -->
+
+    <owl:Class rdf:about="#IPAddressable">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#Installable -->
+
+    <owl:Class rdf:about="#Installable">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
     
 
@@ -652,7 +670,6 @@
     <owl:Class rdf:about="#Model">
         <rdfs:label>Model</rdfs:label>
         <rdfs:subClassOf rdf:resource="#SystemItem"/>
-        <rdfs:subClassOf rdf:resource="#VisibleClass"/>
     </owl:Class>
     
 
@@ -690,6 +707,14 @@
     <owl:Class rdf:about="#Organization">
         <rdfs:label>Organization</rdfs:label>
         <rdfs:subClassOf rdf:resource="#OrganizationalItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#OrganizationEntity -->
+
+    <owl:Class rdf:about="#OrganizationEntity">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
     
 
@@ -760,6 +785,9 @@
     <owl:Class rdf:about="#Service">
         <rdfs:label>Service</rdfs:label>
         <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+        <rdfs:subClassOf rdf:resource="#Documentable"/>
+        <rdfs:subClassOf rdf:resource="#OrganizationEntity"/>
+        <rdfs:subClassOf rdf:resource="#Supportable"/>
     </owl:Class>
     
 
@@ -770,6 +798,7 @@
         <rdfs:label
             >Service Access Point</rdfs:label>
         <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+        <rdfs:subClassOf rdf:resource="#IPAddressable"/>
         <rdfs:subClassOf rdf:resource="#VisibleClass"/>
     </owl:Class>
     
@@ -780,6 +809,8 @@
     <owl:Class rdf:about="#Software">
         <rdfs:label>Software</rdfs:label>
         <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+        <rdfs:subClassOf rdf:resource="#Documentable"/>
+        <rdfs:subClassOf rdf:resource="#Supportable"/>
     </owl:Class>
     
 
@@ -803,11 +834,23 @@
     
 
 
+    <!-- http://asydeo.com/schema#Supportable -->
+
+    <owl:Class rdf:about="#Supportable">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
     <!-- http://asydeo.com/schema#System -->
 
     <owl:Class rdf:about="#System">
         <rdfs:label>System</rdfs:label>
         <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+        <rdfs:subClassOf rdf:resource="#Documentable"/>
+        <rdfs:subClassOf rdf:resource="#IPAddressable"/>
+        <rdfs:subClassOf rdf:resource="#Installable"/>
+        <rdfs:subClassOf rdf:resource="#OrganizationEntity"/>
     </owl:Class>
     
 
@@ -817,6 +860,7 @@
     <owl:Class rdf:about="#SystemCluster">
         <rdfs:label rdf:datatype="&xsd;string">System Cluster</rdfs:label>
         <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+        <rdfs:subClassOf rdf:resource="#Documentable"/>
         <rdfs:subClassOf rdf:resource="#VisibleClass"/>
     </owl:Class>
     
@@ -950,12 +994,6 @@
     
 
 
-    <!-- http://asydeo.com/schema#BasicDropDown -->
-
-    <DropDown rdf:about="#BasicDropDown"/>
-    
-
-
     <!-- http://asydeo.com/schema#TextAreaBasic -->
 
     <TextArea rdf:about="#TextAreaBasic"/>
@@ -969,5 +1007,5 @@
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.974) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.842) http://owlapi.sourceforge.net -->
 
