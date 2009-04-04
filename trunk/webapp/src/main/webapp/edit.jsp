@@ -5,6 +5,21 @@
 
 <stripes:layout-component name="htmlHead">
 
+<style>
+#collect_link {
+  padding:0.4em 1em 0.4em 20px;
+  position:relative;
+  text-decoration:none;
+}
+
+#collect_link span.ui-icon {
+  left:0.2em;
+  margin:-8px 5px 0 0;
+  position:absolute;
+  top:50%;
+}
+</style>
+
 </stripes:layout-component>
 
 
@@ -14,23 +29,30 @@
 
 <stripes:layout-component name="content">
 
-<stripes:form class="niceform" name="form1" action="/asset/edit">
+<stripes:form name="form1" action="/asset/edit">
 <stripes:hidden name="uri" value="${actionBean.uri}"/>
 <stripes:hidden name="classUri" value="${actionBean.classUri}"/>
-<fieldset>
-    <legend>General Information</legend>
+<fieldset class="ui-dialog-content ui-widget-content">
+    <legend class="ui-widget-header ui-corner-all">General Information</legend>
     
     
 <c:forEach var="v" items="${actionBean.views}">
 ${v.content}<br/>
 </c:forEach>
 
+
 </fieldset>
 
 
-<fieldset class="action"> 
-<stripes:submit name="update" class="button">SAVE</stripes:submit>
-<stripes:submit name="cancel" class="button">CANCEL</stripes:submit>
+<fieldset class="ui-widget-header"> 
+<stripes:submit name="update" class="ui-button ui-state-default ui-corner-all">SAVE</stripes:submit>
+<stripes:submit name="cancel" class="ui-button ui-state-default ui-corner-all">CANCEL</stripes:submit>
+<div style="float:right">
+<a id="collect_link" class="ui-state-default ui-corner-all" href="#">
+<span class="ui-icon ui-icon-plusthick"></span>Collect this item
+</a>
+</div>
+
 </fieldset>
 
 </stripes:form>
@@ -70,6 +92,8 @@ ADD</stripes:link>
   </c:forEach>  
   </ul>
 </c:forEach>
+
+
 
 </stripes:layout-component>
 </stripes:layout-render>

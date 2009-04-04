@@ -1,15 +1,14 @@
-input.normal,textarea.normal {
+
+input.text,textarea.text {
 	display: block;
 	width: 350px;
 	font-size:13px;
-	padding: 5px;
+	padding: 0.5em;
 	float: left;
 	margin-bottom: 10px;
-	border-style:solid;
-    border-width:1px;
-    border-color:#DFDFDF;
     
 }
+
 label {
 	display: block;
 	float: left;
@@ -39,7 +38,18 @@ submit.button {
   border: none;
 }
 
-fieldset {background:#f2f2e6; padding:10px; border:1px solid #fff; border-color:#fff #666661 #666661 #fff; margin-bottom:36px; width:600px;}
+body {font:12px/17px Arial, Helvetica, sans-serif; color:#333}
+fieldset {padding:10px; border:1px solid #ccc; width:600px;}
 fieldset.action {background:#9da2a6; border-color:#e5e5e5 #797c80 #797c80 #e5e5e5; margin-top:-20px;}
-legend {background:#bfbf30; color:#fff; font:17px/21px Calibri, Arial, Helvetica, sans-serif; padding:0 10px; margin:-26px 0 0 -11px; font-weight:bold; border:1px solid #fff; border-color:#e5e5c3 #505014 #505014 #e5e5c3;}
+legend {padding:5px;}
 
+label {font-size:11px; font-weight:bold; color:#666;}
+
+#header {
+
+}
+
+#content {
+	padding-top: 36px;
+	
+}

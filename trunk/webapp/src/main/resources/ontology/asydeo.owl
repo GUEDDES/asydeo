@@ -707,6 +707,7 @@
     <owl:Class rdf:about="#Organization">
         <rdfs:label>Organization</rdfs:label>
         <rdfs:subClassOf rdf:resource="#OrganizationalItem"/>
+        <rdfs:subClassOf rdf:resource="#VisibleClass"/>
     </owl:Class>
     
 

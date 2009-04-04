@@ -10,8 +10,8 @@
 
 
 <form method="POST" action="j_security_check">
-<label>Username</label><input type="text" class="normal" name="j_username"><br/>
-<label>Password</label><input type="password" class="normal" name="j_password">
+<label>Username</label><input type="text" class="text ui-widget-content ui-corner-all" name="j_username"><br/>
+<label>Password</label><input type="password" class="text ui-widget-content ui-corner-all" name="j_password">
 <br/>
 <input type="submit" value="Log In" name="login"/>
 </form>
