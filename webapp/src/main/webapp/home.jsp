@@ -19,5 +19,8 @@
 </fieldset>
 </stripes:form>
 
+<c:forEach var="uri" items="${actionBean.items}">
+${uri} <br/>
+</c:forEach>
 </stripes:layout-component>
 </stripes:layout-render>

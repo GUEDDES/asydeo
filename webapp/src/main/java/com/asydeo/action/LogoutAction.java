@@ -13,7 +13,7 @@ public class LogoutAction extends BaseAction {
 	@DefaultHandler
 	public Resolution start() throws IOException {
 		context.getRequest().getSession().invalidate();
-		return new ForwardResolution("/home.jsp");
+		return new ForwardResolution("/login.jsp");
 	}
 	
 

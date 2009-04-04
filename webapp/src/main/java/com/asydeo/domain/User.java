@@ -1,5 +1,6 @@
 package com.asydeo.domain;
 
+import java.net.URI;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
@@ -20,6 +21,7 @@ public class User extends RdfBean<User> implements Principal {
 	String passwordHash;
 	String password;
 	String email;
+	Collection<URI> collectedItems;
 	
 	transient String passwordCheck;
 	Collection<Role> roles = new ArrayList<Role>();
@@ -83,6 +85,12 @@ public class User extends RdfBean<User> implements Principal {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public Collection<URI> getCollectedItems() {
+		return collectedItems;
+	}
+	public void setCollectedItems(Collection<URI> collectedItems) {
+		this.collectedItems = collectedItems;
 	}
 
 }

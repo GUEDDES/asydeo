@@ -9,13 +9,14 @@
 
 <stripes:layout-component name="content">
 <stripes:form name="form1" action="/asset/new">
-
-<c:forEach var="v" items="${actionBean.views}">
-${v.content}<br/>
-</c:forEach>
-
 <stripes:hidden name="classUri" />
 <stripes:hidden name="create" value=""/>
+<fieldset>
+    <legend>General Information</legend>
+		<c:forEach var="v" items="${actionBean.views}">${v.content}<br/>
+</c:forEach>
+</fieldset>
+
 
 <br style="clear:both"/>
 <a  class="button" href="javascript:document.form1.submit()">SAVE</a>
