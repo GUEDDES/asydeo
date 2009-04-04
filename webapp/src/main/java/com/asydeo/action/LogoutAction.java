@@ -15,6 +15,4 @@ public class LogoutAction extends BaseAction {
 		context.getRequest().getSession().invalidate();
 		return new ForwardResolution("/login.jsp");
 	}
-	
-
 }
