@@ -53,6 +53,10 @@ public class ASDContext extends ActionBeanContext {
 		}
 		return u;
 	}
+	
+	public boolean isAuthenticated() {
+		return getRequest().getUserPrincipal() != null;
+	}
 
 	public AsydeoSession getSession() {
 		return (AsydeoSession)getRequest().getSession().getAttribute(RequestConstants.SESSION);

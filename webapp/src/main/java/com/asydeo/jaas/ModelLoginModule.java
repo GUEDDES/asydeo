@@ -59,24 +59,7 @@ import com.asydeo.domain.User;
 import com.hp.hpl.jena.shared.NotFoundException;
 
 /**
- * <p>
- * This sample LoginModule authenticates users with a password.
- * 
- * <p>
- * This LoginModule only recognizes one user: testUser
- * <p>
- * testUser's password is: testPassword
- * 
- * <p>
- * If testUser successfully authenticates itself, a <code>SamplePrincipal</code>
- * with the testUser's user name is added to the Subject.
- * 
- * <p>
- * This LoginModule recognizes the debug option. If set to true in the login
- * Configuration, debug messages will be output to the output stream,
- * System.out.
- * 
- * @version 1.18, 01/11/00
+ *
  */
 public class ModelLoginModule implements LoginModule {
 
