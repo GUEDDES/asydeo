@@ -3,13 +3,18 @@ u<%@ include file="../taglibs.jsp" %>
 <html>
 <head> 
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.3.2.min.js"></script>  
-  <link type="text/css" href="${pageContext.request.contextPath}/css/cupertino/jquery-ui-1.7.1.custom.css" rel="Stylesheet" />	
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.7.1.custom.min.js"></script>
+  <script type="text/javascript" src="http://malsup.com/jquery/form/jquery.form.js"></script>
 
-
+  <link type="text/css" href="${pageContext.request.contextPath}/css/cupertino/jquery-ui-1.7.1.custom.css" rel="Stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/basic.css" type="text/css"> 
   <stripes:layout-component name="htmlHead"/> 
   <script>  
+  $().ajaxError(function(ev,xhr,o,err) {    
+  	alert(err);    
+  	if (window.console && window.console.log) console.log(err);
+  });
+  
   $(document).ready(function() {
     $("a.confirm").click(function() {
       return confirm("Are you SURE you want to remove this relationship?");
@@ -52,7 +57,14 @@ u<%@ include file="../taglibs.jsp" %>
 				$(this).removeClass("ui-state-active");
 		});
 	
-    
+    $('#uploadForm').ajaxForm({
+        beforeSubmit: function(a,f,o) {
+             $('#uploadOutput').html('Submitting...');
+        },
+        success: function(data, code) {
+            alert('Data uploaded successfuly.' + code);
+        }
+     });
   });
   </script>
 </head>

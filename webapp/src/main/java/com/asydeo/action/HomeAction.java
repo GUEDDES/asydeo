@@ -1,8 +1,5 @@
 package com.asydeo.action;
 
-import java.net.URI;
-import java.util.Collection;
-
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
@@ -20,7 +17,5 @@ public class HomeAction extends BaseAction {
 		    return new RedirectResolution(LoginAction.class);
 	}
 	
-	public Collection<URI> getItems() {
-		return context.getUser().getCollectedItems();
-	}
+
 }

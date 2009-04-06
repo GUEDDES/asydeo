@@ -17,6 +17,11 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 			<param-value>com.asydeo.action.ASDContext</param-value>
 		</init-param>
 
+<init-param>
+    <param-name>MultipartWrapper.Class</param-name>
+    <param-value>net.sourceforge.stripes.controller.multipart.CosMultipartWrapper</param-value>
+</init-param>
+
 	</filter>
 
 	<filter-mapping>
