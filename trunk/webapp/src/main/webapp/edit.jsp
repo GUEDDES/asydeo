@@ -87,13 +87,11 @@ ADD</stripes:link>
     <stripes:param name="bean.s" value="${actionBean.uri}"/>
     <stripes:param name="bean.v" value="${v.URI}"/>
     <stripes:param name="bean.o" value="${item.URI}"/>
-    UNRELATED</stripes:link>
+    UNRELATE</stripes:link>
     </li>
   </c:forEach>  
   </ul>
 </c:forEach>
-
-
 
 </stripes:layout-component>
 </stripes:layout-render>

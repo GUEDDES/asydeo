@@ -28,7 +28,9 @@ public class ContextListener implements ServletContextListener {
 
 	public void contextInitialized(ServletContextEvent ev) {
 		ServletContext ctx = ev.getServletContext();
-
+		createUserRoleDB();
+		
+		
 		OntModel raw = readOWL();
 		ctx.setAttribute(RAWMODEL, raw);
 		
@@ -42,7 +44,7 @@ public class ContextListener implements ServletContextListener {
 		ctx.setAttribute(PLANNED_MODEL, planned);
 			
 	
-		createUserRoleDB();
+
 
 	}
 
@@ -50,7 +52,7 @@ public class ContextListener implements ServletContextListener {
 		Model model = TDBFactory.createModel(directory);
 		model.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
 		OntModel om = ModelFactory.createOntologyModel(
-				OntModelSpec.OWL_MEM_MINI_RULE_INF, model);
+				OntModelSpec.OWL_MEM_MICRO_RULE_INF, model);
 		om.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
 		om.addSubModel(m);
 		return om;

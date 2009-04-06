@@ -21,7 +21,8 @@ public class User extends RdfBean<User> implements Principal {
 	String passwordHash;
 	String password;
 	String email;
-	Collection<URI> collectedItems;
+	Profile profile;
+
 	
 	transient String passwordCheck;
 	Collection<Role> roles = new ArrayList<Role>();
@@ -69,7 +70,6 @@ public class User extends RdfBean<User> implements Principal {
 		try {
 			passwordHash = hash(password);
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -83,14 +83,20 @@ public class User extends RdfBean<User> implements Principal {
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Collection<URI> getCollectedItems() {
-		return collectedItems;
+	public Profile getProfile() {
+		if ( profile == null) {
+			profile = new Profile();
+			profile.setId(username);
+		}
+		return profile;
 	}
-	public void setCollectedItems(Collection<URI> collectedItems) {
-		this.collectedItems = collectedItems;
+	public void setProfile(Profile profile) {
+		this.profile = profile;
 	}
+
 
 }
