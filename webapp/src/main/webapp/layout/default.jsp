@@ -129,11 +129,11 @@
 
 <body>
 
-<div id="ajaxConsole" style="width:30%; display:none; position:absolute">
+<div id="ajaxConsole" style="width:30%; display:none; position:absolute; z-index:11">
 <div class="ui-widget">
 	<div class="ui-state-highlight ui-corner-all" style=" padding: 0 .7em;"> 
 		<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span> 
-			<span id="ajaxContent">hello</span>
+			<span id="ajaxContent"></span>
 		</p> 
 	</div> 
 </div>
