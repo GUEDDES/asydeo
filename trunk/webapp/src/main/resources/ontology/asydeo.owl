@@ -34,6 +34,7 @@
      -->
 
     <owl:AnnotationProperty rdf:about="&dc;description"/>
+    <owl:AnnotationProperty rdf:about="#order"/>
     <owl:AnnotationProperty rdf:about="#editor"/>
     
 
@@ -395,6 +396,7 @@
     <owl:DatatypeProperty rdf:about="#name">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Name</rdfs:label>
+        <order rdf:datatype="&xsd;int">100</order>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Supply a name that will easily remind you of the resource.</rdfs:comment>
         <rdfs:domain rdf:resource="#ConfigurableItem"/>

@@ -27,8 +27,8 @@ ${v.label}
 </c:forEach>
 </ul>
 
-<stripes:submit class="button" value="SAVE" name="set"/>
-<stripes:submit class="button" value="CANCEL" name="cancel"/>
+<stripes:submit value="SAVE" name="set" class="ui-button ui-state-default ui-corner-all"/>
+<stripes:submit value="CANCEL" name="cancel" class="ui-button ui-state-default ui-corner-all"/>
 </stripes:form>
 
 </stripes:layout-component>

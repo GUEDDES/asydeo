@@ -12,7 +12,7 @@
 
 <stripes:textarea cols="50" rows="5" name="sparqlQuery"/>
 <br/>
-<stripes:submit name="submitQuery" value="Query"/>
+<stripes:submit name="submitQuery" value="Query" class="ui-button ui-state-default ui-corner-all"/>
 <br/><br/>
 
 <c:forEach var="v" items="${actionBean.queryResult}">

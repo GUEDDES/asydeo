@@ -28,6 +28,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 		<filter-name>StripesFilter</filter-name>
 		<url-pattern>*.jsp</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
 	<filter-mapping>

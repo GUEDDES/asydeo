@@ -26,6 +26,11 @@ public class NewAction extends BaseAction {
 	public Resolution start() {
 		return new ForwardResolution("/new.jsp");
 	}
+	
+	@HandlesEvent("cancel") 
+	public Resolution cancel() {
+		return new RedirectResolution(ListAction.class).addParameter("uri", classUri);
+	}
 
 	@HandlesEvent("create")
 	public Resolution create() {

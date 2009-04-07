@@ -39,8 +39,9 @@ $(document).ready(function() {
 <fieldset class="ui-dialog-content ui-widget-content">
 <legend class="ui-widget-header ui-corner-all">Upload data file (rdf, n3, ttl)</legend>
    <input type="hidden" name="MAX_FILE_SIZE" value="100000" /> 
-   <label>File:</label> <input type="file" name="newAttachment" class="text ui-widget-content"/>
-   <input type="submit" value="Submit" class="ui-button ui-state-default ui-corner-all"/><br/>
+   <label>File:</label> 
+   <input type="file" name="newAttachment" /><br/>
+   <input type="submit" value="Submit" class="ui-button ui-corner-all"/>
 </fieldset>
 </stripes:form>
 
