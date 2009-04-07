@@ -1,20 +1,39 @@
 <%@ include file="/taglibs.jsp" %>
 
-<div style="float:left">
-<c:choose>
-<c:when test="${!empty actionBean.context.user}">
-<stripes:link beanclass="com.asydeo.action.HomeAction">Home</stripes:link>
-|
-<stripes:link href="/asset/classes">Classes</stripes:link>
-|
-<stripes:link href="/asset/list?uri=asydeo:ConfigurableItem">List Items</stripes:link>
-|
-<stripes:link href="/admin/dump">View Model</stripes:link>
-|
-<stripes:link href="/admin/delete">Delete Model</stripes:link>
-</c:when>
-</c:choose>
-</div>
+<div id="nicemenu"> 
+    <ul> 
+        <li>
+        <span class="head_menu">
+        <stripes:link beanclass="com.asydeo.action.HomeAction">Home</stripes:link>
+		</span>
+		</li>
+		
+		<li>
+        <span class="head_menu">
+        <stripes:link href="/asset/classes">Classes</stripes:link>
+		</span>
+		</li>
+		
+		<li>
+        <span class="head_menu">
+        <stripes:link href="/asset/list?uri=asydeo:ConfigurableItem">List Items</stripes:link>
+		</span>
+		</li>
+		
+		<li>
+ 		<span class="head_menu">
+ 		<stripes:link href="/asset/model">Jena Models</stripes:link> 
+ 		<img src="${pageContext.request.contextPath}/img/arrow.png" width="18" height="15" align="top" class="arrow" />
+ 		</span>             
+ 		<div class="sub_menu"> 
+ 		    <stripes:link href="/asset/model">Manage...</stripes:link>                    
+ 			<stripes:link href="/admin/dump">View Model</stripes:link>           
+ 			<stripes:link href="/admin/delete">Delete Model</stripes:link>            
+ 		</div>
+		</li>
+    </ul> 
+</div> 
+
 
 
 <div style="text-align:right">
@@ -31,3 +50,6 @@ Signed in as ${actionBean.context.user.username}
 </c:otherwise>
 </c:choose>
 </div>
+
+
+

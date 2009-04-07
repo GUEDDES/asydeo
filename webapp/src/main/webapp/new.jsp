@@ -8,9 +8,9 @@
 </stripes:layout-component>
 
 <stripes:layout-component name="content">
-<stripes:form name="form1" action="/asset/new">
+<stripes:form name="form1" beanclass="com.asydeo.action.NewAction">
 <stripes:hidden name="classUri" />
-<stripes:hidden name="create" value=""/>
+
 <fieldset>
     <legend>General Information</legend>
 		<c:forEach var="v" items="${actionBean.views}">${v.content}<br/>
@@ -19,12 +19,11 @@
 
 
 <br style="clear:both"/>
-<a  class="button" href="javascript:document.form1.submit()">SAVE</a>
-|
-<stripes:link  class="button" href="/asset/list">
-  <stripes:param name="uri" value="${actionBean.classUri}"/>CANCEL</stripes:link>
-</stripes:form>
 
+<stripes:submit name="create" class="ui-button ui-state-default ui-corner-all">SAVE</stripes:submit>
+<stripes:submit name="cancel" class="ui-button ui-state-default ui-corner-all">CANCEL</stripes:submit>
+
+</stripes:form>
 
 
 </stripes:layout-component>

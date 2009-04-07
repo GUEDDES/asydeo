@@ -21,8 +21,8 @@
 <stripes:checkbox name="roles" value="user"/>user |
 <stripes:checkbox name="roles" value="guest"/>guest 
 <br style="clear:both"/>
-<stripes:submit name="save" value="SAVE"/>
-<stripes:submit name="cancel" value="CANCEL"/>
+<stripes:submit name="save" value="SAVE" class="ui-button ui-state-default ui-corner-all"/>
+<stripes:submit name="cancel" value="CANCEL" class="ui-button ui-state-default ui-corner-all"/>
 </stripes:form>
 
 
