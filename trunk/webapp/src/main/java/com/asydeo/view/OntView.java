@@ -7,6 +7,7 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.rdf.model.NodeIterator;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 public class OntView {
 	
@@ -27,11 +28,19 @@ public class OntView {
 	}
 	
 	public String getURI() {
-		return i.getModel().shortForm(i.getURI());
+		if (i.isAnon())
+			return "anon";
+		else
+			return i.getModel().shortForm(i.getURI());
 	}
 
 	public String getComment() {
 		return i.getComment(null);
+	}
+	
+	public String getType() {
+		String longuri = i.getRDFType(true).getURI();
+		return i.getModel().shortForm(longuri);
 	}
 
 	public static OntView $(OntResource item) {

@@ -1,5 +1,6 @@
 package com.asydeo.action;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -10,13 +11,17 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
 import com.asydeo.model.StatementBean;
+import com.asydeo.ontology.Asydeo;
 import com.asydeo.view.OntView;
 import com.asydeo.view.View;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.shared.Lock;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.vocabulary.OWL;
 
 @UrlBinding("/asset/edit")
 public class EditAction extends BaseAction {
@@ -31,6 +36,11 @@ public class EditAction extends BaseAction {
 
 	@DefaultHandler
 	public Resolution start() {
+		if (classUri == null || classUri.equals("asydeo:ConfigurableItem")) {
+			Individual i = individual(uri);
+			classUri = i.getRDFType(true).getURI();
+			classUri = m().shortForm(classUri);
+		}
 		return new ForwardResolution("/edit.jsp");
 	}
 
@@ -94,6 +104,27 @@ public class EditAction extends BaseAction {
 		}
 	}
 
+	public Collection<OntView> getReferences() {
+		try {
+			m().enterCriticalSection(Lock.READ);
+
+			final Individual i = individual(uri);
+			Property p = m().getOntProperty(OWL.ObjectProperty.getURI());
+			StmtIterator it = m().listStatements(null, null, i);
+			ArrayList<OntView> results = new ArrayList<OntView>();
+			while(it.hasNext()) {
+				Statement s = it.nextStatement();
+				if (s.getPredicate().getURI().startsWith(Asydeo.NS)) {
+					Individual j = (Individual)s.getSubject().as(Individual.class);
+					results.add(OntView.$(j));
+				}
+			}
+			return results;
+		} finally {
+			m().leaveCriticalSection();
+		}
+	}	
+	
 	private ExtendedIterator chooseNonFunctional() {
 		return ontClass(classUri).listDeclaredProperties().filterKeep(
 				Filters.nonfunctional);
