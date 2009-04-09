@@ -29,8 +29,8 @@
 			url: "collect",
 			data: {uri:document.form1.uri.value},
 			success: function(msg){
-              $('#ajaxContent').html('Item added to your collection.');
-              $("#ajaxConsole").show().fadeTo(1000, 1).fadeOut(2000);
+  			    $('#ajaxContent').html('Item saved to your collection.');
+  			    $("#dialog").dialog('open');
    		    },
    		    error: function(XMLHttpRequest, textStatus, errorThrown) {
               $('#ajaxContent').html('Item could not be saved');
@@ -59,8 +59,8 @@
 	
     $('#uploadForm').ajaxForm({
         beforeSubmit: function(a,f,o) {
-             $('#ajaxContent').html('Submitting...');
-             $("#ajaxConsole").show();
+            $('#ajaxContent').html('Submitting...');
+            $("#ajaxConsole").show();
         },
         success: function(data, code) {
             $('#ajaxContent').html('Data uploaded successfuly.');
@@ -121,7 +121,18 @@
 			}
 	});			   
      
-     
+	$("#dialog").dialog({
+		  bgiframe: true,
+		  modal: true,
+		  autoOpen: false,
+		  buttons: {
+			Ok: function() {
+				$(this).dialog('close');
+			}
+		  }
+	});    
+    
+    
   //end ready function   
   });
   </script>
@@ -129,7 +140,14 @@
 
 <body>
 
-<div id="ajaxConsole" style="width:30%; display:none; position:absolute; z-index:11">
+<div id="dialog" title="Download complete" class="ui-helper-hidden">
+	<p>
+		<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+		<span id="dialogContent"></span>
+	</p>
+</div>
+
+<div id="ajaxConsole" class="ui-helper-hidden" style="width:30%; position:absolute; z-index:1000; top:0; left:0">
 <div class="ui-widget">
 	<div class="ui-state-highlight ui-corner-all" style=" padding: 0 .7em;"> 
 		<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span> 
@@ -138,6 +156,9 @@
 	</div> 
 </div>
 </div>
+
+
+
 <stripes:layout-component name="header"/> 
 
 <div style="clear:both"></div>

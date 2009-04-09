@@ -1,7 +1,9 @@
 <%@ include file="/taglibs.jsp" %>
 
+
+
 <div id="nicemenu"> 
-    <ul> 
+    <ul class="ui-widget"> 
         <li>
         <span class="head_menu">
         <stripes:link beanclass="com.asydeo.action.HomeAction">Home</stripes:link>
@@ -22,7 +24,7 @@
 		
 		<li>
  		<span class="head_menu">
- 		<stripes:link href="/asset/model">Jena Models</stripes:link> 
+ 		<stripes:link href="/asset/model">Data Models</stripes:link> 
  		<img src="${pageContext.request.contextPath}/img/arrow.png" width="18" height="15" align="top" class="arrow" />
  		</span>             
  		<div class="sub_menu"> 
@@ -36,12 +38,11 @@
 
 
 
+
 <div style="text-align:right">
 <c:choose>
 <c:when test="${!empty actionBean.context.user}"> 
 Signed in as ${actionBean.context.user.username}
-|
-<stripes:link beanclass="com.asydeo.action.ModelAction">Models</stripes:link>
 |
 <stripes:link href="/auth/logout">Sign out</stripes:link>
 </c:when>

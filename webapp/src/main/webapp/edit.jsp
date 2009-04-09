@@ -18,6 +18,11 @@
   position:absolute;
   top:50%;
 }
+
+#accordion {
+	width: 250px;
+	float: right;
+}
 </style>
 
 </stripes:layout-component>
@@ -29,58 +34,59 @@
 
 <stripes:layout-component name="content">
 
+<script type="text/javascript">
+	$(function() {
+		$("#accordion").accordion({
+		autoHeight: false
+		});
+	});
+</script>
+
+<div style="float:left">
 <stripes:form name="form1" action="/asset/edit">
 <stripes:hidden name="uri" value="${actionBean.uri}"/>
 <stripes:hidden name="classUri" value="${actionBean.classUri}"/>
 <fieldset class="ui-dialog-content ui-widget-content">
-    <legend class="ui-widget-header ui-corner-all">General Information</legend>
-    
-    
 <c:forEach var="v" items="${actionBean.views}">
 ${v.content}<br/>
 </c:forEach>
-
-
 </fieldset>
 
-
 <fieldset class="ui-widget-header"> 
+<div style="float:left">
 <stripes:submit name="update" class="ui-button ui-state-default ui-corner-all">SAVE</stripes:submit>
 <stripes:submit name="cancel" class="ui-button ui-state-default ui-corner-all">CANCEL</stripes:submit>
+</div>
 <div style="float:right">
 <a id="collect_link" class="ui-state-default ui-corner-all" href="#">
 <span class="ui-icon ui-icon-plusthick"></span>Collect this item
 </a>
 </div>
-
 </fieldset>
-
 </stripes:form>
-<c:forEach var="v" items="${actionBean.functionalProperties}">
-${v.label} 
-<c:forEach var="item" items="${v.items}">
-    <span>${item.label}</span>
-</c:forEach>
+</div>
 
-<stripes:link class="button" beanclass="com.asydeo.action.SetPropertyAction">
-<stripes:param name="bean.s" value="${actionBean.uri}"/>
-<stripes:param name="bean.v" value="${v.URI}"/>
-<stripes:param name="bean.classUri" value="${actionBean.classUri}"/>
-CHOOSE</stripes:link>
-<br/>
-</c:forEach>
 
+
+<div id="accordion" style="position:relative">
+    
+	<h3><a href="#">Relationships</a></h3>
+	<div>
 <c:forEach var="v" items="${actionBean.objectProperties}">
-${v.label}
-<stripes:link class="button" beanclass="com.asydeo.action.AddPropertyAction">
+${v.label} <stripes:link class="button" beanclass="com.asydeo.action.AddPropertyAction">
 <stripes:param name="bean.s" value="${actionBean.uri}"/>
 <stripes:param name="bean.v" value="${v.URI}"/>
 <stripes:param name="bean.classUri" value="${actionBean.classUri}"/>
-ADD</stripes:link>
-<br/>
+[ + ]</stripes:link>
+
   <ul>
   <c:forEach var="item" items="${v.items}">
-    <li>${item.label}
+    <li>
+    <stripes:link beanclass="com.asydeo.action.EditAction">
+    <stripes:param name="uri" value="${item.URI}"/>
+    <stripes:param name="classUri" value="${item.type}"/>
+    ${item.label}
+    </stripes:link>
     <stripes:link class="button confirm" event="unrelate" beanclass="com.asydeo.action.EditAction" >
     <stripes:param name="uri" value="${actionBean.uri}"/>
     <stripes:param name="classUri" value="${actionBean.classUri}"/>
@@ -92,6 +98,29 @@ ADD</stripes:link>
   </c:forEach>  
   </ul>
 </c:forEach>
+	</div>
+	
+	<h3><a href="#">References</a></h3>
+	<div>
+    <c:forEach var="item" items="${actionBean.references}">
+    <stripes:link beanclass="com.asydeo.action.EditAction">
+    <stripes:param name="uri" value="${item.URI}"/>
+    <stripes:param name="classUri" value="${item.type}"/>
+    ${item.label}
+    </stripes:link>
+    </c:forEach>
+	</div>	
+	
+</div>
+
+
+
+
+
+
+
+
+
 
 </stripes:layout-component>
 </stripes:layout-render>

@@ -33,7 +33,7 @@ public class ListAction extends BaseAction {
 	
 	public Collection<OntView> getList() {	
 		return new each(ontClass(uri)) { 
-			void $() {result.add(OntView.$(item));}}.result;	
+			void $() {if (!item.isAnon()) result.add(OntView.$(item));}}.result;	
 	}
 
 	public OntView getOntView() {
