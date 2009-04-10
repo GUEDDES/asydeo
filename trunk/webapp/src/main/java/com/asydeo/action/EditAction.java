@@ -73,8 +73,7 @@ public class EditAction extends BaseAction {
 		} finally {
 			m().leaveCriticalSection();
 		}
-		return new RedirectResolution(EditAction.class)
-				.addParameter("uri", uri).addParameter("classUri", classUri);
+		return null;
 	}
 
 	public View[] getViews() {

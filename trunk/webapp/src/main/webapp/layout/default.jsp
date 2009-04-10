@@ -14,7 +14,13 @@
   
   $(document).ready(function() {
     $("a.confirm").click(function() {
-      return confirm("Are you SURE you want to remove this relationship?");
+      if ( confirm("Are you SURE you want to remove this relationship?") ) {
+  	    var li = this;
+        $.get( $(this).attr("href"), function(data){
+ 	      $(li).parent().fadeOut(1000);
+        });
+      }      
+      return false;
     });
     
     $("a.delete").click(function() {
