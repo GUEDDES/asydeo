@@ -35,9 +35,7 @@ br {
   text-decoration:none;
 }
 
-submit.button {
-  border: none;
-}
+
 body {font:13px/17px Arial, Helvetica, sans-serif; color:#222; text-align:center}
 fieldset {padding:10px; border:1px solid #ccc; width:500px;}
 legend {padding:5px;}
@@ -50,7 +48,7 @@ label {font-size:11px; font-weight:bold; color:#666;}
 
 #content {
 	width: 800px;
-	margin-top:10px;
+	margin-top:30px;
 	margin-left: auto;
     margin-right: auto;
     text-align:left;
