@@ -394,6 +394,14 @@
     
 
 
+    <!-- http://asydeo.com/schema#label -->
+
+    <owl:DatatypeProperty rdf:about="#label">
+        <owl:equivalentProperty rdf:resource="#name"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://asydeo.com/schema#name -->
 
     <owl:DatatypeProperty rdf:about="#name">
