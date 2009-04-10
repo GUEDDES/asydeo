@@ -52,7 +52,7 @@ public class ContextListener implements ServletContextListener {
 		Model model = TDBFactory.createModel(directory);
 		model.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
 		OntModel om = ModelFactory.createOntologyModel(
-				OntModelSpec.OWL_MEM_MICRO_RULE_INF, model);
+				OntModelSpec.OWL_LITE_MEM, model);
 		om.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
 		om.addSubModel(m);
 		return om;
