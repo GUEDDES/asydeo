@@ -23,33 +23,96 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QueryParseException;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.shared.Lock;
+import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.shared.Lock;
 
 import thewebsemantic.binding.Jenabean;
+
+import net.sourceforge.stripes.validation.Validate;
+import net.sourceforge.stripes.validation.ValidationError;
+import net.sourceforge.stripes.validation.ValidationErrorHandler;
+import net.sourceforge.stripes.validation.ValidationErrors;
 
 
 @UrlBinding("/asset/search")
 public class SearchAction extends BaseAction {
 
+    String asydeoPrefix = "PREFIX " + Asydeo.PREFIX + ": <" + Asydeo.NS + ">";
+    String rdfsPrefix = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";
+    
     String uri;
-    String sparqlQuery;
+    
+    @Validate(required = true, on = {"textQuery"})
+      String searchStr;
+    @Validate(required = true, on = {"sparqlQuery"})
+      String sparqlStr;
+    
     ArrayList<OntView> queryResult = new ArrayList<OntView>();
 
+    
     @DefaultHandler
     public Resolution start() {
-        if ( sparqlQuery == null || sparqlQuery.isEmpty() ) {
-            sparqlQuery = "PREFIX " + Asydeo.PREFIX + ": <" +
-            Asydeo.NS + ">" + System.getProperty("line.separator");
+        if ( sparqlStr == null || sparqlStr.isEmpty() ) {
+            sparqlStr = asydeoPrefix + System.getProperty("line.separator");
         }
-        else {
+        
+        return new ForwardResolution("/search.jsp");
+    }
+    
+    @HandlesEvent("sparqlQuery")
+    public Resolution sparqlQuery() {
+        _sparqlQuery();
+        
+        return new ForwardResolution("/search.jsp");
+    }
+    
+    @HandlesEvent("sparqlQueryResults")
+    public Resolution sparqlQueryResults() {
+        _sparqlQuery();
+        
+        return new ForwardResolution("/searchResults.jsp");
+    }
+    
+    @HandlesEvent("textQuery")
+    public Resolution textQuery() {
+        _textQuery();
+        
+        return new ForwardResolution("/search.jsp");
+    }
+    
+    @HandlesEvent("textQueryResults")
+    public Resolution textQueryResults() {
+        _textQuery();
+
+        return new ForwardResolution("/searchResults.jsp");
+    }
+    
+    private void _sparqlQuery() {
+        query(sparqlStr);
+    }
+    
+    private void _textQuery() {
+        sparqlStr = asydeoPrefix + System.getProperty("line.separator") +
+        rdfsPrefix + System.getProperty("line.separator") +
+        "SELECT * " +
+        "WHERE { " +
+        "?x " + "rdfs:label ?label . " +
+        "FILTER regex(?label, \"" + searchStr + "\", \"i\")" +
+          "}";
+
+        query(sparqlStr);
+    }
+    
+    private void query(String sparql) {
+        if ( sparql != null && ! sparql.isEmpty() ) {
             Query query = null;
 
             try {
                 m().enterCriticalSection(Lock.READ);
                 
                 try {
-                    query = QueryFactory.create(sparqlQuery);
+                    query = QueryFactory.create(sparql);
                     
                     if ( query.isSelectType() ) {
                         executeSelectQuery(query);
@@ -66,8 +129,6 @@ public class SearchAction extends BaseAction {
                 m().leaveCriticalSection();
             }
         }
-
-        return new ForwardResolution("/search.jsp");
     }
     
     private void executeSelectQuery(Query query) {
@@ -94,6 +155,14 @@ public class SearchAction extends BaseAction {
 
     private void addSolutionsToResult(ResultSet results) {
         if ( results != null ) {
+            /*
+            String xmlResult = ResultSetFormatter.asXMLString(results);
+            System.out.println(xmlResult);
+            System.out.println("--------------");
+            String textResult = ResultSetFormatter.asText(results);
+            System.out.println(textResult);
+            */
+            
             while ( results.hasNext() ) {
                 QuerySolution soln = results.nextSolution();
                 
@@ -125,12 +194,20 @@ public class SearchAction extends BaseAction {
         this.uri = uri;
     }
     
-    public String getSparqlQuery() {
-        return sparqlQuery;
+    public String getSparqlStr() {
+        return sparqlStr;
     }
 
-    public void setSparqlQuery(String sparqlQuery) {
-        this.sparqlQuery = sparqlQuery;
+    public void setSparqlStr(String sparqlStr) {
+        this.sparqlStr = sparqlStr;
+    }
+    
+    public String getSearchStr() {
+        return searchStr;
+    }
+    
+    public void setSearchStr(String searchStr) {
+        this.searchStr = searchStr;
     }
     
     public Collection<OntView> getQueryResult() {
