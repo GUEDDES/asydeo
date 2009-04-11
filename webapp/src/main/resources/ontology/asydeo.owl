@@ -593,6 +593,16 @@
     
 
 
+    <!-- http://asydeo.com/schema#HighAvailabilityCluster -->
+
+    <owl:Class rdf:about="#HighAvailabilityCluster">
+        <rdfs:label
+            >High Availability Cluster</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#SystemCluster"/>
+    </owl:Class>
+    
+
+
     <!-- http://asydeo.com/schema#IPAddress -->
 
     <owl:Class rdf:about="#IPAddress">
@@ -642,6 +652,16 @@
 
     <owl:Class rdf:about="#List">
         <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#LoadBalancedCluster -->
+
+    <owl:Class rdf:about="#LoadBalancedCluster">
+        <rdfs:label
+            >Load Balanced Cluster</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#SystemCluster"/>
     </owl:Class>
     
 
@@ -715,6 +735,7 @@
 
     <owl:Class rdf:about="#Organization">
         <rdfs:label>Organization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#OrganizationEntity"/>
         <rdfs:subClassOf rdf:resource="#OrganizationalItem"/>
         <rdfs:subClassOf rdf:resource="#VisibleClass"/>
     </owl:Class>
