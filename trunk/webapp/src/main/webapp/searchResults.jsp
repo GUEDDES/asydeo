@@ -1,12 +1,25 @@
 <%@ include file="/taglibs.jsp" %>
 
 <br/>
-<c:forEach var="v" items="${actionBean.queryResult}">
-<li class="listitem"> 
+<c:choose>
+  <c:when test="${empty actionBean.queryResult}">
+<font>No results found</font>
+  </c:when>
+  <c:otherwise>
+<table border=1>
+    <c:forEach var="v" items="${actionBean.queryResult}">
+<tr>
+  <td>
   <stripes:link class="button" beanclass="com.asydeo.action.EditAction">
   <stripes:param name="uri" value="${v.URI}"/>
-  <stripes:param name="classUri" value="asydeo:ConfigurableItem"/>
     <span class="label">${v.label}</span>
   </stripes:link>
-</li>
-</c:forEach>
+  </td>
+  <td>
+    ${v.classLabel}
+  </td>
+</tr>
+    </c:forEach>
+</table>
+  </c:otherwise>
+</c:choose>
