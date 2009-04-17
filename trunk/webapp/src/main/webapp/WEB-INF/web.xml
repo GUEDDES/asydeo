@@ -64,6 +64,11 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 		<url-pattern>/guest/*</url-pattern>
 	</servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>StripesDispatcher</servlet-name>
+        <url-pattern>/search/*</url-pattern>
+    </servlet-mapping>
+
 	<listener>
 		<listener-class>com.asydeo.servlet.ContextListener</listener-class>
 	</listener>
