@@ -10,8 +10,8 @@
 
 <c:import url="/searchMenu.jsp" />
 
-<stripes:form action="/search/text">
-  <stripes:text name="text" id="text"/><br/>
+<stripes:form beanclass="com.asydeo.action.TextSearchAction" method="get">
+  <stripes:text name="q"/><br/>
   <stripes:submit name="textSearch" value="Search" class="ui-button ui-state-default ui-corner-all"/>
 </stripes:form>
 

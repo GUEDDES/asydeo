@@ -1,9 +1,10 @@
 <%@ include file="/taglibs.jsp" %>
 
 
-
 <div id="nicemenu"> 
-    <ul class="ui-widget"> 
+    <ul class="ui-widget">
+        <span>
+        
         <li>
         <span class="head_menu">
         <stripes:link beanclass="com.asydeo.action.HomeAction">Home</stripes:link>
@@ -15,7 +16,7 @@
         <stripes:link href="/asset/classes">Classes</stripes:link>
 		</span>
 		</li>
-		
+
 		<li>
         <span class="head_menu">
         <stripes:link href="/asset/list?uri=asydeo:ConfigurableItem">List Items</stripes:link>
@@ -33,10 +34,16 @@
  			<stripes:link href="/admin/delete">Delete Model</stripes:link>            
  		</div>
 		</li>
+
+		<li>
+		<stripes:form beanclass="com.asydeo.action.TextSearchAction" class="head_menu" style="display:inline" method="get">
+            <stripes:text name="q" size="20"/>
+        </stripes:form>
+        </li>
+        
+        </span>
     </ul> 
 </div> 
-
-
 
 
 <div style="text-align:right">
@@ -51,6 +58,3 @@ Signed in as ${actionBean.context.user.username}
 </c:otherwise>
 </c:choose>
 </div>
-
-
-

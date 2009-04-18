@@ -3,39 +3,23 @@ package com.asydeo.action;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
-import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
-import net.sourceforge.stripes.validation.Validate;
-import net.sourceforge.stripes.validation.ValidationError;
-import net.sourceforge.stripes.validation.ValidationErrorHandler;
-import net.sourceforge.stripes.validation.ValidationErrors;
 
 
 @UrlBinding("/search/text")
 public class TextSearchAction extends SearchAction {
 
-    String text;
+    String q;     // query string
     
     
     @DefaultHandler
     public Resolution start() {
-        if ( text != null && ! text.isEmpty() ) {
+        if ( q != null && ! q.isEmpty() ) {
             textSearch();
+        }
         
-            return new ForwardResolution("/textSearch.jsp");
-        }
-        else {
-            return new ForwardResolution("/textSearch.jsp");
-        }
-    }
-    
-    public String getText() {
-        return text;
-    }
-    
-    public void setText(String text) {
-        this.text = text;
+        return new ForwardResolution("/textSearch.jsp");
     }
     
     private void textSearch() {
@@ -45,9 +29,17 @@ public class TextSearchAction extends SearchAction {
           "SELECT * " +
           "WHERE { " +
           "?x " + "rdfs:label ?label . " +
-          "FILTER regex(?label, \"" + text + "\", \"i\")" +
+          "FILTER regex(?label, \"" + q + "\", \"i\")" +
           "}";
 
         query(sparqlStr);
+    }
+    
+    public String getQ() {
+        return q;
+    }
+    
+    public void setQ(String q) {
+        this.q = q;
     }
 }

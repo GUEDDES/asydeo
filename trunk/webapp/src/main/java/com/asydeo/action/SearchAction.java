@@ -4,13 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import net.sourceforge.stripes.action.DefaultHandler;
-import net.sourceforge.stripes.action.ForwardResolution;
-import net.sourceforge.stripes.action.HandlesEvent;
-import net.sourceforge.stripes.action.RedirectResolution;
-import net.sourceforge.stripes.action.Resolution;
-import net.sourceforge.stripes.action.UrlBinding;
-
 import com.asydeo.ontology.Asydeo;
 import com.asydeo.view.OntView;
 
@@ -35,6 +28,8 @@ public class SearchAction extends BaseAction {
     String asydeoPrefix = "PREFIX " + Asydeo.PREFIX + ": <" + Asydeo.NS + ">";
     String rdfsPrefix = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";
     String uri;
+    int numQueryResults = 0;
+    float elapsedQueryTime = 0F;
     
     ArrayList<OntView> queryResult = new ArrayList<OntView>();
 
@@ -42,6 +37,7 @@ public class SearchAction extends BaseAction {
     protected void query(String sparql) {
         if ( sparql != null && ! sparql.isEmpty() ) {
             Query query = null;
+            long startQueryTime = System.currentTimeMillis();
 
             try {
                 m().enterCriticalSection(Lock.READ);
@@ -63,6 +59,9 @@ public class SearchAction extends BaseAction {
             finally {
                 m().leaveCriticalSection();
             }
+            
+            elapsedQueryTime =
+              (System.currentTimeMillis() - startQueryTime) / 1000F;
         }
     }
     
@@ -118,6 +117,8 @@ public class SearchAction extends BaseAction {
                     }
                 }
             }
+            
+            numQueryResults = queryResult.size();
         }
     }
     
@@ -127,6 +128,14 @@ public class SearchAction extends BaseAction {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+    
+    public int getNumQueryResults() {
+        return numQueryResults;
+    }
+    
+    public float getElapsedQueryTime() {
+        return elapsedQueryTime;
     }
     
     public Collection<OntView> getQueryResult() {
