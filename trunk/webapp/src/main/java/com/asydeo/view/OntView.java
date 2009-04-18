@@ -9,6 +9,7 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.rdf.model.NodeIterator;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 import com.asydeo.ontology.Asydeo;
@@ -41,6 +42,14 @@ public class OntView {
 
 	public String getComment() {
 		return i.getComment(null);
+	}
+
+	public String getDescription() {
+	    return getProperty("description");
+	}
+	
+	public String getOrganization() {
+        return getProperty("hasOrganization");
 	}
 	
 	public String getType() {
@@ -91,4 +100,24 @@ public class OntView {
 		return result;
 	}
 
+	// Get the text value of a property, whether a literal or a resource
+	private String getProperty(String property) {
+	    String name = "";
+	    OntProperty p =
+          i.getOntModel().getOntProperty(Asydeo.NS + property);
+	    
+	    if ( p != null && i.hasProperty(p) ) {
+	        RDFNode node = i.getPropertyValue(p);
+	        
+	        if ( node.isLiteral() ) {
+	            name = node.toString();
+	        }
+	        else if ( node.isResource() ) {
+	            OntResource r = (OntResource)node;
+	            name = r.getLabel(null);
+	        }
+	    }
+	    
+	    return name;
+	}
 }

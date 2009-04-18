@@ -15,7 +15,7 @@
     </c:if>
   </c:when>
   <c:otherwise>
-<font>${actionBean.numQueryResults} results found in ${actionBean.elapsedQueryTime} seconds</font>
+<font><b>${actionBean.numQueryResults}</b> results found in <b>${actionBean.elapsedQueryTime}</b> seconds</font>
 <table border=1 class="striped">
 <thead>
 <tr class="tableTitle">
@@ -33,6 +33,12 @@
       <stripes:param name="uri" value="${v.URI}"/>
       ${v.label}
     </stripes:link>
+    <c:if test="${not empty v.organization}">
+    <div id="description"><font>${v.organization}</font></div>
+    </c:if>
+    <c:if test="${not empty v.description}">
+    <div id="description"><font>${v.description}</font></div>
+    </c:if>
     </font>
     </div>
   </td>
