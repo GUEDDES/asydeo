@@ -235,6 +235,10 @@ td.class {
 #tableData a:hover {
     text-decoration:underline;
 }
+
+#description {
+    padding-left:25px;
 }
- text-decoration:underline;
+#description font {
+    font-size:9pt;
 }

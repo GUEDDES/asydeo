@@ -25,6 +25,7 @@ import thewebsemantic.binding.Jenabean;
 
 public class SearchAction extends BaseAction {
 
+    String defaultPrefix = "PREFIX : <" + Asydeo.NS + ">";
     String asydeoPrefix = "PREFIX " + Asydeo.PREFIX + ": <" + Asydeo.NS + ">";
     String rdfsPrefix = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";
     String uri;
@@ -38,6 +39,13 @@ public class SearchAction extends BaseAction {
         if ( sparql != null && ! sparql.isEmpty() ) {
             Query query = null;
             long startQueryTime = System.currentTimeMillis();
+            
+            sparql = sparql.trim();
+
+            // If a PREFIX is not defined, add them
+            if ( ! sparql.toUpperCase().startsWith("PREFIX") ) {
+                sparql = defaultPrefix + asydeoPrefix + rdfsPrefix + sparql;
+            }
 
             try {
                 m().enterCriticalSection(Lock.READ);
