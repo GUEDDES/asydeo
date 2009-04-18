@@ -98,6 +98,17 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 		</auth-constraint>
 	</security-constraint>
 
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>A Protected Page</web-resource-name>
+            <url-pattern>/search/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+            <role-name>user</role-name>
+            <role-name>guest</role-name>
+        </auth-constraint>
+    </security-constraint>
 
 	<login-config>
 		<auth-method>FORM</auth-method>

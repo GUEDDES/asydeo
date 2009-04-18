@@ -10,8 +10,8 @@
 
 <c:import url="/searchMenu.jsp" />
 
-<stripes:form action="/search/sparql">
-  <stripes:textarea cols="50" rows="5" name="sparql" id="sparql"/><br/>
+<stripes:form beanclass="com.asydeo.action.SparqlSearchAction" method="get">
+  <stripes:textarea cols="50" rows="5" name="q"/><br/>
   <stripes:submit name="sparqlSearch" value="Search" class="ui-button ui-state-default ui-corner-all"/>
 </stripes:form>
 

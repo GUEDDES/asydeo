@@ -3,42 +3,34 @@ package com.asydeo.action;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
-import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
-import net.sourceforge.stripes.validation.Validate;
-import net.sourceforge.stripes.validation.ValidationError;
-import net.sourceforge.stripes.validation.ValidationErrorHandler;
-import net.sourceforge.stripes.validation.ValidationErrors;
 
 
 @UrlBinding("/search/sparql")
 public class SparqlSearchAction extends SearchAction {
 
-    String sparql;
-    
+    String q;     // query string
+
     
     @DefaultHandler
     public Resolution start() {
-        if ( sparql != null && ! sparql.isEmpty() ) {
+        if ( q != null && ! q.isEmpty() ) {
             sparqlSearch();
+        }
         
-            return new ForwardResolution("/sparqlSearch.jsp");
-        }
-        else {
-            return new ForwardResolution("/sparqlSearch.jsp");
-        }
-    }
-    
-    public String getSparql() {
-        return sparql;
-    }
-    
-    public void setSparql(String sparql) {
-        this.sparql = sparql;
+        return new ForwardResolution("/sparqlSearch.jsp");
     }
     
     private void sparqlSearch() {
-        query(sparql);
+        query(q);
+    }
+    
+    public String getQ() {
+        return q;
+    }
+    
+    public void setQ(String q) {
+        this.q = q;
     }
 }
