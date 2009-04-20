@@ -8,11 +8,12 @@
 
 <stripes:layout-component name="content">
 
-<c:import url="/searchMenu.jsp" />
-
 <stripes:form beanclass="com.asydeo.action.SparqlSearchAction" method="get">
+  <fieldset class="ui-dialog-content ui-widget-content ui-corner-all">
+  <c:import url="/searchMenu.jsp" />
   <stripes:textarea cols="50" rows="5" name="q"/><br/>
   <stripes:submit name="sparqlSearch" value="Search" class="ui-button ui-state-default ui-corner-all"/>
+  </fieldset
 </stripes:form>
 
 <c:import url="/searchResults.jsp" />

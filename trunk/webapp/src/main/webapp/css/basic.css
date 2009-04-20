@@ -4,6 +4,11 @@ body {
     text-align:center
 }
 
+a {
+    color:#036;
+    text-decoration:underline;
+}
+
 br {
     clear:left;
 }
@@ -195,11 +200,7 @@ tr.even {
     background-color:#fff;
 }
 tr.odd {
-    background-color:#eee;
-}
-tr.tableTitle {
-    background:#dcdcdc;
-    border:1px solid #dcdcdc;
+    background-color:#eeeeee;
 }
 
 td.label {
@@ -215,30 +216,40 @@ td.class {
     padding:5px 5px 5px 5px;
 }
 
-#tableTitle {
-    font-family:Arial;
-    font-size:11pt;
-    font-weight:bold;
-    color:#036;
-    padding:5px 10px 5px 10px;
-}
-
-#tableData font {
-    font-family:Arial;
-    font-size:10pt;
-    color:#222;
-}
-#tableData a {
-    color:#036;
-    text-decoration:none;
-}
-#tableData a:hover {
-    text-decoration:underline;
-}
-
-#description {
+#searchResultDescription {
     padding-left:25px;
 }
-#description font {
+#searchResultDescription font {
     font-size:9pt;
+}
+
+#searchMenu {
+    padding-bottom:10px;
+}
+/*#searchMenu li {
+    padding-left:10px;
+    padding-right:10px;
+}
+*/right:10px;
+}
+*/}
+*/
+#searchResult a:visited {
+    color:#036;
+}
+
+#searchResultDescription {
+    padding-left:25px;
+}
+#searchResultDescription font {
+    font-size:9pt;
+}
+
+#searchMenu {
+    padding-bottom:10px;
+}
+#searchMenu a {
+    padding-left:10px;
+    padding-right:10px;
+}right:10px;
 }

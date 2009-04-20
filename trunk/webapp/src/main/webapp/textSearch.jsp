@@ -8,11 +8,12 @@
 
 <stripes:layout-component name="content">
 
-<c:import url="/searchMenu.jsp" />
-
 <stripes:form beanclass="com.asydeo.action.TextSearchAction" method="get">
-  <stripes:text name="q"/><br/>
+  <fieldset class="ui-dialog-content ui-widget-content ui-corner-all">
+  <c:import url="/searchMenu.jsp" />
+  <stripes:text name="q" class="text ui-widget-content ui-corner-all"/><br/>
   <stripes:submit name="textSearch" value="Search" class="ui-button ui-state-default ui-corner-all"/>
+  </fieldset>
 </stripes:form>
 
 <c:import url="/searchResults.jsp" />

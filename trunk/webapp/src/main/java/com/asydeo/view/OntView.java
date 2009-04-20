@@ -68,6 +68,14 @@ public class OntView {
 
 	    if ( m.find() ) {
 	        String classUri = getURI().substring(0, m.end());
+	        
+	        // If a class is loaded into the model without being defined
+	        // in the ontology, get the name from the URI
+	        // TODO: This doesn't work
+	        if ( label.isEmpty() ) {
+	            label = classUri;
+	        }
+	        
 	        classUri = classUri.replace(Asydeo.PREFIX + ":", "");
 	        classUri = Asydeo.NS + classUri;
 	        
