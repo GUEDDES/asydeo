@@ -4,6 +4,8 @@ import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 
 import com.asydeo.domain.AsydeoSession;
+import static com.asydeo.util.AsydeoConfig.*;
+
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -65,8 +67,8 @@ public class BaseAction implements ActionBean {
 	}
 	
 	public String shortUri(String uri) {
-	    if ( uri.contains(Asydeo.NS) ) {
-	        return uri.substring(Asydeo.NS.length(), uri.length());
+	    if ( uri.contains( getAsydeoNS() ) ) {
+	        return uri.substring( getAsydeoNS().length(), uri.length());
 	    }
 	    return uri;
 	}

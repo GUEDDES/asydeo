@@ -12,7 +12,7 @@ import com.asydeo.domain.Role;
 import com.asydeo.domain.User;
 import com.asydeo.ontology.Asydeo;
 import static com.asydeo.servlet.RequestConstants.*;
-import com.asydeo.util.AsydeoConfig;
+import static com.asydeo.util.AsydeoConfig.*;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
@@ -48,10 +48,10 @@ public class ContextListener implements ServletContextListener {
 
 	private OntModel createModel(String directory, Model m) {
 		Model model = TDBFactory.createModel(directory);
-		model.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
+		model.setNsPrefix( getAsydeoPrefix(), getAsydeoNS() );
 		OntModel om = ModelFactory.createOntologyModel(
 				OntModelSpec.OWL_LITE_MEM, model);
-		om.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
+		om.setNsPrefix( getAsydeoPrefix(), getAsydeoNS() );
 		om.addSubModel(m);
 		return om;
 	}
