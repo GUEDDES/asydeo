@@ -31,11 +31,16 @@ public class OntView {
 	}
 	
 	public String getLabel() {
-		return i.getLabel(null);
+	    if ( i != null ) {
+	        return i.getLabel(null);
+	    }
+	    return null;
 	}
 	
 	public String getURI() {
-		if (i.isAnon())
+	    if ( i == null )
+	        return null;
+	    else if (i.isAnon())
 			return "anon";
 		else
 			return i.getModel().shortForm(i.getURI());
@@ -64,7 +69,7 @@ public class OntView {
 	public String getClassLabel() {
 	    String label = getType();
 
-	    String regex = Asydeo.PREFIX + ":\\w+";
+	    String regex = getAsydeoPrefix() + ":\\w+";
 	    Matcher m = Pattern.compile(regex).matcher( getURI() );
 
 	    if ( m.find() ) {
