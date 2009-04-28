@@ -12,11 +12,14 @@ import com.asydeo.domain.Role;
 import com.asydeo.domain.User;
 import com.asydeo.ontology.Asydeo;
 import static com.asydeo.servlet.RequestConstants.*;
+import com.asydeo.util.AsydeoConfig;
+
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.tdb.TDBFactory;
+
 
 public class ContextListener implements ServletContextListener {
 
@@ -30,7 +33,6 @@ public class ContextListener implements ServletContextListener {
 		ServletContext ctx = ev.getServletContext();
 		createUserRoleDB();
 		
-		
 		OntModel raw = readOWL();
 		ctx.setAttribute(RAWMODEL, raw);
 		
@@ -42,10 +44,6 @@ public class ContextListener implements ServletContextListener {
 		
 		OntModel planned = createModel("databases/planned", raw);
 		ctx.setAttribute(PLANNED_MODEL, planned);
-			
-	
-
-
 	}
 
 	private OntModel createModel(String directory, Model m) {
@@ -77,5 +75,4 @@ public class ContextListener implements ServletContextListener {
 		raw.read(is, "RDF/XML");
 		return raw;
 	}
-
 }

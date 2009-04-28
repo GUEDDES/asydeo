@@ -1,5 +1,7 @@
 package com.asydeo.action;
 
+import static com.asydeo.util.AsydeoConfig.*;
+
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
@@ -12,7 +14,6 @@ public class TextSearchAction extends SearchAction {
 
     String q;     // query string
     
-    
     @DefaultHandler
     public Resolution start() {
         if ( q != null && ! q.isEmpty() ) {
@@ -23,12 +24,12 @@ public class TextSearchAction extends SearchAction {
     }
     
     private void textSearch() {
-        String sparqlStr = asydeoPrefix +
+        String sparqlStr = getAsydeoPrefixString() +
           System.getProperty("line.separator") +
-          rdfsPrefix + System.getProperty("line.separator") +
+          getRdfsPrefixString() + System.getProperty("line.separator") +
           "SELECT * " +
           "WHERE { " +
-          "?x " + "rdfs:label ?label . " +
+          "?x " + getRdfsPrefix() + ":label ?label . " +
           "FILTER regex(?label, \"" + q + "\", \"i\")" +
           "}";
 

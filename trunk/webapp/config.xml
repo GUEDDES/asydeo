@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<config>
+  <ontology>
+    <default>
+      <namespace>http://asydeo.com/schema#</namespace>
+      <prefix>asydeo</prefix>
+    </default>
+    <asydeo>
+      <namespace>http://asydeo.com/schema#</namespace>
+      <prefix>asydeo</prefix>
+    </asydeo>
+    <other>
+      <rdfs>
+        <namespace>http://www.w3.org/2000/01/rdf-schema#</namespace>
+        <prefix>rdfs</prefix>
+      </rdfs>
+    </other>
+  </ontology>
+  <user>
+    <default>
+      <language>en</language>
+    </default>
+  </user>
+  <test>
+    <message>DO_NOT_REMOVE</message>
+  </test>
+</config>

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import com.asydeo.ontology.Asydeo;
+import static com.asydeo.util.AsydeoConfig.*;
 import com.asydeo.view.OntView;
 
 import com.hp.hpl.jena.ontology.Individual;
@@ -25,9 +26,6 @@ import thewebsemantic.binding.Jenabean;
 
 public class SearchAction extends BaseAction {
 
-    String defaultPrefix = "PREFIX : <" + Asydeo.NS + ">";
-    String asydeoPrefix = "PREFIX " + Asydeo.PREFIX + ": <" + Asydeo.NS + ">";
-    String rdfsPrefix = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";
     String uri;
     int numQueryResults = 0;
     float elapsedQueryTime = 0F;
@@ -44,7 +42,13 @@ public class SearchAction extends BaseAction {
 
             // If a PREFIX is not defined, add them
             if ( ! sparql.toUpperCase().startsWith("PREFIX") ) {
-                sparql = defaultPrefix + asydeoPrefix + rdfsPrefix + sparql;
+                sparql = getDefaultPrefixString() +
+                         System.getProperty("line.separator") +
+                         getAsydeoPrefixString() +
+                         System.getProperty("line.separator") +
+                         getRdfsPrefixString() +
+                         System.getProperty("line.separator") +
+                         sparql;
             }
 
             try {

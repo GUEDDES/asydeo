@@ -8,8 +8,8 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntProperty;
+import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.vocabulary.OWL;
-
 
 
 public class BaseAction implements ActionBean {
@@ -64,6 +64,25 @@ public class BaseAction implements ActionBean {
 		return m().getOntClass("http://asydeo.com/schema#VisibleClass");
 	}
 	
+	public String shortUri(String uri) {
+	    if ( uri.contains(Asydeo.NS) ) {
+	        return uri.substring(Asydeo.NS.length(), uri.length());
+	    }
+	    return uri;
+	}
+	
+	public String label(OntResource r) {
+	    String label;
+	    
+	    label = r.getLabel( context.getSession().getLang() );
+	    
+	    if ( label == null || label.isEmpty() ) {
+	        label = r.getLabel(null);
+	    }
+	    
+	    return label;
+	}
+	
 	public AsydeoSession getUserSession() {
 		return context.getSession();
 	}
@@ -75,5 +94,4 @@ public class BaseAction implements ActionBean {
 	public void setModelName(String s) {
 		context.getSession().setModelName(s);
 	}
-
 }
