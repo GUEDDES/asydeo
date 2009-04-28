@@ -13,6 +13,7 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 import com.asydeo.ontology.Asydeo;
+import static com.asydeo.util.AsydeoConfig.*;
 
 
 public class OntView {
@@ -76,8 +77,8 @@ public class OntView {
 	            label = classUri;
 	        }
 	        
-	        classUri = classUri.replace(Asydeo.PREFIX + ":", "");
-	        classUri = Asydeo.NS + classUri;
+	        classUri = classUri.replace(getAsydeoPrefix() + ":", "");
+	        classUri = getAsydeoNS() + classUri;
 	        
 	        OntResource resource = i.getOntModel().getOntResource(classUri);
 
@@ -112,7 +113,7 @@ public class OntView {
 	private String getProperty(String property) {
 	    String name = "";
 	    OntProperty p =
-          i.getOntModel().getOntProperty(Asydeo.NS + property);
+          i.getOntModel().getOntProperty(getAsydeoNS() + property);
 	    
 	    if ( p != null && i.hasProperty(p) ) {
 	        RDFNode node = i.getPropertyValue(p);
