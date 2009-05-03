@@ -23,7 +23,9 @@ import com.asydeo.action.ASDContext;
 import com.asydeo.action.EditAction;
 import com.asydeo.action.Filters;
 import com.asydeo.model.StatementBean;
+import static com.asydeo.util.AsydeoConfig.*;
 import com.asydeo.view.OntView;
+
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
@@ -78,10 +80,10 @@ public class TestEditAction {
 	@Test
 	public void testFilters() {
 		final OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
-		m.setNsPrefix(Asydeo.PREFIX, Asydeo.NS);
+		m.setNsPrefix(getAsydeoPrefix(), getAsydeoNS());
 		InputStream is = getClass().getResourceAsStream("/ontology/asydeo.owl");
 		m.read(is, "RDF/XML");
-		OntClass c = m.getOntClass(Asydeo.NS + "ComputerSystem");
+		OntClass c = m.getOntClass(getAsydeoNS() + "ComputerSystem");
 		
 		EditAction e = new EditAction();
 		e.setContext( new ASDContext(){
