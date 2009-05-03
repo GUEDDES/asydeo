@@ -23,7 +23,7 @@ public class TextSearchAction extends SearchAction {
         return new ForwardResolution("/textSearch.jsp");
     }
     
-    private void textSearch() {
+    public void textSearch() {
         String sparqlStr = getAsydeoPrefixString() +
           System.getProperty("line.separator") +
           getRdfsPrefixString() + System.getProperty("line.separator") +

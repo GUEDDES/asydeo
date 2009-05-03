@@ -11,7 +11,6 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
 import com.asydeo.model.StatementBean;
-import com.asydeo.ontology.Asydeo;
 import com.asydeo.view.OntView;
 import com.asydeo.view.View;
 import com.hp.hpl.jena.ontology.Individual;

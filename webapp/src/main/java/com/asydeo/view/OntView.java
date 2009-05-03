@@ -12,7 +12,6 @@ import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import com.asydeo.ontology.Asydeo;
 import static com.asydeo.util.AsydeoConfig.*;
 
 

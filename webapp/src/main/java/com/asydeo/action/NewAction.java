@@ -1,6 +1,5 @@
 package com.asydeo.action;
 
-import static com.asydeo.ontology.Asydeo.NS;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
