@@ -7,7 +7,9 @@ import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
+import static com.asydeo.util.AsydeoConfig.*;
 import com.asydeo.view.View;
+
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -37,7 +39,7 @@ public class NewAction extends BaseAction {
 			m().enterCriticalSection(Lock.WRITE);
 			OntClass ontClass = ontClass(classUri);
 			int id = getNextId(ontClass);			
-			Individual newi = ontClass.createIndividual(NS + ontClass.getLocalName() + ':' + id);
+			Individual newi = ontClass.createIndividual(getAsydeoNS() + ontClass.getLocalName() + ':' + id);
 			newi.setLabel(name, null);
 			for (View v : context.getViews(newi))
 				v.apply(context.getRequest());			
@@ -53,7 +55,7 @@ public class NewAction extends BaseAction {
 	}
 
 	private int getNextId(OntClass cls) {
-		Property p = m().createProperty(NS + "sequence");
+		Property p = m().createProperty(getAsydeoNS() + "sequence");
 		int i=0;
 		try {			
 			Statement stmt = cls.getRequiredProperty(p);
