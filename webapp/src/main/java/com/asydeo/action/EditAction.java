@@ -11,8 +11,10 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 
 import com.asydeo.model.StatementBean;
+import static com.asydeo.util.AsydeoConfig.*;
 import com.asydeo.view.OntView;
 import com.asydeo.view.View;
+
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -112,7 +114,7 @@ public class EditAction extends BaseAction {
 			ArrayList<OntView> results = new ArrayList<OntView>();
 			while(it.hasNext()) {
 				Statement s = it.nextStatement();
-				if (s.getPredicate().getURI().startsWith(Asydeo.NS)) {
+				if (s.getPredicate().getURI().startsWith( getAsydeoNS() )) {
 					Individual j = (Individual)s.getSubject().as(Individual.class);
 					results.add(OntView.$(j));
 				}
