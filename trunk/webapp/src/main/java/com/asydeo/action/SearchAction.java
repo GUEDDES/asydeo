@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.asydeo.ontology.Asydeo;
 import static com.asydeo.util.AsydeoConfig.*;
 import com.asydeo.view.OntView;
 
@@ -21,6 +20,9 @@ import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.shared.Lock;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import thewebsemantic.binding.Jenabean;
 
 
@@ -31,9 +33,11 @@ public class SearchAction extends BaseAction {
     float elapsedQueryTime = 0F;
     
     ArrayList<OntView> queryResult = new ArrayList<OntView>();
+    
+    private static final Log log = LogFactory.getLog(SearchAction.class);
 
 
-    protected void query(String sparql) {
+    public void query(String sparql) {
         if ( sparql != null && ! sparql.isEmpty() ) {
             Query query = null;
             long startQueryTime = System.currentTimeMillis();
@@ -51,6 +55,8 @@ public class SearchAction extends BaseAction {
                          sparql;
             }
 
+            log.debug("SPARQL = " + sparql);
+            
             try {
                 m().enterCriticalSection(Lock.READ);
                 
@@ -137,7 +143,6 @@ public class SearchAction extends BaseAction {
     public String getUri() {
         return uri;
     }
-
     public void setUri(String uri) {
         this.uri = uri;
     }

@@ -23,7 +23,6 @@ import com.asydeo.action.ASDContext;
 import com.asydeo.action.EditAction;
 import com.asydeo.action.Filters;
 import com.asydeo.model.StatementBean;
-import com.asydeo.ontology.Asydeo;
 import com.asydeo.view.OntView;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;

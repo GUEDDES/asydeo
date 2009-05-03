@@ -10,7 +10,6 @@ import thewebsemantic.binding.Jenabean;
 
 import com.asydeo.domain.Role;
 import com.asydeo.domain.User;
-import com.asydeo.ontology.Asydeo;
 import static com.asydeo.servlet.RequestConstants.*;
 import static com.asydeo.util.AsydeoConfig.*;
 
