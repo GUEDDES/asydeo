@@ -216,6 +216,12 @@ td.class {
     padding:5px 5px 5px 5px;
 }
 
+#searchfield {
+  font-size:13px;
+  padding:0.5em;
+  color:#036;
+}
+
 #searchResultDescription {
     padding-left:25px;
 }
@@ -226,14 +232,7 @@ td.class {
 #searchMenu {
     padding-bottom:10px;
 }
-/*#searchMenu li {
-    padding-left:10px;
-    padding-right:10px;
-}
-*/right:10px;
-}
-*/}
-*/
+
 #searchResult a:visited {
     color:#036;
 }
@@ -251,5 +250,4 @@ td.class {
 #searchMenu a {
     padding-left:10px;
     padding-right:10px;
-}right:10px;
 }
