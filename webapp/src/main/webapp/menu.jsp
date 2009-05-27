@@ -34,19 +34,16 @@
  			<stripes:link href="/admin/delete">Delete Model</stripes:link>            
  		</div>
 		</li>
-
-		<li>
-		<stripes:form beanclass="com.asydeo.action.TextSearchAction" class="head_menu" style="display:inline" method="get">
-            <stripes:text name="q" size="20"/>
-        </stripes:form>
-        </li>
-        
+       <li></li>
         </span>
     </ul> 
 </div> 
 
 
 <div style="text-align:right">
+		<stripes:form beanclass="com.asydeo.action.TextSearchAction" class="head_menu" style="display:inline" method="get">
+            <stripes:text id="searchfield" class="ui-widget-content ui-corner-all" name="q" size="20" value="<search>"/>
+        </stripes:form>
 <c:choose>
 <c:when test="${!empty actionBean.context.user}"> 
 Signed in as ${actionBean.context.user.username}
