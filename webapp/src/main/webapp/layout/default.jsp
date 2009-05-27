@@ -27,7 +27,10 @@
       return confirm("Are you SURE you want to remove this entity?");
     });
     
- 
+    $("#searchfield").focus( function() {
+      this.value = "";
+      this.style.color = '#000'
+    });
   
     $("#collect_link").click( function() {
        $.ajax({
