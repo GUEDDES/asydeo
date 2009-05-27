@@ -22,6 +22,8 @@ public class AddPropertyAction extends BaseAction {
 	Individual subject;
 	OntProperty verb;
 	AddRelation bean;
+	int offset;
+
 
 	@DefaultHandler
 	public Resolution start() {
@@ -89,5 +91,14 @@ public class AddPropertyAction extends BaseAction {
 	public OntView getSubject() {
 		return OntView.$(subject);
 	}
+	
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
 
 }
