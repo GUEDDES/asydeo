@@ -2,7 +2,7 @@
 
 
 <!DOCTYPE rdf:RDF [
-    <!ENTITY asydeo "http://asydeo.com/schema#" >
+    <!ENTITY schema "http://asydeo.com/schema#" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
@@ -14,13 +14,13 @@
 
 <rdf:RDF xmlns="http://asydeo.com/schema#"
      xml:base="http://asydeo.com/schema"
+     xmlns:schema="http://asydeo.com/schema#"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:asydeo="http://asydeo.com/schema#">
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about=""/>
     
 
@@ -50,6 +50,14 @@
     
 
 
+    <!-- http://asydeo.com/schema#contains -->
+
+    <owl:ObjectProperty rdf:about="#contains">
+        <rdfs:label>Contains</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://asydeo.com/schema#containsSoftware -->
 
     <owl:ObjectProperty rdf:about="#containsSoftware">
@@ -59,6 +67,7 @@
             >Contains Software</rdfs:comment>
         <rdfs:range rdf:resource="#Software"/>
         <rdfs:domain rdf:resource="#Software"/>
+        <rdfs:subPropertyOf rdf:resource="#contains"/>
     </owl:ObjectProperty>
     
 
@@ -121,6 +130,7 @@
         <rdfs:label>Installed</rdfs:label>
         <rdfs:domain rdf:resource="#Installable"/>
         <rdfs:range rdf:resource="#Software"/>
+        <rdfs:subPropertyOf rdf:resource="#contains"/>
     </owl:ObjectProperty>
     
 
@@ -155,6 +165,7 @@
         <rdfs:label rdf:datatype="&xsd;string">Member</rdfs:label>
         <rdfs:range rdf:resource="#ComputerSystem"/>
         <rdfs:domain rdf:resource="#SystemCluster"/>
+        <rdfs:subPropertyOf rdf:resource="#contains"/>
     </owl:ObjectProperty>
     
 
@@ -221,6 +232,28 @@
         <rdfs:label rdf:datatype="&xsd;string">Role</rdfs:label>
         <rdfs:domain rdf:resource="#System"/>
         <rdfs:range rdf:resource="#SystemRole"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#hasSoftwareInstance -->
+
+    <owl:ObjectProperty rdf:about="#hasSoftwareInstance">
+        <rdfs:label
+            >Software Instance</rdfs:label>
+        <rdfs:range rdf:resource="#Software"/>
+        <rdfs:domain rdf:resource="#SoftwareRecord"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#hasSoftwareProfile -->
+
+    <owl:ObjectProperty rdf:about="#hasSoftwareProfile">
+        <rdfs:label
+            >Software Profile</rdfs:label>
+        <rdfs:domain rdf:resource="#Software"/>
+        <rdfs:range rdf:resource="#SoftwareProfile"/>
     </owl:ObjectProperty>
     
 
@@ -322,12 +355,21 @@
     
 
 
-    <!-- http://asydeo.com/schema#providesServices -->
+    <!-- http://asydeo.com/schema#providesService -->
 
-    <owl:ObjectProperty rdf:about="#providesServices">
+    <owl:ObjectProperty rdf:about="#providesService">
         <rdfs:label
             >Provides Service</rdfs:label>
         <rdfs:domain rdf:resource="#Software"/>
+        <rdfs:range rdf:resource="#SystemService"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#uses -->
+
+    <owl:ObjectProperty rdf:about="#uses">
+        <rdfs:domain rdf:resource="#BusinessService"/>
         <rdfs:range rdf:resource="#SystemService"/>
     </owl:ObjectProperty>
     
@@ -397,6 +439,7 @@
     <!-- http://asydeo.com/schema#label -->
 
     <owl:DatatypeProperty rdf:about="#label">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <owl:equivalentProperty rdf:resource="#name"/>
     </owl:DatatypeProperty>
     
@@ -441,7 +484,7 @@
     <owl:DatatypeProperty rdf:about="#version">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Version</rdfs:label>
-        <rdfs:domain rdf:resource="#Software"/>
+        <rdfs:domain rdf:resource="#Versionable"/>
         <rdfs:subPropertyOf rdf:resource="#property"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
@@ -580,6 +623,15 @@
 
     <owl:Class rdf:about="#DropDown">
         <rdfs:subClassOf rdf:resource="#Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#EloggingRecord -->
+
+    <owl:Class rdf:about="#EloggingRecord">
+        <rdfs:label>Elogging Record</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#SoftwareItem"/>
     </owl:Class>
     
 
@@ -842,6 +894,7 @@
         <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
         <rdfs:subClassOf rdf:resource="#Documentable"/>
         <rdfs:subClassOf rdf:resource="#Supportable"/>
+        <rdfs:subClassOf rdf:resource="#Versionable"/>
     </owl:Class>
     
 
@@ -861,6 +914,30 @@
     <owl:Class rdf:about="#SoftwareItem">
         <rdfs:label>Software Item</rdfs:label>
         <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#SoftwareProfile -->
+
+    <owl:Class rdf:about="#SoftwareProfile">
+        <rdfs:label
+            >Software Profile</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Documentable"/>
+        <rdfs:subClassOf rdf:resource="#SoftwareItem"/>
+        <rdfs:subClassOf rdf:resource="#Supportable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#SoftwareRecord -->
+
+    <owl:Class rdf:about="#SoftwareRecord">
+        <rdfs:label>Software Record</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Documentable"/>
+        <rdfs:subClassOf rdf:resource="#SoftwareItem"/>
+        <rdfs:subClassOf rdf:resource="#Supportable"/>
+        <rdfs:subClassOf rdf:resource="#Versionable"/>
     </owl:Class>
     
 
@@ -998,6 +1075,14 @@
     
 
 
+    <!-- http://asydeo.com/schema#Versionable -->
+
+    <owl:Class rdf:about="#Versionable">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
     <!-- http://asydeo.com/schema#VisibleClass -->
 
     <owl:Class rdf:about="#VisibleClass">
@@ -1056,5 +1141,5 @@
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.974) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.842) http://owlapi.sourceforge.net -->
 
