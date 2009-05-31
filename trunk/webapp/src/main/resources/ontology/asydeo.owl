@@ -6,8 +6,11 @@
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY URIScheme "http://asydeo.com/schema#URIScheme:" >
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY Layer7Protocol "http://asydeo.com/schema#Layer7Protocol:" >
+    <!ENTITY Layer4Protocol "http://asydeo.com/schema#Layer4Protocol:" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
 
@@ -16,11 +19,14 @@
      xml:base="http://asydeo.com/schema"
      xmlns:schema="http://asydeo.com/schema#"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:Layer4Protocol="&schema;Layer4Protocol:"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:Layer7Protocol="&schema;Layer7Protocol:"
+     xmlns:URIScheme="&schema;URIScheme:">
     <owl:Ontology rdf:about=""/>
     
 
@@ -54,6 +60,12 @@
 
     <owl:ObjectProperty rdf:about="#contains">
         <rdfs:label>Contains</rdfs:label>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#contains"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:domain>
     </owl:ObjectProperty>
     
 
@@ -67,6 +79,17 @@
             >Contains Software</rdfs:comment>
         <rdfs:range rdf:resource="#Software"/>
         <rdfs:domain rdf:resource="#Software"/>
+        <rdfs:subPropertyOf rdf:resource="#contains"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#groupContains -->
+
+    <owl:ObjectProperty rdf:about="#groupContains">
+        <rdfs:label>Contains</rdfs:label>
+        <rdfs:range rdf:resource="#ConfigurableItem"/>
+        <rdfs:domain rdf:resource="#LogicalGroup"/>
         <rdfs:subPropertyOf rdf:resource="#contains"/>
     </owl:ObjectProperty>
     
@@ -87,7 +110,7 @@
     <owl:ObjectProperty rdf:about="#hasDNSRecord">
         <rdfs:label>DNS Name</rdfs:label>
         <rdfs:range rdf:resource="#DNSRecord"/>
-        <rdfs:domain rdf:resource="#IPAddressable"/>
+        <rdfs:domain rdf:resource="#IPAddress"/>
     </owl:ObjectProperty>
     
 
@@ -250,6 +273,7 @@
     <!-- http://asydeo.com/schema#hasSoftwareProfile -->
 
     <owl:ObjectProperty rdf:about="#hasSoftwareProfile">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label
             >Software Profile</rdfs:label>
         <rdfs:domain rdf:resource="#Software"/>
@@ -274,7 +298,7 @@
 
     <owl:ObjectProperty rdf:about="#hasSupportContact">
         <rdfs:label>Support Contact</rdfs:label>
-        <rdfs:range rdf:resource="#Person"/>
+        <rdfs:range rdf:resource="#SupportContact"/>
         <rdfs:domain rdf:resource="#Supportable"/>
     </owl:ObjectProperty>
     
@@ -366,6 +390,16 @@
     
 
 
+    <!-- http://asydeo.com/schema#resolvesAddressFrom -->
+
+    <owl:ObjectProperty rdf:about="#resolvesAddressFrom">
+        <rdfs:label>Resolves From</rdfs:label>
+        <rdfs:domain rdf:resource="#DNSARecord"/>
+        <rdfs:range rdf:resource="#DNSCnameRecord"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://asydeo.com/schema#uses -->
 
     <owl:ObjectProperty rdf:about="#uses">
@@ -417,7 +451,9 @@
 
     <owl:DatatypeProperty rdf:about="#domain">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label>Domain</rdfs:label>
         <rdfs:domain rdf:resource="#IPAddressable"/>
+        <editor rdf:resource="#TextField30"/>
         <rdfs:subPropertyOf rdf:resource="#property"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
@@ -430,6 +466,7 @@
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Installed Path</rdfs:label>
         <rdfs:domain rdf:resource="#Software"/>
+        <editor rdf:resource="#TextField30"/>
         <rdfs:subPropertyOf rdf:resource="#property"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
@@ -473,8 +510,21 @@
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Serial Number</rdfs:label>
         <rdfs:domain rdf:resource="#System"/>
+        <editor rdf:resource="#TextField30"/>
         <rdfs:subPropertyOf rdf:resource="#property"/>
         <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#url -->
+
+    <owl:DatatypeProperty rdf:about="#url">
+        <rdfs:label>URL</rdfs:label>
+        <rdfs:domain rdf:resource="#Document"/>
+        <editor rdf:resource="#TextField30"/>
+        <rdfs:subPropertyOf rdf:resource="#property"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
     </owl:DatatypeProperty>
     
 
@@ -484,6 +534,7 @@
     <owl:DatatypeProperty rdf:about="#version">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label rdf:datatype="&xsd;string">Version</rdfs:label>
+        <editor rdf:resource="#TextField30"/>
         <rdfs:domain rdf:resource="#Versionable"/>
         <rdfs:subPropertyOf rdf:resource="#property"/>
         <rdfs:range rdf:resource="&xsd;string"/>
@@ -580,6 +631,25 @@
     <owl:Class rdf:about="#Consumer">
         <rdfs:label>Consumer</rdfs:label>
         <rdfs:subClassOf rdf:resource="#OrganizationalItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#DNSARecord -->
+
+    <owl:Class rdf:about="#DNSARecord">
+        <rdfs:label>DNS A Record</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#DNSRecord"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#DNSCnameRecord -->
+
+    <owl:Class rdf:about="#DNSCnameRecord">
+        <rdfs:label
+            >DNS CNAME Record</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#DNSRecord"/>
     </owl:Class>
     
 
@@ -733,6 +803,15 @@
     <owl:Class rdf:about="#Location">
         <rdfs:label>Location</rdfs:label>
         <rdfs:subClassOf rdf:resource="#OrganizationalItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#LogicalGroup -->
+
+    <owl:Class rdf:about="#LogicalGroup">
+        <rdfs:label>Logical Group</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
     </owl:Class>
     
 
@@ -942,6 +1021,15 @@
     
 
 
+    <!-- http://asydeo.com/schema#SupportContact -->
+
+    <owl:Class rdf:about="#SupportContact">
+        <rdfs:label>Support Contact</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Person"/>
+    </owl:Class>
+    
+
+
     <!-- http://asydeo.com/schema#Supportable -->
 
     <owl:Class rdf:about="#Supportable">
@@ -1061,7 +1149,16 @@
 
     <owl:Class rdf:about="#User">
         <rdfs:label>User</rdfs:label>
-        <rdfs:subClassOf rdf:resource="#OrganizationalItem"/>
+        <rdfs:subClassOf rdf:resource="#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://asydeo.com/schema#UserAction -->
+
+    <owl:Class rdf:about="#UserAction">
+        <rdfs:label>User Action</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Service"/>
     </owl:Class>
     
 
@@ -1128,6 +1225,62 @@
     
 
 
+    <!-- http://asydeo.com/schema#Layer4Protocol:TCP -->
+
+    <Layer4Protocol rdf:about="#Layer4Protocol:TCP">
+        <rdfs:label>TCP</rdfs:label>
+    </Layer4Protocol>
+    
+
+
+    <!-- http://asydeo.com/schema#Layer4Protocol:UDP -->
+
+    <Layer4Protocol rdf:about="#Layer4Protocol:UDP">
+        <rdfs:label>TCP</rdfs:label>
+    </Layer4Protocol>
+    
+
+
+    <!-- http://asydeo.com/schema#Layer7Protocol:FTP -->
+
+    <Layer7Protocol rdf:about="#Layer7Protocol:FTP">
+        <rdfs:label>FTP</rdfs:label>
+    </Layer7Protocol>
+    
+
+
+    <!-- http://asydeo.com/schema#Layer7Protocol:HTTP -->
+
+    <Layer7Protocol rdf:about="#Layer7Protocol:HTTP">
+        <rdfs:label>HTTP</rdfs:label>
+    </Layer7Protocol>
+    
+
+
+    <!-- http://asydeo.com/schema#Layer7Protocol:HTTPS -->
+
+    <Layer7Protocol rdf:about="#Layer7Protocol:HTTPS">
+        <rdfs:label>HTTPS</rdfs:label>
+    </Layer7Protocol>
+    
+
+
+    <!-- http://asydeo.com/schema#Layer7Protocol:SMTP -->
+
+    <Layer7Protocol rdf:about="#Layer7Protocol:SMTP">
+        <rdfs:label>SMTP</rdfs:label>
+    </Layer7Protocol>
+    
+
+
+    <!-- http://asydeo.com/schema#Layer7Protocol:SSH -->
+
+    <Layer7Protocol rdf:about="#Layer7Protocol:SSH">
+        <rdfs:label>SSH</rdfs:label>
+    </Layer7Protocol>
+    
+
+
     <!-- http://asydeo.com/schema#TextAreaBasic -->
 
     <TextArea rdf:about="#TextAreaBasic"/>
@@ -1137,6 +1290,46 @@
     <!-- http://asydeo.com/schema#TextField30 -->
 
     <TextField rdf:about="#TextField30"/>
+    
+
+
+    <!-- http://asydeo.com/schema#URIScheme:ftp -->
+
+    <URIScheme rdf:about="#URIScheme:ftp">
+        <rdfs:label>ftp</rdfs:label>
+    </URIScheme>
+    
+
+
+    <!-- http://asydeo.com/schema#URIScheme:http -->
+
+    <URIScheme rdf:about="#URIScheme:http">
+        <rdfs:label>http</rdfs:label>
+    </URIScheme>
+    
+
+
+    <!-- http://asydeo.com/schema#URIScheme:https -->
+
+    <URIScheme rdf:about="#URIScheme:https">
+        <rdfs:label>https</rdfs:label>
+    </URIScheme>
+    
+
+
+    <!-- http://asydeo.com/schema#URIScheme:sftp -->
+
+    <URIScheme rdf:about="#URIScheme:sftp">
+        <rdfs:label>sftp</rdfs:label>
+    </URIScheme>
+    
+
+
+    <!-- http://asydeo.com/schema#URIScheme:ssh -->
+
+    <URIScheme rdf:about="#URIScheme:ssh">
+        <rdfs:label>ssh</rdfs:label>
+    </URIScheme>
 </rdf:RDF>
 
 

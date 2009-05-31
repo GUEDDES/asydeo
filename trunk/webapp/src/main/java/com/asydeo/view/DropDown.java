@@ -22,6 +22,7 @@ public class DropDown extends BasicView {
 			value = i.getPropertyValue(p);
 			m = i.getOntModel();
 		}
+		options.append("<option value=\"\"></option>");
 		OntResource r = p.getRange();
 		r = m.getOntResource(r);
 		ExtendedIterator it = r.asClass().listInstances();
