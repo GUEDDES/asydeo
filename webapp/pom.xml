@@ -80,6 +80,7 @@
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
 				<configuration>
+					<argLine>-enableassertions</argLine>
 					<stopPort>9966</stopPort>
 					<stopKey>foo</stopKey>
 					<systemProperties>
