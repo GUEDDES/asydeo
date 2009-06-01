@@ -41,7 +41,7 @@ public class NewAction extends BaseAction {
 			int id = getNextId(ontClass);			
 			Individual newi = ontClass.createIndividual(getAsydeoNS() + ontClass.getLocalName() + ':' + id);
 			newi.setLabel(name, null);
-			for (View v : context.getViews(newi))
+			for (View v : context.getViews(newi, ontClass))
 				v.apply(context.getRequest());			
 			
 		} catch (Exception e) {

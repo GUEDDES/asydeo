@@ -1,5 +1,8 @@
 package com.asydeo.view;
 
+import static com.asydeo.util.AsydeoConfig.getAsydeoNS;
+import static com.asydeo.util.AsydeoConfig.getAsydeoPrefix;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.regex.Matcher;
@@ -10,9 +13,7 @@ import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-
-import static com.asydeo.util.AsydeoConfig.*;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 
 public class OntView {
@@ -58,6 +59,9 @@ public class OntView {
 	}
 	
 	public String getType() {
+		Resource r = i.getRDFType(true);
+		if (r==null)
+			return "";
 		String longuri = i.getRDFType(true).getURI();
 		return i.getModel().shortForm(longuri);
 	}
@@ -108,6 +112,7 @@ public class OntView {
 		ArrayList<OntView> result = new ArrayList<OntView>();
 		while(it.hasNext()) {
 			OntResource r = (OntResource)it.next();
+			assert(r!=null);
 			result.add(OntView.$(r));
 		}
 		return result;

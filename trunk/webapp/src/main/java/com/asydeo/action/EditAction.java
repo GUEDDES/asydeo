@@ -78,7 +78,7 @@ public class EditAction extends BaseAction {
 	}
 
 	public View[] getViews() {
-		return context.getViews(individual(uri));
+		return context.getViews(individual(uri), ontClass(classUri));
 	}
 
 	public Collection<OntView> getObjectProperties() {
@@ -116,6 +116,7 @@ public class EditAction extends BaseAction {
 				Statement s = it.nextStatement();
 				if (s.getPredicate().getURI().startsWith( getAsydeoNS() )) {
 					Individual j = (Individual)s.getSubject().as(Individual.class);
+					assert(j!=null);
 					results.add(OntView.$(j));
 				}
 			}

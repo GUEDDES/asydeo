@@ -14,6 +14,7 @@ import com.asydeo.servlet.RequestConstants;
 import com.asydeo.view.View;
 import com.asydeo.view.ViewManager;
 import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 
 
@@ -34,8 +35,8 @@ public class ASDContext extends ActionBeanContext {
 		return (OntModel)getServletContext().getAttribute(RAWMODEL);
 	}
 	
-	public View[] getViews(Individual i) {
-		return vm.getView(getRawModel(),i);
+	public View[] getViews(Individual i, OntClass type) {
+		return vm.getView(getRawModel(),i, type);
 	}
 
 	public View[] getViews(String classUri) {

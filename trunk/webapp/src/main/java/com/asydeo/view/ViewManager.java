@@ -12,8 +12,8 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 public class ViewManager {
 	
-	public View[] getView(OntModel raw, Individual i) {
-		OntClass ontClass = i.getOntClass();
+	public View[] getView(OntModel raw, Individual i, OntClass ontClass) {
+		//OntClass ontClass = i.getOntClass();
 		ExtendedIterator it = ontClass.listDeclaredProperties();
 		ArrayList<View> views = new ArrayList<View>();
 		while(it.hasNext())  {
