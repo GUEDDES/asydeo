@@ -31,7 +31,9 @@ $(document).ready(function() {
 <label>Planned</label>
 <stripes:radio onclick="document.form1.submit()" name="modelName" value="com.asydeo.plannedmodel"/><br/>
 <label>Discovered</label>
-<stripes:radio onclick="document.form1.submit()" name="modelName" value="com.asydeo.discoveredmodel"/>
+<stripes:radio onclick="document.form1.submit()" name="modelName" value="com.asydeo.discoveredmodel"/><br/>
+<label>Inferred</label>
+<stripes:radio onclick="document.form1.submit()" name="modelName" value="com.asydeo.infmodel"/>
 </fieldset>
 </stripes:form>
 
