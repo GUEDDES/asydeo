@@ -4,7 +4,7 @@
 <head> 
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.3.2.min.js"></script>  
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.7.1.custom.min.js"></script>
-  <script type="text/javascript" src="http://malsup.com/jquery/form/jquery.form.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
 
 
   <link type="text/css" href="${pageContext.request.contextPath}/css/cupertino/jquery-ui-1.7.1.custom.css" rel="Stylesheet" />
