@@ -7,8 +7,9 @@ public class Filters {
 	public static Filter nonfunctional = new Filter() {
 		public boolean accept(Object o) {
 			if (o instanceof OntProperty) {
-				OntProperty op = (OntProperty)o;				
-				return !op.isFunctionalProperty() && op.isObjectProperty();
+				OntProperty op = (OntProperty)o;
+				int subs = op.listSubProperties().toList().size();
+				return !op.isFunctionalProperty() && op.isObjectProperty() && subs == 0;
 			}
 			return false;
 		}		
