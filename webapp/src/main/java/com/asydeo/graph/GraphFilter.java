@@ -34,10 +34,20 @@ public class GraphFilter {
 		while(statements.hasNext()) {
 			Statement s = statements.nextStatement();
 			if (visible(s)) {
-				
+				model.add(n, s.getPredicate(), s.getObject());
+				Individual i = (Individual)s.getObject().as(Individual.class);
+				filter(i,i.listProperties());
+			} else if (individual(s)){
+				Individual i = (Individual)s.getObject().as(Individual.class);
+				filter(n, i.listProperties());
 			}
 		}
 		return null;
+	}
+
+	private boolean individual(Statement s) {
+		RDFNode node = s.getObject();
+		return (node.canAs(Individual.class));
 	}
 
 	private boolean visible(Statement s) {
