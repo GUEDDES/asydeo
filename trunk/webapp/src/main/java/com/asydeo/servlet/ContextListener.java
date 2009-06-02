@@ -10,6 +10,8 @@ import thewebsemantic.binding.Jenabean;
 
 import com.asydeo.domain.Role;
 import com.asydeo.domain.User;
+import com.asydeo.util.AsydeoConfig;
+
 import static com.asydeo.servlet.RequestConstants.*;
 import static com.asydeo.util.AsydeoConfig.*;
 
@@ -37,6 +39,9 @@ public class ContextListener implements ServletContextListener {
 		
 		OntModel om = createModel("databases/current", raw);
 		ctx.setAttribute(CURRENT_MODEL, om);
+		
+		OntModel im = createInfModel("databases/current", raw);
+		ctx.setAttribute(INF_MODEL, im);
 
 		OntModel discovered = createModel("databases/discovered", raw);
 		ctx.setAttribute(DISCOVERED_MODEL, discovered);
@@ -46,6 +51,16 @@ public class ContextListener implements ServletContextListener {
 	}
 
 	private OntModel createModel(String directory, Model m) {
+		Model model = TDBFactory.createModel(directory);
+		model.setNsPrefix( getAsydeoPrefix(), getAsydeoNS() );
+		OntModel om = ModelFactory.createOntologyModel(
+				OntModelSpec.OWL_LITE_MEM, model);
+		om.setNsPrefix( getAsydeoPrefix(), getAsydeoNS() );
+		om.addSubModel(m);
+		return om;
+	}
+	
+	private OntModel createInfModel(String directory, Model m) {
 		Model model = TDBFactory.createModel(directory);
 		model.setNsPrefix( getAsydeoPrefix(), getAsydeoNS() );
 		OntModel om = ModelFactory.createOntologyModel(
@@ -72,6 +87,7 @@ public class ContextListener implements ServletContextListener {
 				.createOntologyModel(OntModelSpec.OWL_LITE_MEM);
 		InputStream is = getClass().getResourceAsStream("/ontology/asydeo.owl");
 		raw.read(is, "RDF/XML");
+		raw.setNsPrefix(AsydeoConfig.getAsydeoPrefix(), AsydeoConfig.getAsydeoNS());
 		return raw;
 	}
 }
