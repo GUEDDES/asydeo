@@ -31,6 +31,11 @@
       this.value = "";
       this.style.color = '#000'
     });
+    
+    $("#searchfield").blur( function() {
+      this.value = "<search>";
+      this.style.color = '#bbb'
+    });
   
     $("#collect_link").click( function() {
        $.ajax({
