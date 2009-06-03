@@ -43,7 +43,7 @@ li span.ui-icon {
 }
 
 #accordion {
-	width: 260px;
+	width: 450px;
 	float: right;
 }
 
