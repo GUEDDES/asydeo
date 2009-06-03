@@ -9,6 +9,8 @@ public abstract class BasicView implements View {
 	protected Individual i;
 	protected int order;
 	
+	public abstract String getContent(Individual i);
+	
 	public String getContent() {
 		return getContent(i);
 	}

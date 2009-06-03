@@ -52,7 +52,7 @@ public class MockContext extends ASDContext  {
 				return null;
 			}
 
-			@Override
+			
 			public String getContent(Individual i) {
 				// TODO Auto-generated method stub
 				return null;

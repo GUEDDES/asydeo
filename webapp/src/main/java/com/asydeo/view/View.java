@@ -8,7 +8,6 @@ import com.hp.hpl.jena.ontology.OntProperty;
 public interface View {
 
 	public String getContent();
-	public String getContent(Individual i);
 	public int getOrder();
 	public void setOrder(int i);
 	public void apply(HttpServletRequest r);
