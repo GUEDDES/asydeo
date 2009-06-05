@@ -10,6 +10,7 @@
 <stripes:layout-component name="content">
 
 <c:forEach var="v" items="${actionBean.list}">
+<img src="../img/${v.image}"/>
 <stripes:link beanclass="com.asydeo.action.ListAction">
 <stripes:param name="uri" value="${v.URI}"/>
 ${v.label}</stripes:link><br/>

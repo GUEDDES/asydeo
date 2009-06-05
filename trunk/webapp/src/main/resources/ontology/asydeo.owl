@@ -40,6 +40,7 @@
      -->
 
     <owl:AnnotationProperty rdf:about="&dc;description"/>
+    <owl:AnnotationProperty rdf:about="#image"/>
     <owl:AnnotationProperty rdf:about="#order"/>
     <owl:AnnotationProperty rdf:about="&rdfs;label"/>
     <owl:AnnotationProperty rdf:about="#editor"/>
@@ -1057,6 +1058,7 @@
         <rdfs:subClassOf rdf:resource="#ConfigurableItem"/>
         <rdfs:subClassOf rdf:resource="#IPAddressable"/>
         <rdfs:subClassOf rdf:resource="#VisibleClass"/>
+        <image>socket.jpg</image>
     </owl:Class>
     
 
@@ -1155,6 +1157,7 @@
         <rdfs:subClassOf rdf:resource="#Installable"/>
         <rdfs:subClassOf rdf:resource="#SystemsCategory"/>
         <rdfs:subClassOf rdf:resource="#VisibleClass"/>
+        <image>cluster.jpg</image>
     </owl:Class>
     
 
@@ -1183,6 +1186,7 @@
         <rdfs:label rdf:datatype="&xsd;string">System Service</rdfs:label>
         <rdfs:subClassOf rdf:resource="#Service"/>
         <rdfs:subClassOf rdf:resource="#VisibleClass"/>
+        <image>gears.jpg</image>
     </owl:Class>
     
 

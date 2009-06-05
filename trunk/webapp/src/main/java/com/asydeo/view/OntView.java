@@ -8,10 +8,13 @@ import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.asydeo.util.AsydeoConfig;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.NodeIterator;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 
@@ -35,6 +38,18 @@ public class OntView {
 	        return i.getLabel(null);
 	    }
 	    return null;
+	}
+	
+	public String getImage() {
+		if (i != null) {
+			Property p = i.getModel().getProperty(AsydeoConfig.getAsydeoNS() + "image");
+			RDFNode value =  i.getPropertyValue(p);
+			if (value != null) {
+				Literal l  = (Literal)value.as(Literal.class);
+				return l.getString();
+			}
+		}
+		return null;
 	}
 	
 	public String getURI() {
