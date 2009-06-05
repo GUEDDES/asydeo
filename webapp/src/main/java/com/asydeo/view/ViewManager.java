@@ -12,6 +12,8 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 public class ViewManager {
 	
+	
+	
 	public View[] getView(OntModel raw, Individual i, OntClass ontClass) {
 		//OntClass ontClass = i.getOntClass();
 		ExtendedIterator it = ontClass.listDeclaredProperties();
@@ -31,6 +33,13 @@ public class ViewManager {
 				views.add(v);
 			}
 		}
+		
+		// default, always have a label
+		View label = new TextField();
+		label.setOntProperty(raw.createOntProperty("http://www.w3.org/2000/01/rdf-schema#label"));
+		label.setOrder(100);
+		label.setIndividual(i);
+		views.add(label);
 		sort(views);
 		return views.toArray(new View[0]);
 	}
