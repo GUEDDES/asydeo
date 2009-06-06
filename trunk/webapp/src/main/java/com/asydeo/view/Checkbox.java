@@ -12,7 +12,6 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 public class Checkbox extends BasicView {
 
 	
-	@Override
 	public void apply(HttpServletRequest r) {
 		String value = r.getParameter(p.getLocalName());
 		boolean b = false;
