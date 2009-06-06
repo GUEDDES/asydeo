@@ -40,13 +40,11 @@ public class MockContext extends ASDContext  {
 	public View[] getViews(Individual i) {
 		View v = new View() {
 
-			@Override
 			public void apply(HttpServletRequest r) {
 				// TODO Auto-generated method stub
 				
 			}
 
-			@Override
 			public String getContent() {
 				// TODO Auto-generated method stub
 				return null;
@@ -58,25 +56,21 @@ public class MockContext extends ASDContext  {
 				return null;
 			}
 
-			@Override
 			public int getOrder() {
 				// TODO Auto-generated method stub
 				return 0;
 			}
 
-			@Override
 			public void setIndividual(Individual i) {
 				// TODO Auto-generated method stub
 				
 			}
 
-			@Override
 			public void setOntProperty(OntProperty p) {
 				// TODO Auto-generated method stub
 				
 			}
 
-			@Override
 			public void setOrder(int i) {
 				// TODO Auto-generated method stub
 				

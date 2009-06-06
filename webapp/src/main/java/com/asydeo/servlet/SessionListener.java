@@ -7,12 +7,10 @@ import com.asydeo.domain.AsydeoSession;
 
 public class SessionListener implements HttpSessionListener {
 
-	@Override
 	public void sessionCreated(HttpSessionEvent arg0) {
 		arg0.getSession().setAttribute(RequestConstants.SESSION, new AsydeoSession());
 	}
 
-	@Override
 	public void sessionDestroyed(HttpSessionEvent arg0) {
 		
 	}

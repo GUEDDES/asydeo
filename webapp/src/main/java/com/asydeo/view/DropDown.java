@@ -43,7 +43,6 @@ public class DropDown extends BasicView {
 				.getLabel(null));
 	}
 
-	@Override
 	public void apply(HttpServletRequest req) {
 		String value = req.getParameter(p.getLocalName());
 		Resource r = p.getModel().createResource(value);
