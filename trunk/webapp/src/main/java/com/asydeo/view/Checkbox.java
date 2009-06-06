@@ -32,8 +32,7 @@ public class Checkbox extends BasicView {
 			}
 		}
 		ResourceBundle b = ResourceBundle.getBundle("StripesResources");
-		String format = b.getString("checkbox");
-		
+		String format = b.getString("checkbox");		
 		return MessageFormat.format(format, p.getLocalName(), value,p.getLabel(null));	
 	}
 	
