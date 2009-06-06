@@ -679,6 +679,7 @@
         <rdfs:subClassOf rdf:resource="#VisibleClass"/>
         <dc:description rdf:datatype="&xsd;string"
             >Any computer hardware resource that accepts software installation.</dc:description>
+        <image>computer.jpg</image>
     </owl:Class>
     
 
@@ -956,6 +957,7 @@
         <rdfs:subClassOf rdf:resource="#OrganizationEntity"/>
         <rdfs:subClassOf rdf:resource="#OrganizationalItem"/>
         <rdfs:subClassOf rdf:resource="#VisibleClass"/>
+        <image>people.jpg</image>
     </owl:Class>
     
 
