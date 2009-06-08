@@ -73,6 +73,7 @@ li span.ui-icon {
 <stripes:hidden name="classUri" value="${actionBean.classUri}"/>
 <fieldset class="ui-dialog-content ui-widget-content ui-corner-all">
 <legend class="ui-widget-header ui-state-active ui-corner-all">General Information</legend>
+<c:out value="${actionBean.typeLabel}"/>
 <c:forEach var="v" items="${actionBean.views}">
 ${v.content}<br/>
 </c:forEach>
