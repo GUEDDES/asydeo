@@ -80,6 +80,10 @@ public class EditAction extends BaseAction {
 	public View[] getViews() {
 		return context.getViews(individual(uri), ontClass(classUri));
 	}
+	
+	public String getTypeLabel() {
+		return ontClass(classUri).getLabel(null);
+	}
 
 	public Collection<OntView> getObjectProperties() {
 		try {
