@@ -17,8 +17,8 @@ Create a new ${actionBean.ontView.label}</stripes:link>
 
 
 <ul>
-<c:forEach var="v" items="${actionBean.list}">
-<li class="listing"><span class="label">${v.label}</span> 
+<c:forEach var="v" items="${actionBean.list}" end="${actionBean.offset + 19}" begin="${actionBean.offset}">
+<li class="listing"><span class="label">${v.label}</span>
 <div style="display:inline">
 <stripes:link class="button" beanclass="com.asydeo.action.EditAction">
   <stripes:param name="uri" value="${v.URI}"/>
@@ -31,6 +31,15 @@ Create a new ${actionBean.ontView.label}</stripes:link>
 </li>
 </c:forEach>
 </ul>
+
+<c:forEach var="v" varStatus="status" items="${actionBean.list}" step="20">
+<stripes:link beanclass="com.asydeo.action.ListAction">
+<stripes:param name="uri" value="${actionBean.uri}"/>
+<stripes:param name="offset" value="${status.count * 20 - 20}"/>
+${status.count}
+</stripes:link>
+</c:forEach>
+
 
 </stripes:layout-component>
 </stripes:layout-render>
