@@ -1,7 +1,6 @@
 package com.asydeo.action;
 
 import com.hp.hpl.jena.ontology.OntProperty;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
 
 public class Filters {
