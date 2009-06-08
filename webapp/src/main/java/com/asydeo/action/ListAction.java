@@ -17,7 +17,16 @@ public class ListAction extends BaseAction {
 	
 	String uri;
 	String deleteUri;
+	int offset;
 	
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
 	@DefaultHandler
 	public Resolution start() {			
 		return new ForwardResolution("/list.jsp");
@@ -33,7 +42,7 @@ public class ListAction extends BaseAction {
 	
 	public Collection<OntView> getList() {	
 		return new each(ontClass(uri)) { 
-			void $() {if (!item.isAnon()) result.add(OntView.$(item));}}.result;	
+			void $() {if (!item.isAnon()) result.add(OntView.$(item));}}.sorted();	
 	}
 
 	public OntView getOntView() {

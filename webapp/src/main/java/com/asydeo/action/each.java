@@ -2,8 +2,10 @@ package com.asydeo.action;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import com.asydeo.view.OntView;
+import com.asydeo.view.OntViewComparator;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntProperty;
@@ -47,6 +49,11 @@ public abstract class each {
 	
 	void add(Individual i) {
 		result.add(OntView.$(item, i));
+	}
+	
+	public Collection<OntView> sorted() {
+		Collections.sort(result, new OntViewComparator());	
+		return result;
 	}
 
 }

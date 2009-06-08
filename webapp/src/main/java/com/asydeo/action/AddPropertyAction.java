@@ -69,14 +69,12 @@ public class AddPropertyAction extends BaseAction {
 		try {
 			OntResource r = verb.getRange();
 			r = m().getOntClass(r.getURI());
-			List<OntView> results =  new each(r.asClass().listInstances()) {
+			return  new each(r.asClass().listInstances()) {
 				void $() {
 					if (!m().contains(subject, verb, item))
 						add(OntView.$(item));
 				}
-			}.result;
-			Collections.sort(results, new OntViewComparator());		
-			return results;
+			}.sorted();
 		} finally {
 			m().leaveCriticalSection();
 		}
