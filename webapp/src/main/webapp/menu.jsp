@@ -1,6 +1,25 @@
 <%@ include file="/taglibs.jsp" %>
 
 
+
+
+
+<div style="text-align:right">
+		<stripes:form beanclass="com.asydeo.action.TextSearchAction" class="head_menu" style="display:inline" method="get">
+            <stripes:text id="searchfield" class="ui-widget-content ui-corner-all" name="q" size="20" value="<search>"/>
+        </stripes:form>
+<c:choose>
+<c:when test="${!empty actionBean.context.user}"> 
+Signed in as ${actionBean.context.user.username}
+|
+<stripes:link href="/auth/logout">Sign out</stripes:link>
+</c:when>
+<c:otherwise>
+<stripes:link href="/auth/login">Sign in</stripes:link>
+</c:otherwise>
+</c:choose>
+</div>
+
 <div id="nicemenu"> 
     <ul class="ui-widget">
         <span>
@@ -38,20 +57,3 @@
         </span>
     </ul> 
 </div> 
-
-
-<div style="text-align:right">
-		<stripes:form beanclass="com.asydeo.action.TextSearchAction" class="head_menu" style="display:inline" method="get">
-            <stripes:text id="searchfield" class="ui-widget-content ui-corner-all" name="q" size="20" value="<search>"/>
-        </stripes:form>
-<c:choose>
-<c:when test="${!empty actionBean.context.user}"> 
-Signed in as ${actionBean.context.user.username}
-|
-<stripes:link href="/auth/logout">Sign out</stripes:link>
-</c:when>
-<c:otherwise>
-<stripes:link href="/auth/login">Sign in</stripes:link>
-</c:otherwise>
-</c:choose>
-</div>

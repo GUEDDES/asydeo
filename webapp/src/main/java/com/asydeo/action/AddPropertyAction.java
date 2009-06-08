@@ -1,6 +1,9 @@
 package com.asydeo.action;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -11,6 +14,7 @@ import net.sourceforge.stripes.action.UrlBinding;
 
 import com.asydeo.model.AddRelation;
 import com.asydeo.view.OntView;
+import com.asydeo.view.OntViewComparator;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
@@ -65,12 +69,14 @@ public class AddPropertyAction extends BaseAction {
 		try {
 			OntResource r = verb.getRange();
 			r = m().getOntClass(r.getURI());
-			return new each(r.asClass().listInstances()) {
+			List<OntView> results =  new each(r.asClass().listInstances()) {
 				void $() {
 					if (!m().contains(subject, verb, item))
 						add(OntView.$(item));
 				}
 			}.result;
+			Collections.sort(results, new OntViewComparator());		
+			return results;
 		} finally {
 			m().leaveCriticalSection();
 		}

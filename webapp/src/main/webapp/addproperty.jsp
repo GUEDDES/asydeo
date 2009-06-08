@@ -20,7 +20,7 @@ ${actionBean.subject.label}
 
 <ul>
 <c:forEach var="v" items="${actionBean.candidates}" end="${actionBean.offset + 19}" begin="${actionBean.offset}">
-<li>
+<li class="listing">
 <stripes:checkbox name="bean.o" value="${v.URI}"/>
 ${v.label}
 </li>
