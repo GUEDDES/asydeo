@@ -36,6 +36,8 @@
       this.value = "<search>";
       this.style.color = '#bbb'
     });
+    
+    $("li.listing:even").css("background-color", "#EFF1F1");
   
     $("#collect_link").click( function() {
        $.ajax({
@@ -69,7 +71,7 @@
 		})
 		.mouseout(function(){
 				$(this).removeClass("ui-state-active");
-		});
+	});
 	
     $('#uploadForm').ajaxForm({
         beforeSubmit: function(a,f,o) {
