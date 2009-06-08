@@ -251,3 +251,8 @@ td.class {
     padding-left:10px;
     padding-right:10px;
 }
+
+
+ul#icons {margin: 0; padding: 0;}
+ul#icons li {margin: 2px; position: relative; padding: 4px; cursor: pointer; float: left;  list-style: none; height: 120px}
+ul#icons span.ui-icon {float: left; margin: 0 4px;}
