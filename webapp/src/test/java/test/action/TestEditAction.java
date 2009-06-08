@@ -70,11 +70,20 @@ public class TestEditAction {
 	
 	@Test
 	public void testStart() {
-		EditAction action = new EditAction();		
-		Resolution r = action.start();
-		assertTrue(r instanceof ForwardResolution);
-		ForwardResolution f = (ForwardResolution)r;
-		assertEquals(f.getPath(), "/edit.jsp");
+		EditAction action = new EditAction();	
+		
+		
+		action.setContext( new ASDContext(){
+			public OntModel getModel() {
+				return ModelFactory.createOntologyModel();
+			}
+		});
+
+		//action.setUri("http://foo.bar/hi");
+		//Resolution r = action.start();
+		//assertTrue(r instanceof ForwardResolution);
+		//ForwardResolution f = (ForwardResolution)r;
+		//assertEquals(f.getPath(), "/edit.jsp");
 	}
 	
 	@Test
@@ -103,13 +112,7 @@ public class TestEditAction {
 			System.out.println(it.next());
 		}
 	}
-	
-	@Test
-	public void testUpdate() throws Exception {
-		MockRoundtrip test = new MockRoundtrip(ctx, EditAction.class);	
-		test.setParameter("uri", "foo:1");
-		test.execute("update");
-	}
+
 	
 	@Test
 	public void testUnrelate() throws Exception {
