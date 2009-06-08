@@ -1,40 +1,30 @@
 package test.action;
 
+import static com.asydeo.util.AsydeoConfig.getAsydeoNS;
+import static com.asydeo.util.AsydeoConfig.getAsydeoPrefix;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.io.InputStream;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sourceforge.stripes.action.ForwardResolution;
-import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.controller.DispatcherServlet;
 import net.sourceforge.stripes.controller.StripesFilter;
 import net.sourceforge.stripes.mock.MockRoundtrip;
 import net.sourceforge.stripes.mock.MockServletContext;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.asydeo.action.ASDContext;
 import com.asydeo.action.EditAction;
-import com.asydeo.action.Filters;
 import com.asydeo.model.StatementBean;
-import static com.asydeo.util.AsydeoConfig.*;
 import com.asydeo.view.OntView;
-
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.vocabulary.OWL;
-import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class TestEditAction {
 	
