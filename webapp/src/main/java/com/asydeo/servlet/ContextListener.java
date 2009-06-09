@@ -40,8 +40,8 @@ public class ContextListener implements ServletContextListener {
 		OntModel om = createModel("databases/current", raw);
 		ctx.setAttribute(CURRENT_MODEL, om);
 		
-		OntModel im = createInfModel("databases/current", raw);
-		ctx.setAttribute(INF_MODEL, im);
+		//OntModel im = createInfModel("databases/current", raw);
+		//ctx.setAttribute(INF_MODEL, im);
 
 		OntModel discovered = createModel("databases/discovered", raw);
 		ctx.setAttribute(DISCOVERED_MODEL, discovered);
