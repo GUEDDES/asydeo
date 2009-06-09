@@ -2,7 +2,6 @@ package com.asydeo.action;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.util.Collection;
 
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -24,11 +23,10 @@ public class CollectItemAction extends BaseAction {
 		context.getResponse().getWriter().write("success");
 		String longuri = m().expandPrefix(uri);
 		User u = context.getUser();
-		Profile p = u.getProfile();
-		URI aURI = URI.create(longuri);
-		Collection<URI> c = p.getCollectedItems();
-		if (! c.contains(aURI))
-			c.add(aURI);
+		Profile p = u.getProfile();		
+		Collection<String> c = p.getCollectedItems();
+		if (! c.contains(longuri))
+			c.add(longuri);
 		return null;
 	}
 
