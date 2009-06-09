@@ -1,7 +1,6 @@
 package com.asydeo.action;
 
-import static com.asydeo.servlet.RequestConstants.RAWMODEL;
-import static com.asydeo.servlet.RequestConstants.USER;
+import static com.asydeo.servlet.RequestConstants.*;
 
 import java.security.Principal;
 
@@ -28,6 +27,13 @@ public class ASDContext extends ActionBeanContext {
 	
 	public OntModel getModel() {
 		String modelName = getSession().getModelName();
+		
+		//create an in session inf model
+		if (INF_MODEL.equals(modelName)) {
+			OntModel model = (OntModel)getServletContext().getAttribute(CURRENT_MODEL);
+			return getSession().getInferenceModel(model);
+		}
+			
 		return (OntModel)getServletContext().getAttribute(modelName);
 	}
 
