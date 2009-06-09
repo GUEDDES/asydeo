@@ -32,6 +32,7 @@ Create a new ${actionBean.ontView.label}</stripes:link>
 </c:forEach>
 </ul>
 
+<div class="paginator">
 <c:forEach var="v" varStatus="status" items="${actionBean.list}" step="20">
 <stripes:link beanclass="com.asydeo.action.ListAction">
 <stripes:param name="uri" value="${actionBean.uri}"/>
@@ -39,6 +40,7 @@ Create a new ${actionBean.ontView.label}</stripes:link>
 ${status.count}
 </stripes:link>
 </c:forEach>
+</div>
 
 
 </stripes:layout-component>

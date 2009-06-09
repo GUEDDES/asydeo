@@ -38,7 +38,7 @@ Signed in as ${actionBean.context.user.username}
 
 		<li>
         <span class="head_menu">
-        <stripes:link href="/asset/list?uri=asydeo:ConfigurableItem">List Items</stripes:link>
+        <stripes:link beanclass="com.asydeo.action.ListMyItemsAction">Collected Items</stripes:link>
 		</span>
 		</li>
 		

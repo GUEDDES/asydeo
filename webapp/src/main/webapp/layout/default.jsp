@@ -84,16 +84,13 @@
         },
         error: function() { 
         	$('#ajaxContent').html('File upload failed.'); 
-        	$("#ajaxConsole").fadeTo(2000, 1).fadeOut(2000);
-        	
+        	$("#ajaxConsole").fadeTo(2000, 1).fadeOut(2000);       	
         } 
      });
      
      // menu stuff
-     	$("#nicemenu img.arrow").click(function(){ 
-								
-		$("span.head_menu").removeClass('active');
-		
+     $("#nicemenu img.arrow").click(function(){ 
+		$("span.head_menu").removeClass('active');		
 		submenu = $(this).parent().parent().find("div.sub_menu");
 		
 		if(submenu.css('display')=="block"){
@@ -156,7 +153,7 @@
 
 <body>
 
-<div id="dialog" title="Download complete" class="ui-helper-hidden">
+<div id="dialog" title="Item Successfully Added" class="ui-helper-hidden">
 	<p>
 		<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
 		<span id="dialogContent"></span>
