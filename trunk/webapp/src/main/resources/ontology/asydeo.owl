@@ -622,6 +622,7 @@
         <owl:disjointWith rdf:resource="#ComputerSystem"/>
         <dc:description rdf:datatype="&xsd;string"
             >Application software that may be installed onto a computer system</dc:description>
+        <image>software.jpg</image>
     </owl:Class>
     
 
