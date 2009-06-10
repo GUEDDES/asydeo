@@ -38,8 +38,11 @@ public class EditAction extends BaseAction {
 	@DefaultHandler
 	public Resolution start() {
 		if (classUri == null || classUri.equals("asydeo:ConfigurableItem")) {
-			Individual i = individual(uri);
-			classUri = i.getRDFType(true).getURI();
+			Individual i = individual(uri);			
+			if (i.getRDFType(true)==null)
+				classUri = OWL.Thing.getURI();
+			else
+				classUri = i.getRDFType(true).getURI();
 			classUri = m().shortForm(classUri);
 		}
 		return new ForwardResolution("/edit.jsp");
@@ -108,6 +111,19 @@ public class EditAction extends BaseAction {
 		}
 	}
 
+	public Collection<OntView> getTypes() {
+		try {
+			m().enterCriticalSection(Lock.READ);
+			final Individual i = individual(uri);
+			return new each(i.listRDFTypes(false)) {
+				void $() {add(i);}}.result;
+			
+		} finally {
+			m().leaveCriticalSection();
+		}
+	}
+	
+	
 	public Collection<OntView> getReferences() {
 		try {
 			m().enterCriticalSection(Lock.READ);
