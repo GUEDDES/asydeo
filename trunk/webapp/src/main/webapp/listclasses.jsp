@@ -8,16 +8,15 @@
 
 <stripes:layout-component name="content">
 
-<ul id="icons">
+<div id="icons">
 <c:forEach var="v" items="${actionBean.list}">
-<li class="ui-state-default ui-corner-all" >
-<stripes:link beanclass="com.asydeo.action.ListAction">
-<img src="../img/${v.image}" height="75"/><br/>
+<stripes:link style="float:left;text-decoration:none;text-align:bottom" beanclass="com.asydeo.action.ListAction" class="ui-state-default ui-corner-all">
+<img style="border:none" src="../img/${v.image}" height="75"/><br/>
 <stripes:param name="uri" value="${v.URI}"/>
 ${v.label}</stripes:link>
-</li>
 </c:forEach>
-</ul>
+</div>
+
 </stripes:layout-component>
 </stripes:layout-render>
 
