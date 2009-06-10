@@ -89,6 +89,17 @@ ${v.content}<br/>
 <span class="ui-icon ui-icon-plusthick"></span>Collect this item</a>
 </div>
 </fieldset>
+
+<c:forEach var="v" items="${actionBean.types}">
+<c:if test="${!empty v.label}">
+<stripes:link class="button" beanclass="com.asydeo.action.EditAction">
+  <stripes:param name="classUri" value="${v.URI}"/>
+  <stripes:param name="uri" value="${actionBean.uri}"/>
+  ${v.label} 
+</stripes:link>
+</c:if>
+</c:forEach>
+
 </stripes:form>
 </div>
 
