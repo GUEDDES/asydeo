@@ -1,4 +1,4 @@
 <%
 	String redirectURL = "/asset/home";
-	pageContext.forward(redirectURL); 
+	response.sendRedirect(request.getContextPath() + redirectURL); 
 %>
