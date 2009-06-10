@@ -10,6 +10,7 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 public abstract class each {
@@ -19,7 +20,8 @@ public abstract class each {
 	
 	public each(ExtendedIterator it) {
 		while(it.hasNext()) {
-			item = (OntResource)it.next();
+			Resource r = (Resource)it.next();
+			item = (OntResource)r.as(OntResource.class);
 			$();
 		}
 	}
