@@ -98,8 +98,7 @@ public class OntView {
 	        // TODO: This doesn't work
 	        if ( label.isEmpty() ) {
 	            label = classUri;
-	        }
-	        
+	        }   
 	        classUri = classUri.replace(getAsydeoPrefix() + ":", "");
 	        classUri = getAsydeoNS() + classUri;
 	        
@@ -108,8 +107,7 @@ public class OntView {
 	        if ( resource != null ) {
 	            label = resource.getLabel(null);
 	        }
-	    }
-	    
+	    }   
 	    return label;
 	}
 	
@@ -140,8 +138,7 @@ public class OntView {
           i.getOntModel().getOntProperty(getAsydeoNS() + property);
 	    
 	    if ( p != null && i.hasProperty(p) ) {
-	        RDFNode node = i.getPropertyValue(p);
-	        
+	        RDFNode node = i.getPropertyValue(p);	        
 	        if ( node.isLiteral() ) {
 	            name = node.toString();
 	        }
@@ -150,7 +147,6 @@ public class OntView {
 	            name = r.getLabel(null);
 	        }
 	    }
-	    
 	    return name;
 	}
 }
