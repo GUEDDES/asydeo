@@ -85,7 +85,7 @@ public class OntView {
 	// the Individual.getOntClass() cannot guarantee which class
 	// may be returned, we extract the name from the individual's URI
 	public String getClassLabel() {
-	    String label = getType();
+	    String label = getType().replace(":", "");
 
 	    String regex = getAsydeoPrefix() + ":\\w+";
 	    Matcher m = Pattern.compile(regex).matcher( getURI() );
