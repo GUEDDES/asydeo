@@ -403,12 +403,47 @@
     
 
 
+    <!-- http://asydeo.com/schema#isContainedWithinSoftware -->
+
+    <owl:ObjectProperty rdf:about="#isContainedWithinSoftware">
+        <rdfs:label
+            >Is Contained Within</rdfs:label>
+        <rdfs:range rdf:resource="#Software"/>
+        <rdfs:domain rdf:resource="#Software"/>
+        <owl:inverseOf rdf:resource="#containsSoftware"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#isProvidedBySoftware -->
+
+    <owl:ObjectProperty rdf:about="#isProvidedBySoftware">
+        <rdfs:label>Provided By</rdfs:label>
+        <rdfs:range rdf:resource="#Software"/>
+        <rdfs:domain rdf:resource="#SystemService"/>
+        <owl:inverseOf rdf:resource="#providesService"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://asydeo.com/schema#isRequiredBySoftware -->
 
     <owl:ObjectProperty rdf:about="#isRequiredBySoftware">
         <rdfs:label>Is Required By</rdfs:label>
         <rdfs:domain rdf:resource="#Software"/>
         <rdfs:range rdf:resource="#Software"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#providesAccessTo -->
+
+    <owl:ObjectProperty rdf:about="#providesAccessTo">
+        <rdfs:label
+            >Provides Access To</rdfs:label>
+        <rdfs:domain rdf:resource="#ServiceAccessPoint"/>
+        <rdfs:range rdf:resource="#SystemService"/>
+        <owl:inverseOf rdf:resource="#isAccessedBy"/>
     </owl:ObjectProperty>
     
 
@@ -420,6 +455,17 @@
             >Provides Service</rdfs:label>
         <rdfs:domain rdf:resource="#Software"/>
         <rdfs:range rdf:resource="#SystemService"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://asydeo.com/schema#requiresSoftware -->
+
+    <owl:ObjectProperty rdf:about="#requiresSoftware">
+        <rdfs:label>Requires</rdfs:label>
+        <rdfs:range rdf:resource="#Software"/>
+        <rdfs:domain rdf:resource="#Software"/>
+        <owl:inverseOf rdf:resource="#isRequiredBySoftware"/>
     </owl:ObjectProperty>
     
 
@@ -437,6 +483,7 @@
     <!-- http://asydeo.com/schema#uses -->
 
     <owl:ObjectProperty rdf:about="#uses">
+        <rdfs:label>Uses</rdfs:label>
         <rdfs:domain rdf:resource="#BusinessService"/>
         <rdfs:range rdf:resource="#SystemService"/>
     </owl:ObjectProperty>
