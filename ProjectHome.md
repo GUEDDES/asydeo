@@ -1,0 +1,3 @@
+Configuration management addresses how the data is to be kept up to date, which has historically been a weakness of metadata repositories.  RDF provides the right mix of structure and flexibility to allow large federated deployments to store metadata internally and share this information.  SPARQL provides the query.
+
+[ontology](http://asydeo.googlecode.com/svn/trunk/webapp/src/main/resources/ontology/asydeo.owl)
